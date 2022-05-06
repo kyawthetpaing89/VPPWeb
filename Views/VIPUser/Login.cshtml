@@ -1,0 +1,180 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TBS Login Page </title>
+    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 10]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="#">
+    <meta name="keywords" content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+    <meta name="author" content="#">
+    <!-- Favicon icon -->
+    <link rel="icon" href="@Url.Content("~/SystemImages/Proycontec-Beach-Bag-books.ico")" type="image/x-icon" />
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+    <!-- Required Fremwork -->
+    <link href="@Url.Content("~/Adminity/bower_components/bootstrap/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <!-- themify-icons line icon -->
+    <link href="@Url.Content("~/Adminity/assets/icon/themify-icons/themify-icons.css")" rel="stylesheet" type="text/css" />
+    <!-- ico font -->
+    <link href="@Url.Content("~/Adminity/assets/icon/icofont/css/icofont.css")" rel="stylesheet" type="text/css" />
+    <!-- SweetAlert.css-->
+    <link href="@Url.Content("~/Content/sweetalert2.min.css")" rel="stylesheet" />
+
+    <!--Login Style.css -->
+    <link href="@Url.Content("~/Content/login.css")" rel="stylesheet" type="text/css" />
+    <style>
+        html, body {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body onload="LoginOnload()">
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="ball-scale">
+            <div class='contain'>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+
+    <div class="row m-0 h-100">
+        <div class="col-lg-6 left-h-100 login-left-bg">
+            <div class="login-left-txt">
+                <h2 class="fr">VIP</h2><h1 class="fr">Partner.</h1><p class="FR">Join D-Link Partner to receive many rewards and exclusive offers!</p>
+            </div>
+        </div>
+        <div class="col-lg-6 right-h-100">
+            <div class="login-right-form">
+                <h1 class="fp">Login</h1>
+                <form id="errorform" name="form1" method="post" action="/asp/login">
+                    <input type="hidden" name="Enter2" value="ok">
+                    <!-- div class='login-alert mb-0'><i class="icon-info"></i> Alert</div -->
+                    <div class="form-group row my-xs-4 mb-sm-4 mb-lg-5">
+                        <label for="loginEmail" class="col-sm-2 col-lg-3 col-xs-2 col-form-label">EMAIL</label>
+                        <div class="col-sm-10 col-lg-9 col-xs-10">
+                            <input id="LoginEmail" type="text" class="form-control" name="LoginEmail">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="loginPassword" class="col-sm-2 col-lg-3 col-xs-2 col-form-label">PASSWORD</label>
+                        <div class="col-sm-10 col-lg-9 col-xs-10">
+                            <input id="LoginPassword" type="password" class="form-control" name="LoginPassword">
+                        </div>
+                    </div>
+                    <p class="login-p mt-3"><a href="/ForgotPassword">Forgot Password ?</a></p>
+                    <div class="text-sm-center text-xs-center"><button class="btn btn-dl mt-sm-3 mt-lg-3 mx-sm-auto float-md-right float-sm-none" type="button" onclick="LoginClick()">LOGIN</button></div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+            <div class="login-logo text-sm-center text-xs-center"><img src="@Url.Content("~/SystemImages/logo.png")"></div>
+        </div>
+    </div>
+    <!-- Warning Section Starts -->
+    <!-- Older IE warning message -->
+    <!--[if lt IE 10]>
+    <div class="ie-warning">
+        <h1>Warning!!</h1>
+        <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+        <div class="iew-container">
+            <ul class="iew-download">
+                <li>
+                    <a href="http://www.google.com/chrome/">
+                        <img src="../files/assets/images/browser/chrome.png" alt="Chrome">
+                        <div>Chrome</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.mozilla.org/en-US/firefox/new/">
+                        <img src="../files/assets/images/browser/firefox.png" alt="Firefox">
+                        <div>Firefox</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.opera.com">
+                        <img src="../files/assets/images/browser/opera.png" alt="Opera">
+                        <div>Opera</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.apple.com/safari/">
+                        <img src="../files/assets/images/browser/safari.png" alt="Safari">
+                        <div>Safari</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                        <img src="../files/assets/images/browser/ie.png" alt="">
+                        <div>IE (9 & above)</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <p>Sorry for the inconvenience!</p>
+    </div>
+    <![endif]-->
+    <!-- Warning Section Ends -->
+    <!-- Required Jquery -->
+    <script src="@Url.Content("~/Adminity/bower_components/jquery/js/jquery.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Adminity/bower_components/jquery-ui/js/jquery-ui.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Adminity/bower_components/popper.js/js/popper.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Adminity/bower_components/bootstrap/js/bootstrap.min.js")" type="text/javascript"></script>
+    <!-- jquery slimscroll js -->
+    <script src="@Url.Content("~/Adminity/bower_components/jquery-slimscroll/js/jquery.slimscroll.js")" type="text/javascript"></script>
+    <!-- modernizr js -->
+    <script src="@Url.Content("~/Adminity/bower_components/modernizr/js/modernizr.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Adminity/bower_components/modernizr/js/css-scrollbars.js")" type="text/javascript"></script>
+    <!-- i18next.min.js -->
+    <script src="@Url.Content("~/Adminity/bower_components/i18next/js/i18next.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Adminity/bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Adminity/bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Adminity/bower_components/jquery-i18next/js/jquery-i18next.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Adminity/assets/js/common-pages.js")" type="text/javascript"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- sweetalert.min.js -->
+    <script src="@Url.Content("~/Scripts/sweetalert2.min.js")"></script>
+
+    <!-- tbsCustom js-->
+    <script src="@Url.Content("~/Scripts/message.js?v=1")"></script>
+    <script src="@Url.Content("~/Scripts/api.js?v=1")"></script>
+    <script src="@Url.Content("~/Scripts/login.js?v=1")" type="text/javascript"></script>
+
+    <input id="HGetVIPPartnerLoginCheck" type="hidden" value="@Url.Action("GetVIPPartnerLoginCheck", "api/PartnerApi")" />
+    <input id="HSetAuth" type="hidden" value="@Url.Action("SetLoginAuth", "Home")" />
+
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');</script>
+</body>
+
+</html>
+
