@@ -7,6 +7,18 @@
     z-index: 9999;
 }
 
+.navbar-logo{
+    border-right:1px black solid;
+}
+
+.pcoded .pcoded-header[header-theme="theme1"] .navbar-logo a {
+    color: black;
+}
+
+.height300{
+    height:300px !important;
+}
+
 .div-centerbtn {
     display: flex;
     justify-content: center;

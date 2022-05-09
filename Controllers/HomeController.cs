@@ -14,9 +14,9 @@ namespace VPPWeb.Controllers
         {
             return View();
         }
-        public ActionResult SetLoginAuth(PartnerModel partnerModel)
+        public ActionResult SetLoginAuth(UserModel partnerModel)
         {
-            FormsAuthentication.SetAuthCookie(partnerModel.VipLoginInfo, false);
+            FormsAuthentication.SetAuthCookie(partnerModel.UserLoginInfo, false);
             return RedirectToAction("Dashboard");
         }
     }

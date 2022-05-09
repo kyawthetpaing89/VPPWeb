@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace VPPWeb.Controllers
 {
-    public class VIPUserController : Controller
+    public class UserController : Controller
     {
         public ActionResult Login()
         {

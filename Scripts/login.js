@@ -14,17 +14,18 @@ function LoginClick() {
             Email: $("#LoginEmail").val(),
             Password: $("#LoginPassword").val(),
         };
-        CalltoApiController($("#HGetVIPPartnerLoginCheck").val(), obj, 'LoginResponse');
+
+        CalltoApiController($("#HGetUserLoginCheck").val(), obj, 'LoginResponse');
     }
 }
 
 function LoginResponse(response) {
-    var vippartner = JSON.parse(response);
-    if (vippartner.length > 0) {
-        var MessageID = vippartner[0].MessageID;
+    var user = JSON.parse(response);
+    if (user.length > 0) {
+        var MessageID = user[0].MessageID;
         if (MessageID == '0') {
-            var userinfo = vippartner[0].RecordRef + '_' + vippartner[0].PartnerName;
-            location.href = $("#HSetAuth").val() + '?StaffLoginInfo=' + userinfo;
+            var userinfo = user[0].RecordRef + '_' + user[0].LastName;
+            location.href = $("#HSetAuth").val() + '?UserLoginInfo=' + userinfo;
         } else {
             ShowMessage(MessageID);
             $("#LoginEmail").focus();

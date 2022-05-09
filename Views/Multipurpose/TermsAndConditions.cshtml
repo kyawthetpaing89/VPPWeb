@@ -1,0 +1,62 @@
+﻿@model VPPModel.MultipurposeModel
+@{
+    ViewBag.Title = "TermsAndConditions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-wrapper">
+    <!-- Page-header start -->
+    <div class="page-header">
+        <div class="row align-items-end">
+            <div class="col-lg-12">
+                <div class="page-header-title">
+                    <div class="d-inline">
+                        <h4>Terms & Conditions</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page-header end -->
+    <!-- Page body start -->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Basic Form Inputs card start -->
+                <div class="card">
+                    <div class="card-block">
+                        <form>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    @Html.TextAreaFor(x => x.Text1, new { @tabIndex = 1, @class = "form-control height300" })
+                                </div>
+                            </div>
+                            <div id="divSave" class="form-group row div-centerbtn">
+                                <div class="col-sm-2">
+                                    <button type="button" id="btnSave" tabindex="2" onclick="CompanyInfoUpdate();" class="btn btn-block btn-grd-success"><span id="btnSaveText">Save</span></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Page body end -->
+</div>
+
+<input id="HMultipurposeUpdate" type="hidden" value="@Url.Action("MultipurposeUpdate", "api/MultipurposeApi")" />
+<input id="HMultipurposeID" type="hidden" value="01" />
+<input id="HKeyCode" type="hidden" value="001" />
+
+<!-- Main-body end -->
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/multipurpose.js?v=1")"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GetCompanyInfo();
+        });
+    </script>
+}
