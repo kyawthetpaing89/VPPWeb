@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Multipurpose_BL", "..\Multi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorLog_BL", "..\ErrorLog_BL\ErrorLog_BL.csproj", "{F67A8FA2-CDD5-4202-B87D-17E0C48CA8E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reward_BL", "..\Reward_BL\Reward_BL.csproj", "{BA6ED8E6-3788-4A4B-A2DC-99D099EF9F79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{F67A8FA2-CDD5-4202-B87D-17E0C48CA8E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F67A8FA2-CDD5-4202-B87D-17E0C48CA8E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F67A8FA2-CDD5-4202-B87D-17E0C48CA8E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA6ED8E6-3788-4A4B-A2DC-99D099EF9F79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA6ED8E6-3788-4A4B-A2DC-99D099EF9F79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA6ED8E6-3788-4A4B-A2DC-99D099EF9F79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA6ED8E6-3788-4A4B-A2DC-99D099EF9F79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
