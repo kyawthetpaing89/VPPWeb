@@ -79,3 +79,12 @@ textarea.form-control {
 .gj-datepicker{
     margin-bottom : 0px;
 }
+
+.hidden{
+    display : none;
+}
+
+.img-product{
+    width:100px;
+    height:100px;
+}

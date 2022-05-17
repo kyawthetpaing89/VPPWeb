@@ -1593,11 +1593,6 @@
     <Content Include="Adminity\bower_components\switchery\js\switchery.min.js" />
     <Content Include="Adminity\bower_components\underscore\js\underscore-min.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="Content\bootstrap-datepicker.css" />
-    <Content Include="Content\bootstrap-datepicker.min.css" />
-    <Content Include="Content\bootstrap-datepicker3.css" />
-    <Content Include="Content\bootstrap-datepicker3.min.css" />
-    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\common.css" />
     <Content Include="Content\iziModal.css" />
     <Content Include="Content\iziModal.min.css" />
@@ -1711,9 +1706,6 @@
     <Content Include="RequireDLL\CKM_DataLayer.dll" />
     <Content Include="RequireDLL\Newtonsoft.Json.dll" />
     <Content Include="Scripts\api.js" />
-    <Content Include="Scripts\bootstrap-datepicker.js" />
-    <Content Include="Scripts\bootstrap-datepicker.min.js" />
-    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\cleave.js" />
     <Content Include="Scripts\cleave.min.js" />
     <Content Include="Scripts\common.js" />
