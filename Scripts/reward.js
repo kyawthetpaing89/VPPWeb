@@ -10,6 +10,21 @@
         zindex: 999
     });
 
+    new Cleave('.point1', {
+        numeral: true,
+        //numeralThousandsGroupStyle: 'none'
+    });
+
+    new Cleave('.point2', {
+        numeral: true,
+        //numeralThousandsGroupStyle: 'none'
+    });
+
+    $('#txtValidTill').datepicker({
+        uiLibrary: 'bootstrap4',
+        format: 'dd mmm yyyy' 
+    });
+
     BindRewardPrize();
 }
 
@@ -33,6 +48,7 @@ function RewardPrizeResponse(response) {
         "columns": [
             { "data": "ItemCode", width: "10%" },
             { "data": "Status", width: "10%" },
+            { "data": "ItemCode", width: "10%" },
             { "data": "ProductCategoryName", width: "10%" },
             { "data": "ProductDescription", width: "10%" },
             { "data": "ProductPhoto", width: "10%" },
@@ -52,4 +68,21 @@ function RewardPrizeResponse(response) {
             },
         }],
     });
+}
+
+function AddNewPrize() {
+    ClearReward();
+
+    $(".iziModal-header-title").html('Add Reward Prize');
+    $("#RewardPrizeModal").iziModal('open');
+    BindProductCategory();
+    $("#HMode").val('New');
+}
+
+function ClearReward() {
+    
+}
+
+function BindProductCategory() {
+    BindDropdown({}, $("#HGetProductCategory").val(), 'ddlCategory', 'ProductCategoryID', 'ProductCategoryName','',true);
 }

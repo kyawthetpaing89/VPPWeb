@@ -25,6 +25,7 @@
                             <table id="tblReward" class="table table-striped" style="width:100%">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th>Status</th>
                                         <th>Item Code</th>
                                         <th>Category</th>
@@ -32,7 +33,6 @@
                                         <th>Product</th>
                                         <th>Reward Points Require</th>
                                         <th>Valid Till</th>
-                                        <th>Details</th>
                                         <th>Unit Cost</th>
                                         <th>Suppiler</th>
                                         <th>Creation Date</th>
@@ -54,15 +54,71 @@
 <div id="RewardPrizeModal">
     <div class="md-content">
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Category Name:</label>
+            <label class="col-sm-4 col-form-label">Status:</label>
             <div class="col-sm-8">
-                <input id="txtCategoryName" maxlength="50" type="text" class="form-control" />
+                <input type="radio" value="0" class="valign-center" checked /> <span class="valign-center">In-active</span>
+                <input type="radio" value="1" class="valign-center" /> <span class="valign-center">Active</span>
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Order Sequence:</label>
+            <label class="col-sm-4 col-form-label">Item Code:</label>
             <div class="col-sm-8">
-                <input id="txtOrder" type="text" maxlength="2" class="form-control point1 align-right">
+                <input id="txtItemCode" type="text" maxlength="10" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Category:</label>
+            <div class="col-sm-8">
+                <select id="ddlCategory" class="form-control">
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Product Description:</label>
+            <div class="col-sm-8">
+                <input id="txtProductDescription" type="text" maxlength="10" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Product Photo:</label>
+            <div class="col-sm-8">
+                <input type="file" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Reward Points Required:</label>
+            <div class="col-sm-8">
+                <input id="txtphoto" type="text" maxlength="13" class="form-control point1 align-right">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Valid Till:</label>
+            <div class="col-sm-8">
+                <input id="txtValidTill" type="text" readonly class="form-control align-center">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Details:</label>
+            <div class="col-sm-8">
+                <input id="txtDetails" type="text" maxlength="10" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">D-Link Unit Cost:<br /><span style="font-size:11px">(local Currency)</span></label>
+            <div class="col-sm-8">
+                <input id="txtUnitCost" type="text" maxlength="10" class="form-control point2 align-right">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Name of Supplier:</label>
+            <div class="col-sm-8">
+                <input id="txtSupplierName" type="text" maxlength="10" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Quotation:</label>
+            <div class="col-sm-8">
+                <input type="file" class="form-control">
             </div>
         </div>
         <div id="divSave" class="form-group row div-centerbtn">
@@ -74,11 +130,12 @@
 </div>
 
 <input id="HMode" type="hidden" />
+<input id="HGetProductCategory" type="hidden" value="@Url.Action("GetProductCategory", "api/ProductCategoryApi")" />
 <input id="HGetRewardPrize" type="hidden" value="@Url.Action("GetRewardPrize", "api/RewardApi")" />
 <input id="HRewardPrizeCUD" type="hidden" value="@Url.Action("RewardPrize_CUD", "api/RewardApi")" />
 
 @section Scripts{
-    <script src="@Url.Content("~/Scripts/reward.js?v=1")"></script>
+    <script src="@Url.Content("~/Scripts/reward.js?v=3")"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {

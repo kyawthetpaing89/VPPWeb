@@ -2,18 +2,23 @@
     location.href = $("#HErrorPageUrl").val();
 }
 
-function BindDropdown(model, url, ctrlID, key, value, defaultvalue) {
-    CalltoApiController(url, model, 'DropdownResponse', ctrlID, key, value, defaultvalue);
+function BindDropdown(model, url, ctrlID, key, value, defaultvalue,addblankrow) {
+    CalltoApiController(url, model, 'DropdownResponse', ctrlID, key, value, defaultvalue,addblankrow);
 }
 
-function DropdownResponse(response, ctrlID, key, value, defaultvalue) {
+function DropdownResponse(response, ctrlID, key, value, defaultvalue,addblankrow) {
     var items = JSON.parse(response);
+    if (addblankrow == true) {
+        $("#" + ctrlID).append(
+            $('<option></option>').val('').html('---Select---'));
+    }
+
     $.each(items, function (i, item) {
         $("#" + ctrlID).append(
             $('<option></option>').val(item[key]).html(item[value]));
     });
 
-    if (defaultValue != '') {
+    if (defaultvalue != '') {
         $("#" + ctrlID).val(defaultvalue);
     }
 }

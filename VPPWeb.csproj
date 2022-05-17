@@ -165,7 +165,7 @@
     <Compile Include="Controllers\ProductCategoryApiController.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
     <Compile Include="Controllers\RewardController.cs" />
-    <Compile Include="Controllers\RewardPointApiController.cs" />
+    <Compile Include="Controllers\RewardApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserAuthentication.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -1593,6 +1593,11 @@
     <Content Include="Adminity\bower_components\switchery\js\switchery.min.js" />
     <Content Include="Adminity\bower_components\underscore\js\underscore-min.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap-datepicker.min.css" />
+    <Content Include="Content\bootstrap-datepicker3.css" />
+    <Content Include="Content\bootstrap-datepicker3.min.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\common.css" />
     <Content Include="Content\iziModal.css" />
     <Content Include="Content\iziModal.min.css" />
@@ -1706,6 +1711,9 @@
     <Content Include="RequireDLL\CKM_DataLayer.dll" />
     <Content Include="RequireDLL\Newtonsoft.Json.dll" />
     <Content Include="Scripts\api.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\cleave.js" />
     <Content Include="Scripts\cleave.min.js" />
     <Content Include="Scripts\common.js" />
@@ -1713,6 +1721,7 @@
     <Content Include="Scripts\iziModal.min.js" />
     <Content Include="Scripts\login.js" />
     <Content Include="Scripts\message.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\multipurpose.js" />
     <Content Include="Scripts\point.js" />
     <Content Include="Scripts\productcategory.js" />
@@ -1795,6 +1804,10 @@
     <ProjectReference Include="..\ProductCategory_BL\ProductCategory_BL.csproj">
       <Project>{c846e3ec-8a00-4911-b66e-4497fc108a1b}</Project>
       <Name>ProductCategory_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reward_BL\Reward_BL.csproj">
+      <Project>{ba6ed8e6-3788-4a4b-a2dc-99d099ef9f79}</Project>
+      <Name>Reward_BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\User_BL\User_BL.csproj">
       <Project>{a0cf2a27-cb2f-43a6-b806-d60f41a34294}</Project>
