@@ -19,8 +19,10 @@ namespace VPPWeb.Controllers
                 multipurposeBL.Multipurpose_Update(multipurposeModel);
 
                 MessageBL messageBL = new MessageBL();
-                MessageModel messageModel = new MessageModel();
-                messageModel.MessageID = "I001";
+                MessageModel messageModel = new MessageModel
+                {
+                    MessageID = "I002"
+                };
                 return messageBL.Message_Select(messageModel);
             }
             catch (Exception exception)
@@ -35,10 +37,20 @@ namespace VPPWeb.Controllers
                 errorLogBL.ErrorLog_Insert(errorLogModel);
 
                 MessageBL messageBL = new MessageBL();
-                MessageModel messageModel = new MessageModel();
-                messageModel.MessageID = "I001";
+                MessageModel messageModel = new MessageModel
+                {
+                    MessageID = "I001"
+                };
                 return messageBL.Message_Select(messageModel);
             }
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string MultipurposeSelect([FromBody] MultipurposeModel multipurposeModel)
+        {
+            MultipurposeBL multipurposeBL = new MultipurposeBL();
+            return multipurposeBL.MultiPurpose_Select(multipurposeModel);
         }
     }
 }

@@ -160,6 +160,12 @@
     <Compile Include="Controllers\MultipurposeApiController.cs" />
     <Compile Include="Controllers\MultipurposeController.cs" />
     <Compile Include="Controllers\PartnerApiController.cs" />
+    <Compile Include="Controllers\PointApiController.cs" />
+    <Compile Include="Controllers\PointController.cs" />
+    <Compile Include="Controllers\ProductCategoryApiController.cs" />
+    <Compile Include="Controllers\ProductCategoryController.cs" />
+    <Compile Include="Controllers\RewardController.cs" />
+    <Compile Include="Controllers\RewardPointApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserAuthentication.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -1708,10 +1714,15 @@
     <Content Include="Scripts\login.js" />
     <Content Include="Scripts\message.js" />
     <Content Include="Scripts\multipurpose.js" />
+    <Content Include="Scripts\point.js" />
+    <Content Include="Scripts\productcategory.js" />
+    <Content Include="Scripts\reward.js" />
     <Content Include="Scripts\sweetalert2.all.js" />
     <Content Include="Scripts\sweetalert2.all.min.js" />
     <Content Include="Scripts\sweetalert2.js" />
     <Content Include="Scripts\sweetalert2.min.js" />
+    <Content Include="SystemImages\fav.ico" />
+    <Content Include="SystemImages\favicon.ico" />
     <Content Include="SystemImages\loading.gif" />
     <Content Include="SystemImages\login_bg.jpg" />
     <Content Include="SystemImages\logo-business.png" />
@@ -1756,6 +1767,9 @@
     <Content Include="Views\Multipurpose\TermsAndConditions.cshtml" />
     <Content Include="Views\Multipurpose\PrivacyAndPolicy.cshtml" />
     <Content Include="Views\Multipurpose\ContactUs.cshtml" />
+    <Content Include="Views\ProductCategory\ProductCategoryList.cshtml" />
+    <Content Include="Views\Point\MinimumRedemptionPoints.cshtml" />
+    <Content Include="Views\Reward\RewardPrizeListing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ErrorLog_BL\ErrorLog_BL.csproj">
@@ -1773,6 +1787,14 @@
     <ProjectReference Include="..\Partner_BL\Partner_BL.csproj">
       <Project>{1758b1de-7d1a-4fb0-99a3-b4df4a6cf694}</Project>
       <Name>Partner_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Point_BL\Point_BL.csproj">
+      <Project>{80d8809f-d1b7-45c1-8916-a6ec4c002613}</Project>
+      <Name>Point_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProductCategory_BL\ProductCategory_BL.csproj">
+      <Project>{c846e3ec-8a00-4911-b66e-4497fc108a1b}</Project>
+      <Name>ProductCategory_BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\User_BL\User_BL.csproj">
       <Project>{a0cf2a27-cb2f-43a6-b806-d60f41a34294}</Project>

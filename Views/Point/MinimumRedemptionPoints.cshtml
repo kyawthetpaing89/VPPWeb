@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "MinimumRedemptionPoints";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-wrapper">
+    <!-- Page body start -->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Basic Form Inputs card start -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Minimum Redemption Points</h5>
+                    </div>
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table id="tblMinimumRedemptionPoints" class="table table-striped" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Country</th>
+                                        <th class="align-right">Minimum Requirement Points</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Page body end -->
+</div>
+
+<div id="RedemptionPointsModal">
+    <div class="md-content">
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Country:</label>
+            <div class="col-sm-7">
+                <input id="txtCountry" type="text" class="form-control" readonly />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Minimum Redemption Points:</label>
+            <div class="col-sm-7">
+                <input id="txtPoints" type="text" maxlength="13" class="form-control point1 align-right">
+            </div>
+        </div>
+        <div id="divSave" class="form-group row div-centerbtn">
+            <div class="col-sm-3">
+                <button type="button" id="btnClose" onclick="RedemptionPointsClose();" class="btn btn-block btn-grd-inverse">Close</button>
+            </div>
+            <div class="col-sm-3">
+                <button type="button" id="btnSave" onclick="RedemptionPointsSave();" class="btn btn-block btn-grd-info"><span id="btnSaveText">Save</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input id="HCountryID" type="hidden"/>
+<input id="HGetMimimumRedemptionPoints" type="hidden" value="@Url.Action("GetMimimumRedemptionPoints", "api/PointApi")" />
+<input id="HMimimumRedemptionPointsUpdate" type="hidden" value="@Url.Action("MinimumRedemptionPoints_CUD", "api/PointApi")" />
+
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/point.js?v=10")"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            MinimumRedemptionPointsLoad();
+        });
+    </script>
+}
+

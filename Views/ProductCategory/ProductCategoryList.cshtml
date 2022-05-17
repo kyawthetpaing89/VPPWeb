@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "ProductCateogryList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-wrapper">
+    <!-- Page body start -->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Basic Form Inputs card start -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Product Category</h5>
+                    </div>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-3 col-md-3">
+                                <button type="button" id="btnNew" onclick="AddNewCategory();" class="btn btn-block btn-grd-info"><i class="ion-plus-round"></i> Add New Category</button>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="tblProductCategory" class="table table-striped" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Category Name</th>
+                                        <th class="align-right">Order Sequence</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Page body end -->
+</div>
+
+<div id="ProductCategoryModal">
+    <div class="md-content">
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Category Name:</label>
+            <div class="col-sm-8">
+                <input id="txtCategoryName" maxlength="50" type="text" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Order Sequence:</label>
+            <div class="col-sm-8">
+                <input id="txtOrder" type="text" maxlength="2" class="form-control point1 align-right">
+            </div>
+        </div>
+        <div id="divSave" class="form-group row div-centerbtn">
+            <div class="col-sm-3">
+                <button type="button" id="btnClose" onclick="ProductCategoryClose();" class="btn btn-block btn-grd-inverse">Close</button>
+            </div>
+            <div class="col-sm-3">
+                <button type="button" id="btnSave" onclick="ProductCategorySave();" class="btn btn-block btn-grd-info"><span id="btnSaveText">Save</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input id="HMode" type="hidden" />
+<input id="HProductCategoryID" type="hidden" />
+<input id="HGetProductCategory" type="hidden" value="@Url.Action("GetProductCategory", "api/ProductCategoryApi")" />
+<input id="HProductCategoryCUD" type="hidden" value="@Url.Action("ProductCategory_CUD", "api/ProductCategoryApi")" />
+
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/productcategory.js?v=5")"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            ProductCategoryLoad();
+        });
+    </script>
+}
+

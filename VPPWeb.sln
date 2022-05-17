@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorLog_BL", "..\ErrorLog_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reward_BL", "..\Reward_BL\Reward_BL.csproj", "{BA6ED8E6-3788-4A4B-A2DC-99D099EF9F79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCategory_BL", "..\ProductCategory_BL\ProductCategory_BL.csproj", "{C846E3EC-8A00-4911-B66E-4497FC108A1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{BA6ED8E6-3788-4A4B-A2DC-99D099EF9F79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA6ED8E6-3788-4A4B-A2DC-99D099EF9F79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA6ED8E6-3788-4A4B-A2DC-99D099EF9F79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C846E3EC-8A00-4911-B66E-4497FC108A1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C846E3EC-8A00-4911-B66E-4497FC108A1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C846E3EC-8A00-4911-B66E-4497FC108A1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C846E3EC-8A00-4911-B66E-4497FC108A1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
