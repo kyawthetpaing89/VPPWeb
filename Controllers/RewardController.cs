@@ -4,6 +4,8 @@ using System.Web.Mvc;
 using VPPModel;
 using Reward_BL;
 using System.IO;
+using ErrorLog_BL;
+using Message_BL;
 
 namespace VPPWeb.Controllers
 {
@@ -15,13 +17,12 @@ namespace VPPWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult RewardPrize_CUD()
+        public string RewardPrize_CUD()
         {
+            string j1 = HttpContext.Request.Params.Get("RewardPrizeModel");
+            RewardPrizeModel rewardPrizeModel = JsonConvert.DeserializeObject<RewardPrizeModel>(j1);
             try
             {
-                string j1 = HttpContext.Request.Params.Get("RewardPrizeModel");
-                RewardPrizeModel rewardPrizeModel = JsonConvert.DeserializeObject<RewardPrizeModel>(j1);
-
                 RewardBL reward_BL = new RewardBL();
 
                 for (int i = 0; i < Request.Files.Count; i++)
@@ -47,11 +48,23 @@ namespace VPPWeb.Controllers
                     }
                 }
 
-                return Json(new { message = reward_BL.RewardPrize_CUD(rewardPrizeModel) });
+                return reward_BL.RewardPrize_CUD(rewardPrizeModel);
             }
             catch(Exception exception)
             {
-                return Json(new { message = exception.Message });
+                ErrorLogModel errorLogModel = new ErrorLogModel
+                {
+                    ErrorMessage = exception.Message,
+                    UpdatedBy = rewardPrizeModel.UpdatedBy
+                };
+
+                ErrorLogBL errorLogBL = new ErrorLogBL();
+                errorLogBL.ErrorLog_Insert(errorLogModel);
+
+                MessageBL messageBL = new MessageBL();
+                MessageModel messageModel = new MessageModel();
+                messageModel.MessageID = "E007";
+                return messageBL.Message_Select(messageModel);
             }
         }
     }

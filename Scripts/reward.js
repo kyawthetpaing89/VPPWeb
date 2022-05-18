@@ -26,6 +26,7 @@
     });
 
     BindRewardPrize();
+    BindProductCategory();
 
     $('#productphoto').on('click', function () {
         $('#productupload').click();
@@ -55,26 +56,44 @@ function RewardPrizeResponse(response) {
         "ordering": false,
         "columns": [
             { "data": "ItemCode", width: "10%" },
-            { "data": "Status", width: "10%" },
+            { "data": "Status", width: "10%", className: "align-center"},
             { "data": "ItemCode", width: "10%" },
             { "data": "ProductCategoryName", width: "10%" },
             { "data": "ProductDescription", width: "10%" },
-            { "data": "ProductPhoto", width: "10%" },
-            { "data": "Points", width: "10%" },
-            { "data": "ValidTill", width: "10%" },
-            { "data": "UnitCost", width: "10%" },
+            { "data": "ProductPhoto", width: "10%", className: "align-center" },
+            { "data": "Points", width: "10%", className: "align-right" },
+            { "data": "ValidTill", width: "10%",className:"align-center" },
+            { "data": "UnitCost", width: "10%", className: "align-right"},
             { "data": "SupplierName", width: "10%" },
-            { "data": "CreatedDate", width: "10%" },
-            { "data": "Quotation", width: "10%" },
+            { "data": "CreatedDate", width: "10%", className: "align-center" },
+            { "data": "Quotation", width: "10%", className: "align-center" },
             { "data": "CreatedBy", width: "10%" },
         ],
-        "columnDefs": [{
+        "columnDefs": [
+            {
             "targets": 0,
             "data": "ItemCode",
             "render": function (data) {
                 return '<button type="button" class="btn btn-grd-info gridbtn" onclick="RewardPrizeEdit(this);"><i class="icon-note"></i>Edit</button>';
+                },
             },
-        }],
+            {
+                "targets": 5,
+                "data": "ProductPhoto",
+                "render": function (data) {
+                    var imgpath = $("#HImageLocation").val() + data;
+                    return '<image src="'+ imgpath +'" style="width:50px;height:50px" />';
+                },
+            },
+            {
+                "targets": 11,
+                "data": "Quotation",
+                "render": function (data) {
+                    var imgpath = $("#HImageLocation").val() + data;
+                    return '<image src="' + imgpath + '" style="width:50px;height:50px" />';
+                },
+            }
+        ],
     });
 }
 
@@ -86,7 +105,6 @@ function AddNewPrize() {
 
     $("#txtItemCode").focus();
 
-    BindProductCategory();
     $("#HMode").val('New');
 }
 
@@ -130,16 +148,16 @@ function RewardPrizeSave() {
         $('#divloader').show();
 
         var obj = {
-            ItemCode: $("#ItemCode").val(),
-            ProductCategoryID: $('#ProductCategoryID').children("option:selected").val(),
-            ProductDescription: $("#ProductDescription").val(),
-            Points: $("#Points").val(),
-            ValidTill: $("#ValidTill").val(),
-            Details: $('#Details').val(),
-            UnitCost: $("#UnitCost").val(),
-            SupplierName: $("#SupplierName").val(),
-            ActiveStatus: $("#ActiveStatus").val(),
-            UpdatedBy: $("#LoginID").val(),
+            ItemCode: $("#txtItemCode").val(),
+            ProductCategoryID: $('#ddlCategory').children("option:selected").val(),
+            ProductDescription: $("#txtProductDescription").val(),
+            Points: $("#txtPoints").val().replace(",",""),
+            ValidTill: $("#txtValidTill").val(),
+            Details: $('#txtDetails').val(),
+            UnitCost: $("#txtUnitCost").val().replace(",",""),
+            SupplierName: $("#txtSupplierName").val(),
+            ActiveStatus: $('input[name="rdoStatus"]:checked').val(),
+            UpdatedBy: $("#hID").val(),
             Mode: $("#HMode").val(),
         }
 
@@ -160,19 +178,19 @@ function RewardPrizeSave() {
             contentType: false,
             processData: false,
             data: formdata,
-            success: function (data) {
-                if ($("#Mode").val() == 'New' || $("#Mode").val() == 'Copy') {
-                    ShowMessage('I001');
+            success: function (response) {
+                data = JSON.parse(response);
+                MessageResponse(response, data[0].MessageID)
+
+                if (data[0].MessageID.charAt(0) != 'E') {
+                    $("#RewardPrizeModal").iziModal('close');
                 }
-                else if ($("#Mode").val() == 'Edit') {
-                    ShowMessage('I002');
-                }
-                else {
-                    ShowMessage('I003');
-                }
+
+                BindRewardPrize();
             },
-            fail: function (data) {
-                ShowMessage('E003');
+            fail: function (response) {
+                data = JSON.parse(response);
+                MessageResponse(response, data[0].MessageID)
             },
             complete: function (data) {
                 $('#divloader').hide();

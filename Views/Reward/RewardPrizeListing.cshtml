@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table id="tblReward" class="table table-striped" style="width:100%">
+                            <table id="tblReward" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -31,7 +31,7 @@
                                         <th>Category</th>
                                         <th>Description</th>
                                         <th>Product</th>
-                                        <th>Reward Points Require</th>
+                                        <th>Reward Points<br /> Require</th>
                                         <th>Valid Till</th>
                                         <th>Unit Cost</th>
                                         <th>Suppiler</th>
@@ -69,13 +69,13 @@
                 <div class="form-radio">
                     <div class="radio radiofill radio-primary radio-inline">
                         <label>
-                            <input id="rdoInactive" type="radio" name="member" value="free" data-bv-field="member" checked>
+                            <input id="rdoInactive" type="radio" name="rdoStatus" value="0" checked>
                             <i class="helper"></i>In-active
                         </label>
                     </div>
                     <div class="radio radiofill radio-primary radio-inline">
                         <label>
-                            <input id="rdoActive" type="radio" name="member" value="personal" data-bv-field="member">
+                            <input id="rdoActive" type="radio" name="rdoStatus" value="1" >
                             <i class="helper"></i>Active
                         </label>
                     </div>
@@ -159,13 +159,14 @@
 <input id="quotationupload" accept="image/*" class="hidden" type="file" onchange="readURL(this,'quotationphoto');">
 
 <input id="HMode" type="hidden" />
+<input id="HImageLocation" type="hidden" value="@Url.Content("~/SystemImages/")" />
 <input id="HGetProductCategory" type="hidden" value="@Url.Action("GetProductCategory", "api/ProductCategoryApi")" />
 <input id="HGetRewardPrize" type="hidden" value="@Url.Action("GetRewardPrize", "api/RewardApi")" />
 <input id="imgnophoto" type="hidden" value="@Url.Content("~/SystemImages/nophoto.jpg")" />
 <input id="HRewardPrizeCUD" type="hidden" value="@Url.Action("RewardPrize_CUD", "Reward")" />
 
 @section Scripts{
-    <script src="@Url.Content("~/Scripts/reward.js?v=7")"></script>
+    <script src="@Url.Content("~/Scripts/reward.js?v=9")"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
