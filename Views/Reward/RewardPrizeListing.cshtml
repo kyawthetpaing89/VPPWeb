@@ -99,7 +99,7 @@
         <div class="form-group row">
             <label class="col-sm-4 col-form-label">Product Description:</label>
             <div class="col-sm-8">
-                <input id="txtProductDescription" type="text" maxlength="10" class="form-control">
+                <input id="txtProductDescription" type="text" maxlength="400" class="form-control">
             </div>
         </div>
         @*<div class="form-group row">
@@ -123,19 +123,19 @@
         <div class="form-group row">
             <label class="col-sm-4 col-form-label">Details:</label>
             <div class="col-sm-8">
-                <input id="txtDetails" type="text" maxlength="10" class="form-control">
+                <input id="txtDetails" type="text" maxlength="1000" class="form-control">
             </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row" style="margin-bottom:0px">
             <label class="col-sm-4 col-form-label">D-Link Unit Cost:<br /><span style="font-size:11px">(local Currency)</span></label>
             <div class="col-sm-8">
-                <input id="txtUnitCost" type="text" maxlength="10" class="form-control point2 align-right">
+                <input id="txtUnitCost" type="text" maxlength="13" class="form-control point2 align-right">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-4 col-form-label">Name of Supplier:</label>
             <div class="col-sm-8">
-                <input id="txtSupplierName" type="text" maxlength="10" class="form-control">
+                <input id="txtSupplierName" type="text" maxlength="100" class="form-control">
             </div>
         </div>
         @*<div class="form-group row">
@@ -149,7 +149,7 @@
                 <button type="button" id="btnClose" onclick="RewardPrizeClose();" class="btn btn-block btn-grd-inverse">Close</button>
             </div>
             <div class="col-sm-3">
-                <button type="button" id="btnSave" onclick="ProductCategorySave();" class="btn btn-block btn-grd-info"><span id="btnSaveText">Save</span></button>
+                <button type="button" id="btnSave" onclick="RewardPrizeSave();" class="btn btn-block btn-grd-info"><span id="btnSaveText">Save</span></button>
             </div>
         </div>
     </div>
@@ -161,8 +161,8 @@
 <input id="HMode" type="hidden" />
 <input id="HGetProductCategory" type="hidden" value="@Url.Action("GetProductCategory", "api/ProductCategoryApi")" />
 <input id="HGetRewardPrize" type="hidden" value="@Url.Action("GetRewardPrize", "api/RewardApi")" />
-<input id="HRewardPrizeCUD" type="hidden" value="@Url.Action("RewardPrize_CUD", "api/RewardApi")" />
 <input id="imgnophoto" type="hidden" value="@Url.Content("~/SystemImages/nophoto.jpg")" />
+<input id="HRewardPrizeCUD" type="hidden" value="@Url.Action("RewardPrize_CUD", "Reward")" />
 
 @section Scripts{
     <script src="@Url.Content("~/Scripts/reward.js?v=7")"></script>

@@ -1728,6 +1728,7 @@
     <Content Include="SystemImages\login_bg.jpg" />
     <Content Include="SystemImages\logo-business.png" />
     <Content Include="SystemImages\logo.png" />
+    <Content Include="SystemImages\nophoto.jpg" />
     <Content Include="SystemImages\profileIcon.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

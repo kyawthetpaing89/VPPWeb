@@ -124,3 +124,81 @@ function ClearReward() {
     $("#txtUnitCost").val('');
     $("#txtSupplierName").val('');
 }
+
+function RewardPrizeSave() {
+    if (RewardPrizeErrorCheck()) {
+        $('#divloader').show();
+
+        var obj = {
+            ItemCode: $("#ItemCode").val(),
+            ProductCategoryID: $('#ProductCategoryID').children("option:selected").val(),
+            ProductDescription: $("#ProductDescription").val(),
+            Points: $("#Points").val(),
+            ValidTill: $("#ValidTill").val(),
+            Details: $('#Details').val(),
+            UnitCost: $("#UnitCost").val(),
+            SupplierName: $("#SupplierName").val(),
+            ActiveStatus: $("#ActiveStatus").val(),
+            UpdatedBy: $("#LoginID").val(),
+            Mode: $("#HMode").val(),
+        }
+
+        var formdata = new FormData();
+
+        var product = $('#productupload')[0];
+        var quotation = $('#quotationupload')[0];
+
+        formdata.append('product', product.files[0]);
+        formdata.append('quotation', quotation.files[0]);
+
+        formdata.append('RewardPrizeModel', JSON.stringify(obj));
+
+        $.ajax({
+            url: $("#HRewardPrizeCUD").val(),
+            type: "POST",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formdata,
+            success: function (data) {
+                if ($("#Mode").val() == 'New' || $("#Mode").val() == 'Copy') {
+                    ShowMessage('I001');
+                }
+                else if ($("#Mode").val() == 'Edit') {
+                    ShowMessage('I002');
+                }
+                else {
+                    ShowMessage('I003');
+                }
+            },
+            fail: function (data) {
+                ShowMessage('E003');
+            },
+            complete: function (data) {
+                $('#divloader').hide();
+            }
+        });
+    }
+}
+
+function RewardPrizeErrorCheck() {
+    if (!$("#txtItemCode").val()) {
+        ShowMessage("E001", "Item Code");
+        $("#ItemCode").focus();
+        return false;
+    } else if ($("#ddlCategory").val() == '') {
+        ShowMessage("E001", "Category");
+        $("#ddlCategory").focus();
+        return false;
+    } else if (!$("#txtPoints").val()) {
+        ShowMessage("E001", "Reward Points Required");
+        $("#txtPoints").focus();
+        return false;
+    } else if (!$("#txtUnitCost").val()) {
+        ShowMessage("E001", "D-Link Unit Cost");
+        $("#txtUnitCost").focus();
+        return false;
+    }
+
+    return true;
+}
