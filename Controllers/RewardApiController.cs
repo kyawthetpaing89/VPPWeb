@@ -16,5 +16,11 @@ namespace VPPWeb.Controllers
             RewardBL rewardBL = new RewardBL();
             return rewardBL.RewardPrize_Select(rewardPrizeModel);
         }
+
+        public string GenerateItemCode([FromBody] RewardPrizeModel rewardPrizeModel)
+        {
+            RewardBL rewardBL = new RewardBL();
+            return rewardBL.Reward_ItemCode_Generate(rewardPrizeModel);
+        }
     }
 }

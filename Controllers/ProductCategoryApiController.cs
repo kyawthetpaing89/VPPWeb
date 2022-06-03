@@ -27,9 +27,10 @@ namespace VPPWeb.Controllers
                 productCategoryBL.ProductCategory_CUD(productCategoryModel);
 
                 MessageBL messageBL = new MessageBL();
-                MessageModel messageModel = new MessageModel();
-                
-                messageModel.MessageID = productCategoryModel.Mode.Equals("New")?"I001": "I002";
+                MessageModel messageModel = new MessageModel
+                {
+                    MessageID = productCategoryModel.Mode.Equals("New") ? "I001" : "I002"
+                };
                 return messageBL.Message_Select(messageModel);
             }
             catch (Exception exception)
@@ -44,8 +45,10 @@ namespace VPPWeb.Controllers
                 errorLogBL.ErrorLog_Insert(errorLogModel);
 
                 MessageBL messageBL = new MessageBL();
-                MessageModel messageModel = new MessageModel();
-                messageModel.MessageID = "E007";
+                MessageModel messageModel = new MessageModel
+                {
+                    MessageID = "E007"
+                };
                 return messageBL.Message_Select(messageModel);
             }
         }

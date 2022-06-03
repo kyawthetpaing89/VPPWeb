@@ -19,5 +19,11 @@ namespace VPPWeb.Controllers
             FormsAuthentication.SetAuthCookie(partnerModel.UserLoginInfo, false);
             return RedirectToAction("Dashboard");
         }
+
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
+        }
     }
 }

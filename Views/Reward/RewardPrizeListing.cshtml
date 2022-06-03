@@ -17,21 +17,52 @@
                     </div>
                     <div class="card-block">
                         <div class="row">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Country:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <select id="SCountry" class="form-control"></select>
+                            </div>
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Category:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-3 col-md-3">
+                                <select id="SCategory" class="form-control"></select>
+                            </div>
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Status:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <select id="SStatus" class="form-control">
+                                    <option value="">All</option>
+                                    <option value="1">In-active</option>
+                                    <option value="2">Active</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <button type="button" id="btnSearch" onclick="BindRewardPrize();" class="btn btn-block btn-grd-info"><i class="icon-magnifier"></i> Search</button>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row" style="padding-bottom:5px;">
                             <div class="col-sm-12 col-lg-3 col-md-3">
                                 <button type="button" id="btnNew" onclick="AddNewPrize();" class="btn btn-block btn-grd-info"><i class="ion-plus-round"></i> Add Reward Prize</button>
                             </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <button type="button" id="btnUpload" class="btn btn-block btn-grd-warning"><i class="icon-arrow-up-circle"></i> Upload</button>
+                            </div>
                         </div>
                         <div class="table-responsive">
-                            <table id="tblReward" class="table table-striped table-bordered" style="width:100%">
+                            <table id="tblReward" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th></th>
-                                        <th>Status</th>
-                                        <th>Item Code</th>
-                                        <th>Category</th>
-                                        <th>Description</th>
+                                        <th style="width:5%"></th>
+                                        <th style="width:5%">Status</th>
+                                        <th style="width:7%">Item Code</th>
+                                        <th style="width:13%">Category</th>
+                                        <th style="width:20%">Name</th>
                                         <th>Product</th>
-                                        <th>Reward Points<br /> Required</th>
+                                        <th>Reward<br />Points<br />Required</th>
                                         <th>Valid Till</th>
                                         <th>Unit Cost</th>
                                         <th>Suppiler</th>
@@ -54,13 +85,16 @@
 <div id="RewardPrizeModal">
     <div class="md-content">
         <div class="row">
-            <div class="col-xl-2 col-lg-3 col-sm-3 col-xs-12">
+            <div class="col-sm-4"></div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-12">
                 <p>Product</p>
                 <img id="productphoto" src="@Url.Content("~/SystemImages/nophoto.jpg")" class="img-fluid m-b-10 img-product" alt="">
+                <p><button onclick="RemoveProductPhoto();" class="btn btn-block btn-sm btn-grd-danger">Remove</button></p>
             </div>
-            <div class="col-xl-2 col-lg-3 col-sm-3 col-xs-12">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-12">
                 <p>Quotation</p>
                 <img id="quotationphoto" src="@Url.Content("~/SystemImages/nophoto.jpg")" class="img-fluid m-b-10 img-product" alt="">
+                <p><button onclick="RemoveQuotationPhoto();" class="btn btn-block btn-sm btn-grd-danger">Remove</button></p>
             </div>
         </div>
         <div class="form-group row">
@@ -75,7 +109,7 @@
                     </div>
                     <div class="radio radiofill radio-primary radio-inline">
                         <label>
-                            <input id="rdoActive" type="radio" name="rdoStatus" value="1" >
+                            <input id="rdoActive" type="radio" name="rdoStatus" value="1">
                             <i class="helper"></i>Active
                         </label>
                     </div>
@@ -84,9 +118,16 @@
             </div>
         </div>
         <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Country:</label>
+            <div class="col-sm-8">
+                <select id="ddlCountry" onchange="GenerateItemCode()" class="form-control">
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
             <label class="col-sm-4 col-form-label">Item Code:</label>
             <div class="col-sm-8">
-                <input id="txtItemCode" type="text" maxlength="10" class="form-control">
+                <input id="txtItemCode" readonly type="text" maxlength="10" class="form-control">
             </div>
         </div>
         <div class="form-group row">
@@ -97,17 +138,17 @@
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Product Description:</label>
+            <label class="col-sm-4 col-form-label">Product Name:</label>
             <div class="col-sm-8">
-                <input id="txtProductDescription" type="text" maxlength="400" class="form-control">
+                <input id="txtProductName" type="text" maxlength="400" class="form-control">
             </div>
         </div>
         @*<div class="form-group row">
-            <label class="col-sm-4 col-form-label">Product Photo:</label>
-            <div class="col-sm-8">
-                <input type="file" class="form-control">
-            </div>
-        </div>*@
+                <label class="col-sm-4 col-form-label">Product Photo:</label>
+                <div class="col-sm-8">
+                    <input type="file" class="form-control">
+                </div>
+            </div>*@
         <div class="form-group row">
             <label class="col-sm-4 col-form-label">Reward Points Required:</label>
             <div class="col-sm-8">
@@ -121,9 +162,35 @@
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Details:</label>
+            <label class="col-sm-4">Details:</label>
             <div class="col-sm-8">
-                <input id="txtDetails" type="text" maxlength="1000" class="form-control">
+                <div class="form-radio">
+                    <div class="radio radiofill radio-primary radio-inline">
+                        <label>
+                            <input id="rdoURL" type="radio" name="rdoDetails" value="0" checked>
+                            <i class="helper"></i>External URL
+                        </label>
+                    </div>
+                    <div class="radio radiofill radio-primary radio-inline">
+                        <label>
+                            <input id="rdoDetailPage" type="radio" name="rdoDetails" value="1">
+                            <i class="helper"></i>Detail Page
+                        </label>
+                    </div>
+                </div>
+                <span class="messages"></span>
+            </div>
+        </div>
+        <div id="divURL" class="form-group row">
+            <label class="col-sm-4 col-form-label">URL:</label>
+            <div class="col-sm-8">
+                <input id="txtURL" type="text" maxlength="1000" class="form-control">
+            </div>
+        </div>
+        <div id="divDetailInfo" class="form-group row">
+            <label class="col-sm-4 col-form-label">Product Descriptions:</label>
+            <div class="col-sm-8">
+                <textarea id="txtProductDescriptions" class="form-control" maxlength="4000"></textarea>
             </div>
         </div>
         <div class="form-group row" style="margin-bottom:0px">
@@ -139,11 +206,11 @@
             </div>
         </div>
         @*<div class="form-group row">
-            <label class="col-sm-4 col-form-label">Quotation:</label>
-            <div class="col-sm-8">
-                <input type="file" class="form-control">
-            </div>
-        </div>*@
+                <label class="col-sm-4 col-form-label">Quotation:</label>
+                <div class="col-sm-8">
+                    <input type="file" class="form-control">
+                </div>
+            </div>*@
         <div id="divSave" class="form-group row div-centerbtn">
             <div class="col-sm-3">
                 <button type="button" id="btnClose" onclick="RewardPrizeClose();" class="btn btn-block btn-grd-inverse">Close</button>
@@ -155,18 +222,61 @@
     </div>
 </div>
 
+<div id="RewardImportModal">
+    <div class="md-content">
+        <div class="row" style="padding:10px">
+            <div class="table-responsive">
+                <table id="tblRewardPopUp" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Row</th>
+                            <th>Status</th>
+                            <th>Message</th>
+                            <th>Contry</th>
+                            <th>Category</th>
+                            <th>Name</th>
+                            <th>Reward Points<br /> Required</th>
+                            <th>Valid Till</th>
+                            <th>Page Type</th>
+                            <th>External URL</th>
+                            <th>Product Descriptions</th>
+                            <th>Unit Cost</th>
+                            <th>Suppiler</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div id="divSave" class="form-group row div-centerbtn">
+            <div class="col-sm-3">
+                <button type="button" id="btnImportClose" onclick="ImportClose();" class="btn btn-block btn-grd-inverse">Cancel</button>
+            </div>
+            <div id="divconfirm" class="col-sm-3">
+                <button type="button" id="btnImportConfirm" onclick="ImportConfirm();" class="btn btn-block btn-grd-info"><span id="btnSaveText">Confirm</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <input id="productupload" accept="image/*" class="hidden" type="file" onchange="readURL(this,'productphoto');">
 <input id="quotationupload" accept="image/*" class="hidden" type="file" onchange="readURL(this,'quotationphoto');">
+<input id="rewardprizeupload" accept=".csv" class="hidden" type="file">
 
 <input id="HMode" type="hidden" />
+<input id="Hproductphoto" type="hidden" />
+<input id="Hquotation" type="hidden" />
 <input id="HImageLocation" type="hidden" value="@Url.Content("~/SystemImages/")" />
 <input id="HGetProductCategory" type="hidden" value="@Url.Action("GetProductCategory", "api/ProductCategoryApi")" />
 <input id="HGetRewardPrize" type="hidden" value="@Url.Action("GetRewardPrize", "api/RewardApi")" />
 <input id="imgnophoto" type="hidden" value="@Url.Content("~/SystemImages/nophoto.jpg")" />
 <input id="HRewardPrizeCUD" type="hidden" value="@Url.Action("RewardPrize_CUD", "Reward")" />
+<input id="HCheckRewardImport" type="hidden" value="@Url.Action("CheckRewardImport", "Reward")" />
+<input id="HRewardImportConfrim" type="hidden" value="@Url.Action("RewardImportConfirm", "Reward")" />
+<input id="HGetMimimumRedemptionPoints" type="hidden" value="@Url.Action("GetMimimumRedemptionPoints", "api/PointApi")" />
+<input id="HGenerateItemCode" type="hidden" value="@Url.Action("GenerateItemCode", "api/RewardApi")" />
 
 @section Scripts{
-    <script src="@Url.Content("~/Scripts/reward.js?v=9")"></script>
+    <script src="@Url.Content("~/Scripts/reward.js?v=42")"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {

@@ -21,9 +21,11 @@ namespace VPPWeb.Controllers
 
         public ActionResult PrivacyAndPolicy()
         {
-            MultipurposeModel multipurposeModel = new MultipurposeModel();
-            multipurposeModel.ID = "02";
-            multipurposeModel.KeyCode = "001";
+            MultipurposeModel multipurposeModel = new MultipurposeModel
+            {
+                ID = "02",
+                KeyCode = "001"
+            };
 
             MultipurposeBL multipurposeBL = new MultipurposeBL();
             multipurposeModel = multipurposeBL.MultiPurpose_SelectModel(multipurposeModel);
@@ -32,9 +34,11 @@ namespace VPPWeb.Controllers
 
         public ActionResult ContactUs()
         {
-            MultipurposeModel multipurposeModel = new MultipurposeModel();
-            multipurposeModel.ID = "03";
-            multipurposeModel.KeyCode = "001";
+            MultipurposeModel multipurposeModel = new MultipurposeModel
+            {
+                ID = "03",
+                KeyCode = "001"
+            };
 
             MultipurposeBL multipurposeBL = new MultipurposeBL();
             multipurposeModel = multipurposeBL.MultiPurpose_SelectModel(multipurposeModel);

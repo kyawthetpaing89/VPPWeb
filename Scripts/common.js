@@ -10,7 +10,7 @@ function DropdownResponse(response, ctrlID, key, value, defaultvalue,addblankrow
     var items = JSON.parse(response);
     if (addblankrow == true) {
         $("#" + ctrlID).append(
-            $('<option></option>').val('').html('---Select---'));
+            $('<option></option>').val('').html('All'));
     }
 
     $.each(items, function (i, item) {

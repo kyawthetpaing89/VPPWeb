@@ -27,9 +27,10 @@ namespace VPPWeb.Controllers
                 pointBL.MinimumRedemptionPoints_CUD(pointModel);
 
                 MessageBL messageBL = new MessageBL();
-                MessageModel messageModel = new MessageModel();
-
-                messageModel.MessageID = pointModel.Mode.Equals("New") ? "I001" : "I002";
+                var messageModel = new MessageModel
+                {
+                    MessageID = pointModel.Mode.Equals("New") ? "I001" : "I002"
+                };
                 return messageBL.Message_Select(messageModel);
             }
             catch (Exception exception)
@@ -44,8 +45,10 @@ namespace VPPWeb.Controllers
                 errorLogBL.ErrorLog_Insert(errorLogModel);
 
                 MessageBL messageBL = new MessageBL();
-                MessageModel messageModel = new MessageModel();
-                messageModel.MessageID = "E007";
+                MessageModel messageModel = new MessageModel
+                {
+                    MessageID = "E007"
+                };
                 return messageBL.Message_Select(messageModel);
             }
         }

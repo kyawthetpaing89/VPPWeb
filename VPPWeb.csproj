@@ -45,6 +45,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CKM_CommonFunction, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\VIP Partner Portal\RequireDLL\CKM_CommonFunction.dll</HintPath>
+    </Reference>
+    <Reference Include="LumenWorks.Framework.IO, Version=3.8.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
+      <HintPath>..\packages\LumenWorks.Framework.IO.3.8.0\lib\net20\LumenWorks.Framework.IO.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -156,6 +163,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImportApiController.cs" />
+    <Compile Include="Controllers\ImportController.cs" />
     <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\MultipurposeApiController.cs" />
     <Compile Include="Controllers\MultipurposeController.cs" />
@@ -1709,6 +1718,8 @@
     <Content Include="Scripts\cleave.js" />
     <Content Include="Scripts\cleave.min.js" />
     <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\fixCol.js" />
+    <Content Include="Scripts\import.js" />
     <Content Include="Scripts\iziModal.js" />
     <Content Include="Scripts\iziModal.min.js" />
     <Content Include="Scripts\login.js" />
@@ -1774,11 +1785,16 @@
     <Content Include="Views\ProductCategory\ProductCategoryList.cshtml" />
     <Content Include="Views\Point\MinimumRedemptionPoints.cshtml" />
     <Content Include="Views\Reward\RewardPrizeListing.cshtml" />
+    <Content Include="Views\Import\ImportLog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ErrorLog_BL\ErrorLog_BL.csproj">
       <Project>{f67a8fa2-cdd5-4202-b87d-17e0c48ca8e0}</Project>
       <Name>ErrorLog_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Import_BL\Import_BL.csproj">
+      <Project>{1144ac90-ef2f-4005-802a-024928e2dac3}</Project>
+      <Name>Import_BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Message_BL\Message_BL.csproj">
       <Project>{aa85adb9-9b13-42d6-a659-99d851e2fef0}</Project>

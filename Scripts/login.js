@@ -24,7 +24,7 @@ function LoginResponse(response) {
     if (user.length > 0) {
         var MessageID = user[0].MessageID;
         if (MessageID == '0') {
-            var userinfo = user[0].RecordRef + '_' + user[0].LastName;
+            var userinfo = user[0].RecordRef + '_' + user[0].LastName + '_' + user[0].VIPUserRole  + '_'  + user[0].ListOfCountries;
             location.href = $("#HSetAuth").val() + '?UserLoginInfo=' + userinfo;
         } else {
             ShowMessage(MessageID);

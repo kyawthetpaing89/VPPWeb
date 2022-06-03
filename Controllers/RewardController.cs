@@ -6,6 +6,9 @@ using Reward_BL;
 using System.IO;
 using ErrorLog_BL;
 using Message_BL;
+using System.Data;
+using LumenWorks.Framework.IO.Csv;
+using CKM_CommonFunction;
 
 namespace VPPWeb.Controllers
 {
@@ -30,7 +33,7 @@ namespace VPPWeb.Controllers
                     string key = Request.Files.GetKey(i);
                     if (key == "product")
                     {
-                        rewardPrizeModel.ProductPhoto = "Product/" + rewardPrizeModel.ItemCode + ".jpg";
+                        rewardPrizeModel.ProductPhoto = "Product/" + rewardPrizeModel.ItemCode + DateTime.Now.ToString("yyyyMMddhhmmss") + ".jpg";
 
                         if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + rewardPrizeModel.ProductPhoto)))
                             System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + rewardPrizeModel.ProductPhoto));
@@ -39,7 +42,7 @@ namespace VPPWeb.Controllers
                     }
                     else if (key == "quotation")
                     {
-                        rewardPrizeModel.QuotationPhoto = "Quotation/" + rewardPrizeModel.ItemCode + ".jpg";
+                        rewardPrizeModel.QuotationPhoto = "Quotation/" + rewardPrizeModel.ItemCode + DateTime.Now.ToString("yyyyMMddhhmmss") + ".jpg";
 
                         if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + rewardPrizeModel.QuotationPhoto)))
                             System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + rewardPrizeModel.QuotationPhoto));
@@ -62,10 +65,120 @@ namespace VPPWeb.Controllers
                 errorLogBL.ErrorLog_Insert(errorLogModel);
 
                 MessageBL messageBL = new MessageBL();
-                MessageModel messageModel = new MessageModel();
-                messageModel.MessageID = "E007";
+                MessageModel messageModel = new MessageModel
+                {
+                    MessageID = "E007"
+                };
                 return messageBL.Message_Select(messageModel);
             }
+        }
+
+        [HttpPost]
+        public string CheckRewardImport()
+        {
+            MessageBL messageBL = new MessageBL();
+            string j1 = HttpContext.Request.Params.Get("RewardPrizeModel");
+            RewardPrizeModel rewardPrizeModel = JsonConvert.DeserializeObject<RewardPrizeModel>(j1);
+
+            if (Request.Files["rewardprizeupload"].FileName.EndsWith(".csv"))
+            {
+                Stream stream = Request.Files["rewardprizeupload"].InputStream;
+                DataTable csvTable = new DataTable();
+                using (CsvReader csvReader =
+                    new CsvReader(new StreamReader(stream), true))
+                {
+                    csvTable.Load(csvReader);
+                }
+
+                if (!csvTable.Columns.Contains("Country") || !csvTable.Columns.Contains("Category") ||
+                    !csvTable.Columns.Contains("ProductName") || !csvTable.Columns.Contains("RewardPointsRequired") ||
+                    !csvTable.Columns.Contains("ValidTill") || !csvTable.Columns.Contains("PageType") ||
+                    !csvTable.Columns.Contains("ExternalURL") || !csvTable.Columns.Contains("ProductDescriptions") ||
+                    !csvTable.Columns.Contains("UnitCost") || !csvTable.Columns.Contains("Supplier"))
+                {
+                    MessageModel messageModel = new MessageModel
+                    {
+                        MessageID = "E015"
+                    };
+                    return messageBL.Message_Select(messageModel);
+                }
+
+                CommonFunction commonFunction = new CommonFunction();
+                rewardPrizeModel.ImportJson = commonFunction.DataTableToJSONWithJSONNet(csvTable);
+
+                RewardBL rewardBL = new RewardBL();
+
+                return rewardBL.CheckRewardPrizeImport(rewardPrizeModel);
+            }
+            else
+            {
+                MessageModel messageModel = new MessageModel
+                {
+                    MessageID = "E014"
+                };
+                return messageBL.Message_Select(messageModel);
+            }            
+        }
+
+        [HttpPost]
+        public string RewardImportConfirm()
+        {
+            MessageBL messageBL = new MessageBL();
+            string j1 = HttpContext.Request.Params.Get("RewardPrizeModel");
+            RewardPrizeModel rewardPrizeModel = JsonConvert.DeserializeObject<RewardPrizeModel>(j1);
+
+            try
+            {
+                if (Request.Files["rewardprizeupload"].FileName.EndsWith(".csv"))
+                {
+                    Stream stream = Request.Files["rewardprizeupload"].InputStream;
+                    DataTable csvTable = new DataTable();
+                    using (CsvReader csvReader =
+                        new CsvReader(new StreamReader(stream), true))
+                    {
+                        csvTable.Load(csvReader);
+                    }
+
+                    CommonFunction commonFunction = new CommonFunction();
+                    rewardPrizeModel.FileName = Request.Files["rewardprizeupload"].FileName;
+                    rewardPrizeModel.ImportJson = commonFunction.DataTableToJSONWithJSONNet(csvTable);
+
+                    RewardBL rewardBL = new RewardBL();
+                    rewardBL.RewardPrize_ImportConfirm(rewardPrizeModel);
+
+                    MessageModel messageModel = new MessageModel
+                    {
+                        MessageID = "I006"
+                    };
+                    return messageBL.Message_Select(messageModel);
+                }
+                else
+                {
+                    MessageModel messageModel = new MessageModel
+                    {
+                        MessageID = "E014"
+                    };
+                    return messageBL.Message_Select(messageModel);
+                }
+            }
+            catch(Exception exception)
+            {
+                ErrorLogModel errorLogModel = new ErrorLogModel
+                {
+                    ErrorMessage = exception.Message,
+                    UpdatedBy = rewardPrizeModel.UpdatedBy
+                };
+
+                ErrorLogBL errorLogBL = new ErrorLogBL();
+                errorLogBL.ErrorLog_Insert(errorLogModel);
+
+                MessageModel messageModel = new MessageModel
+                {
+                    MessageID = "E014"
+                };
+                return messageBL.Message_Select(messageModel);
+            }
+
         }
     }
 }

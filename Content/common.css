@@ -85,6 +85,38 @@ textarea.form-control {
 }
 
 .img-product{
-    width:100px;
+    width:120px;
     height:100px;
+}
+
+.card .card-block table tr{
+    height: 0 !important;
+}
+
+.odd > .dtfc-fixed-left {
+    background-color: #F2F2F2;
+}
+
+.even > .dtfc-fixed-left {
+    background-color: white;
+}
+
+.table th{
+    background-color : aliceblue;
+}
+
+.table th td {
+    width: 100%;
+    clear: both;
+    border-collapse: collapse;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.width10p{
+    width:10%;
+}
+
+.width20p {
+    width: 20%;
 }
