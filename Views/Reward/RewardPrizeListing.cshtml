@@ -53,14 +53,14 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table id="tblReward" class="table table-striped table-bordered">
+                            <table id="tblReward" class="table table-striped table-bordered" style="width:130%">
                                 <thead>
                                     <tr>
-                                        <th style="width:5%"></th>
-                                        <th style="width:5%">Status</th>
-                                        <th style="width:7%">Item Code</th>
-                                        <th style="width:13%">Category</th>
-                                        <th style="width:20%">Name</th>
+                                        <th></th>
+                                        <th>Status</th>
+                                        <th>Item Code</th>
+                                        <th>Category</th>
+                                        <th>Name</th>
                                         <th>Product</th>
                                         <th>Reward<br />Points<br />Required</th>
                                         <th>Valid Till</th>
@@ -272,7 +272,7 @@
 <input id="HRewardPrizeCUD" type="hidden" value="@Url.Action("RewardPrize_CUD", "Reward")" />
 <input id="HCheckRewardImport" type="hidden" value="@Url.Action("CheckRewardImport", "Reward")" />
 <input id="HRewardImportConfrim" type="hidden" value="@Url.Action("RewardImportConfirm", "Reward")" />
-<input id="HGetMimimumRedemptionPoints" type="hidden" value="@Url.Action("GetMimimumRedemptionPoints", "api/PointApi")" />
+<input id="HGetMimimumRedemptionPoints" type="hidden" value="@Url.Action("GetCountry", "api/CountryApi")" />
 <input id="HGenerateItemCode" type="hidden" value="@Url.Action("GenerateItemCode", "api/RewardApi")" />
 
 @section Scripts{

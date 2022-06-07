@@ -111,16 +111,16 @@ function RewardPrizeResponse(response) {
             { "data": "ItemCode", width: "5%", className: "align-center"},
             { "data": "Status", width: "5%", className: "align-center"},
             { "data": "ItemCode", width: "7%", className: "align-center" },
-            { "data": "ProductCategoryName", width: "13%" },
-            { "data": "ProductName", className: "width20p" },
-            { "data": "ProductPhoto", width: "7%", className: "align-center" },
+            { "data": "ProductCategoryName", width: "10%" },
+            { "data": "ProductName", width:"20%"},
+            { "data": "ProductPhoto", width: "5%", className: "align-center" },
             { "data": "Points", width: "5%", className: "align-right" },
-            { "data": "ValidTill", width: "9%",className:"align-center" },
-            { "data": "UnitCost", width: "7%",className: "align-right"},
+            { "data": "ValidTill", width: "8%",className:"align-center" },
+            { "data": "UnitCost", width: "5%",className: "align-right"},
             { "data": "SupplierName" ,width: "10%" },
-            { "data": "CreatedDate", width: "10%", className: "align-center",},
-            { "data": "Quotation", width: "10%",  className: "align-center", },
-            { "data": "CreatedBy", width: "10%" },
+            { "data": "CreatedDate", width: "8%", className: "align-center",},
+            { "data": "Quotation", width: "5%",  className: "align-center", },
+            { "data": "CreatedBy" },
         ],
         "columnDefs": [
             {
@@ -129,9 +129,6 @@ function RewardPrizeResponse(response) {
             "render": function (data) {
                 return '<button type="button" class="btn btn-grd-info gridbtn" onclick="RewardPrizeEdit(this);"><i class="icon-note"></i>Edit</button>';
                 },
-            },
-            {
-                targets: [0], "width": '20px'
             },
             {
                 "targets": 5,
@@ -396,12 +393,12 @@ function RewardPrizeErrorCheck() {
 
     if ($("#HMode").val() == 'New') {
         if ($("#rdoActive").is(":checked") && !$("#productupload").val()) {
-            ShowMessage("E016");
+            ShowMessage("E016","Reward Prize");
             return false;
         }
     } else if ($("#HMode").val() == 'Edit') {
         if ($("#rdoActive").is(":checked") && !$("#Hproductphoto").val()) {
-            ShowMessage("E016");
+            ShowMessage("E016","Reward Prize");
             return false;
         }
     }

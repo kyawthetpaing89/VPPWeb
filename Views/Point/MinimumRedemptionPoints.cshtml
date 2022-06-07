@@ -61,8 +61,8 @@
 </div>
 
 <input id="HCountryID" type="hidden"/>
-<input id="HGetMimimumRedemptionPoints" type="hidden" value="@Url.Action("GetMimimumRedemptionPoints", "api/PointApi")" />
-<input id="HMimimumRedemptionPointsUpdate" type="hidden" value="@Url.Action("MinimumRedemptionPoints_CUD", "api/PointApi")" />
+<input id="HGetMimimumRedemptionPoints" type="hidden" value="@Url.Action("GetCountry", "api/CountryApi")" />
+<input id="HMimimumRedemptionPointsUpdate" type="hidden" value="@Url.Action("Country_Points_Update", "api/CountryApi")" />
 
 @section Scripts{
     <script src="@Url.Content("~/Scripts/point.js?v=10")"></script>

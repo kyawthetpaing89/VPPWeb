@@ -105,12 +105,17 @@ textarea.form-control {
     background-color : aliceblue;
 }
 
-.table th td {
-    width: 100%;
+/*.table th td {
+    width: 100% !important;
     clear: both;
     border-collapse: collapse;
     word-wrap: break-word;
     white-space: normal;
+}
+*/
+
+th,td {
+    white-space: normal !important;
 }
 
 .width10p{

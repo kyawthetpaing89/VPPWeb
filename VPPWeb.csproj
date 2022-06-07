@@ -162,6 +162,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CountryApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImportApiController.cs" />
     <Compile Include="Controllers\ImportController.cs" />
@@ -171,8 +172,10 @@
     <Compile Include="Controllers\PartnerApiController.cs" />
     <Compile Include="Controllers\PointApiController.cs" />
     <Compile Include="Controllers\PointController.cs" />
+    <Compile Include="Controllers\ProductApiController.cs" />
     <Compile Include="Controllers\ProductCategoryApiController.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RewardController.cs" />
     <Compile Include="Controllers\RewardApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
@@ -1727,6 +1730,7 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\multipurpose.js" />
     <Content Include="Scripts\point.js" />
+    <Content Include="Scripts\product.js" />
     <Content Include="Scripts\productcategory.js" />
     <Content Include="Scripts\reward.js" />
     <Content Include="Scripts\sweetalert2.all.js" />
@@ -1786,8 +1790,13 @@
     <Content Include="Views\Point\MinimumRedemptionPoints.cshtml" />
     <Content Include="Views\Reward\RewardPrizeListing.cshtml" />
     <Content Include="Views\Import\ImportLog.cshtml" />
+    <Content Include="Views\Product\ProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Country_BL\Country_BL.csproj">
+      <Project>{61a880b5-adf0-458d-a56c-02f36eafa054}</Project>
+      <Name>Country_BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ErrorLog_BL\ErrorLog_BL.csproj">
       <Project>{f67a8fa2-cdd5-4202-b87d-17e0c48ca8e0}</Project>
       <Name>ErrorLog_BL</Name>
@@ -1815,6 +1824,10 @@
     <ProjectReference Include="..\ProductCategory_BL\ProductCategory_BL.csproj">
       <Project>{c846e3ec-8a00-4911-b66e-4497fc108a1b}</Project>
       <Name>ProductCategory_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Product_BL\Product_BL.csproj">
+      <Project>{9d3102dd-096c-4f65-a379-4a03742884d1}</Project>
+      <Name>Product_BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Reward_BL\Reward_BL.csproj">
       <Project>{ba6ed8e6-3788-4a4b-a2dc-99d099ef9f79}</Project>
