@@ -13,5 +13,10 @@ namespace VPPWeb.Controllers
         {
             return View();
         }
+
+        public ActionResult EnquiryListing()
+        {
+            return View();
+        }
     }
 }

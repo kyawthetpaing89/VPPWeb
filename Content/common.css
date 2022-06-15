@@ -41,6 +41,11 @@
     padding:3px;
 }
 
+.widepadding td {
+    vertical-align: middle;
+    padding: 10px;
+}
+
 .gridbtn {
     padding: 5px;
     width: 50px;

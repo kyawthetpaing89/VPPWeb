@@ -163,6 +163,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CountryApiController.cs" />
+    <Compile Include="Controllers\EnquiryApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImportApiController.cs" />
     <Compile Include="Controllers\ImportController.cs" />
@@ -1723,6 +1724,7 @@
     <Content Include="Scripts\cleave.js" />
     <Content Include="Scripts\cleave.min.js" />
     <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\enquiry.js" />
     <Content Include="Scripts\fixCol.js" />
     <Content Include="Scripts\import.js" />
     <Content Include="Scripts\iziModal.js" />
@@ -1795,11 +1797,16 @@
     <Content Include="Views\Import\ImportLog.cshtml" />
     <Content Include="Views\Product\ProductList.cshtml" />
     <Content Include="Views\Training\TrainingTypeListing.cshtml" />
+    <Content Include="Views\Training\EnquiryListing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Country_BL\Country_BL.csproj">
       <Project>{61a880b5-adf0-458d-a56c-02f36eafa054}</Project>
       <Name>Country_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Enquiry_BL\Enquiry_BL.csproj">
+      <Project>{270b1346-d468-4148-9c79-ae0211d58743}</Project>
+      <Name>Enquiry_BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\ErrorLog_BL\ErrorLog_BL.csproj">
       <Project>{f67a8fa2-cdd5-4202-b87d-17e0c48ca8e0}</Project>

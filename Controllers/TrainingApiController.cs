@@ -4,6 +4,7 @@ using Training_BL;
 using System;
 using ErrorLog_BL;
 using Message_BL;
+using Enquiry_BL;
 
 namespace VPPWeb.Controllers
 {
@@ -45,6 +46,14 @@ namespace VPPWeb.Controllers
                 return messageBL.Message_Select(messageModel);
             }
             
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string GetEnquiry([FromBody] EnquiryModel enquiryModel)
+        {
+            EnquiryBL enquiryBL = new EnquiryBL();
+            return enquiryBL.Enquiry_Select(enquiryModel);
         }
     }
 }
