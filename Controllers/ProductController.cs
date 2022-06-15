@@ -6,6 +6,9 @@ using Product_BL;
 using System.IO;
 using ErrorLog_BL;
 using Message_BL;
+using System.Data;
+using LumenWorks.Framework.IO.Csv;
+using CKM_CommonFunction;
 
 namespace VPPWeb.Controllers
 {
@@ -65,6 +68,111 @@ namespace VPPWeb.Controllers
                 };
                 return messageBL.Message_Select(messageModel);
             }
+        }
+
+        [HttpPost]
+        public string CheckProductImport()
+        {
+            MessageBL messageBL = new MessageBL();
+            string j1 = HttpContext.Request.Params.Get("ProductModel");
+            RewardPrizeModel rewardPrizeModel = JsonConvert.DeserializeObject<RewardPrizeModel>(j1);
+
+            if (Request.Files["productListupload"].FileName.EndsWith(".csv"))
+            {
+                Stream stream = Request.Files["productListupload"].InputStream;
+                DataTable csvTable = new DataTable();
+                using (CsvReader csvReader =
+                    new CsvReader(new StreamReader(stream), true))
+                {
+                    csvTable.Load(csvReader);
+                }
+
+                if (!csvTable.Columns.Contains("Country")  ||
+                    !csvTable.Columns.Contains("ProductName"))
+                {
+                    MessageModel messageModel = new MessageModel
+                    {
+                        MessageID = "E015"
+                    };
+                    return messageBL.Message_Select(messageModel);
+                }
+
+                CommonFunction commonFunction = new CommonFunction();
+                rewardPrizeModel.ImportJson = commonFunction.DataTableToJSONWithJSONNet(csvTable);
+
+                ProductBL productBL = new ProductBL();
+
+                return productBL.CheckProductImport(rewardPrizeModel);
+            }
+            else
+            {
+                MessageModel messageModel = new MessageModel
+                {
+                    MessageID = "E014"
+                };
+                return messageBL.Message_Select(messageModel);
+            }
+        }
+
+        [HttpPost]
+        public string ProductImportConfirm()
+        {
+            MessageBL messageBL = new MessageBL();
+            string j1 = HttpContext.Request.Params.Get("ProductModel");
+            ProductModel productModel = JsonConvert.DeserializeObject<ProductModel>(j1);
+
+            try
+            {
+                if (Request.Files["productListupload"].FileName.EndsWith(".csv"))
+                {
+                    Stream stream = Request.Files["productListupload"].InputStream;
+                    DataTable csvTable = new DataTable();
+                    using (CsvReader csvReader =
+                        new CsvReader(new StreamReader(stream), true))
+                    {
+                        csvTable.Load(csvReader);
+                    }
+
+                    CommonFunction commonFunction = new CommonFunction();
+                    productModel.FileName = Request.Files["productListupload"].FileName;
+                    productModel.ImportJson = commonFunction.DataTableToJSONWithJSONNet(csvTable);
+
+                    ProductBL productBL = new ProductBL();
+                    productBL.Product_ImportConfirm(productModel);
+
+                    MessageModel messageModel = new MessageModel
+                    {
+                        MessageID = "I006"
+                    };
+                    return messageBL.Message_Select(messageModel);
+                }
+                else
+                {
+                    MessageModel messageModel = new MessageModel
+                    {
+                        MessageID = "E014"
+                    };
+                    return messageBL.Message_Select(messageModel);
+                }
+            }
+            catch (Exception exception)
+            {
+                ErrorLogModel errorLogModel = new ErrorLogModel
+                {
+                    ErrorMessage = exception.Message,
+                    UpdatedBy = productModel.UpdatedBy
+                };
+
+                ErrorLogBL errorLogBL = new ErrorLogBL();
+                errorLogBL.ErrorLog_Insert(errorLogModel);
+
+                MessageModel messageModel = new MessageModel
+                {
+                    MessageID = "E014"
+                };
+                return messageBL.Message_Select(messageModel);
+            }
+
         }
     }
 }

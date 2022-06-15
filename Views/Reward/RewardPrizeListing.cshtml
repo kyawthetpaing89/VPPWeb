@@ -35,8 +35,8 @@
                             <div class="col-sm-12 col-lg-2 col-md-2">
                                 <select id="SStatus" class="form-control">
                                     <option value="">All</option>
-                                    <option value="1">In-active</option>
-                                    <option value="2">Active</option>
+                                    <option value="0">In-active</option>
+                                    <option value="1">Active</option>
                                 </select>
                             </div>
                             <div class="col-sm-12 col-lg-2 col-md-2">
@@ -276,7 +276,7 @@
 <input id="HGenerateItemCode" type="hidden" value="@Url.Action("GenerateItemCode", "api/RewardApi")" />
 
 @section Scripts{
-    <script src="@Url.Content("~/Scripts/reward.js?v=42")"></script>
+    <script src="@Url.Content("~/Scripts/reward.js?v=43")"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {

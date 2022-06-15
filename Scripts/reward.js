@@ -37,6 +37,10 @@
         format: 'dd mmm yyyy' 
     });
 
+    $(".iziModal-button-close").click(function () {
+        $("#rewardprizeupload").val('');
+    });
+
     BindRewardPrize();
     BindProductCategory();
     BindCountry();
@@ -68,10 +72,13 @@
         }
     });
 
+
     $("#divDetailInfo").hide();
 }
 
 function BindRewardPrize() {
+
+    $('#tblReward tbody').empty();
 
     var v1 = '';
     if ($("#hVIPUserRole").val() == '2') {

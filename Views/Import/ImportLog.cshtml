@@ -20,6 +20,7 @@
                                 <thead>
                                     <tr>
                                         <th></th>
+                                        <th>Importe Type</th>
                                         <th>File Name</th>
                                         <th>Record Count</th>
                                         <th>Imported Date</th>
@@ -58,7 +59,28 @@
         </div>
         <div class="form-group row div-centerbtn">
             <div class="col-sm-3">
-                <button type="button" id="btnOK" onclick="ImportDetailClose();" class="btn btn-block btn-grd-info">Close</button>
+                <button type="button" id="btnOK" onclick="ImportRewardPrizeDetailClose();" class="btn btn-block btn-grd-inverse">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ProductDetailModal">
+    <div class="md-content">
+        <div class="table-responsive">
+            <table id="tblImportProductDetail" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Row</th>
+                        <th>Product Name</th>
+                        <th>Country</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="form-group row div-centerbtn">
+            <div class="col-sm-3">
+                <button type="button" id="btnOK" onclick="ImportProductDetailClose();" class="btn btn-block btn-grd-inverse">Close</button>
             </div>
         </div>
     </div>
@@ -66,9 +88,10 @@
 
 <input id="HGetImportLog" type="hidden" value="@Url.Action("GetImoprtLog", "api/ImportApi")" />
 <input id="HGetImportRewardPrize" type="hidden" value="@Url.Action("GetImportRewardPrize", "api/ImportApi")" />
+<input id="HGetImportProduct" type="hidden" value="@Url.Action("GetImportProduct", "api/ImportApi")" />
 
 @section Scripts{
-    <script src="@Url.Content("~/Scripts/import.js?v=3")"></script>
+    <script src="@Url.Content("~/Scripts/import.js?v=4")"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {

@@ -16,6 +16,27 @@
                     </div>
                     <div class="card-block">
                         <div class="row" style="padding-bottom:5px;">
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <label col-form-label">Product Name:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-3 col-md-3">
+                                <input type="text" id="SProductName" class="form-control" />
+                            </div>
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Status:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <select id="SStatus" class="form-control">
+                                    <option value="">All</option>
+                                    <option value="0">In-active</option>
+                                    <option value="1">Active</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <button type="button" id="btnSearch" onclick="BindProduct();" class="btn btn-block btn-grd-info"><i class="icon-magnifier"></i> Search</button>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-bottom:5px;">
                             <div class="col-sm-12 col-lg-3 col-md-3">
                                 <button type="button" id="btnNew" onclick="AddProduct();" class="btn btn-block btn-grd-info"><i class="ion-plus-round"></i> Add Product</button>
                             </div>
@@ -107,18 +128,49 @@
     </div>
 </div>
 
+<div id="ProductImportModal">
+    <div class="md-content">
+        <div class="row" style="padding:10px">
+            <div class="table-responsive">
+                <table id="tblProductPopUp" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Row</th>
+                            <th>Status</th>
+                            <th>Message</th>
+                            <th>Product Name</th>
+                            <th>Contry</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div id="divSave" class="form-group row div-centerbtn">
+            <div class="col-sm-3">
+                <button type="button" id="btnImportClose" onclick="ImportClose();" class="btn btn-block btn-grd-inverse">Cancel</button>
+            </div>
+            <div id="divconfirm" class="col-sm-3">
+                <button type="button" id="btnImportConfirm" onclick="ImportConfirm();" class="btn btn-block btn-grd-info"><span id="btnSaveText">Confirm</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <input id="HMode" type="hidden" />
 <input id="HProductID" type="hidden" />
 <input id="productupload" accept="image/*" class="hidden" type="file" onchange="readURL(this,'productphoto');">
+<input id="productlistupload" accept=".csv" class="hidden" type="file">
 <input id="Hproductphoto" type="hidden" />
 <input id="HGetProduct" type="hidden" value="@Url.Action("GetProduct", "api/ProductApi")" />
 <input id="HGetCountry" type="hidden" value="@Url.Action("GetCountry", "api/CountryApi")" />
 <input id="HProductCUD" type="hidden" value="@Url.Action("Product_CUD", "Product")" />
 <input id="HImageLocation" type="hidden" value="@Url.Content("~/SystemImages/")" />
 <input id="imgnophoto" type="hidden" value="@Url.Content("~/SystemImages/nophoto.jpg")" />
+<input id="HCheckProductImport" type="hidden" value="@Url.Action("CheckProductImport", "Product")" />
+<input id="HProductImportConfrim" type="hidden" value="@Url.Action("ProductImportConfirm", "Product")" />
 
 @section Scripts{
-    <script src="@Url.Content("~/Scripts/product.js?v=2")"></script>
+    <script src="@Url.Content("~/Scripts/product.js?v=5")"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {

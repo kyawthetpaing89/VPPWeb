@@ -178,6 +178,8 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RewardController.cs" />
     <Compile Include="Controllers\RewardApiController.cs" />
+    <Compile Include="Controllers\TrainingApiController.cs" />
+    <Compile Include="Controllers\TrainingController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserAuthentication.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -1737,6 +1739,7 @@
     <Content Include="Scripts\sweetalert2.all.min.js" />
     <Content Include="Scripts\sweetalert2.js" />
     <Content Include="Scripts\sweetalert2.min.js" />
+    <Content Include="Scripts\training.js" />
     <Content Include="SystemImages\fav.ico" />
     <Content Include="SystemImages\favicon.ico" />
     <Content Include="SystemImages\loading.gif" />
@@ -1791,6 +1794,7 @@
     <Content Include="Views\Reward\RewardPrizeListing.cshtml" />
     <Content Include="Views\Import\ImportLog.cshtml" />
     <Content Include="Views\Product\ProductList.cshtml" />
+    <Content Include="Views\Training\TrainingTypeListing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Country_BL\Country_BL.csproj">
@@ -1832,6 +1836,10 @@
     <ProjectReference Include="..\Reward_BL\Reward_BL.csproj">
       <Project>{ba6ed8e6-3788-4a4b-a2dc-99d099ef9f79}</Project>
       <Name>Reward_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Training_BL\Training_BL.csproj">
+      <Project>{2835496a-a1f3-47a8-983a-c9d8ed4268fa}</Project>
+      <Name>Training_BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\User_BL\User_BL.csproj">
       <Project>{a0cf2a27-cb2f-43a6-b806-d60f41a34294}</Project>

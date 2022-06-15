@@ -12,6 +12,18 @@
         width:'80%'
     });
 
+    $("#ProductDetailModal").iziModal({
+        title: 'Product Import Detail',
+        TransitionIn: 'FadeInRight',
+        theme: 'light',
+        headerColor: '#008fa2',
+        padding: 10,
+        top: 70,
+        overlayClose: false,
+        zindex: 1100,
+        width: '80%'
+    });
+
     BindImportLogTable();
 }
 
@@ -30,8 +42,9 @@ function ImportLogResponse(response) {
         "bPaginate": false,
         "ordering": false,
         "columns": [
-            { "data": "ImportID",width:"15%"},
-            { "data": "FileName", width: "20%" },
+            { "data": "ImportID", width: "10%" },
+            { "data": "ImportTypeName", width: "15%" },
+            { "data": "FileName", width: "15%" },
             { "data": "RecordCount", "className": "align-right", width: "20%" },
             { "data": "ImportedDate", "className": "align-center", width: "20%" },
             { "data": "ImportedName", width: "20%" },
@@ -55,9 +68,20 @@ function ImportDetail(row) {
     var obj = {
         ImportLogID: data["ImportLogID"],
     }
-    CalltoApiController($("#HGetImportRewardPrize").val(), obj, 'RewardPrizeDetailResponse');
 
-    $("#RewardPrizeDetailModal").iziModal('open');
+    if (data["ImportType"] == '1') {
+        $("#tblImportRewardPrizeDetail tbody").empty();
+
+        CalltoApiController($("#HGetImportRewardPrize").val(), obj, 'RewardPrizeDetailResponse');
+
+        $("#RewardPrizeDetailModal").iziModal('open');
+    } else if (data["ImportType"] == '2') {
+        $("#tblImportProductDetail tbody").empty();
+
+        CalltoApiController($("#HGetImportProduct").val(), obj, 'ProductDetailResponse');
+
+        $("#ProductDetailModal").iziModal('open');
+    }
 }
 
 function RewardPrizeDetailResponse(response) {
@@ -84,7 +108,29 @@ function RewardPrizeDetailResponse(response) {
     });
 }
 
-function ImportDetailClose() {
+function ProductDetailResponse(response) {
+    $('#tblImportProductDetail').DataTable({
+        responsive: true,
+        data: JSON.parse(response),
+        datasrc: "",
+        destroy: true,
+        searching: false,
+        "bInfo": false,
+        "bPaginate": false,
+        "ordering": false,
+        "columns": [
+            { "data": "ImportSEQ", "className": "align-right", width: "5%" },
+            { "data": "ProductName", width: "30%" },
+            { "data": "Country", width: "65%" },
+        ],
+    });
+}
+
+function ImportRewardPrizeDetailClose() {
     $("#RewardPrizeDetailModal").iziModal('close');
+}
+
+function ImportProductDetailClose() {
+    $("#ProductDetailModal").iziModal('close');
 }
 

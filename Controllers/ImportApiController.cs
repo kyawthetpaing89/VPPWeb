@@ -21,5 +21,13 @@ namespace VPPWeb.Controllers
             ImportBL importBL = new ImportBL();
             return importBL.ImportRewardPrize_Select(importModel);
         }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string GetImportProduct([FromBody] ImportModel importModel)
+        {
+            ImportBL importBL = new ImportBL();
+            return importBL.ImportProduct_Select(importModel);
+        }
     }
 }
