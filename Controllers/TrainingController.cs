@@ -18,5 +18,9 @@ namespace VPPWeb.Controllers
         {
             return View();
         }
+        public ActionResult TrainingListing()
+        {
+            return View();
+        }
     }
 }

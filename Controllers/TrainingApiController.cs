@@ -55,5 +55,43 @@ namespace VPPWeb.Controllers
             EnquiryBL enquiryBL = new EnquiryBL();
             return enquiryBL.Enquiry_Select(enquiryModel);
         }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string GetTraining([FromBody] TrainingModel trainingModel)
+        {
+            TrainingBL trainingBL = new TrainingBL();
+            return trainingBL.Training_Select(trainingModel);
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string Training_CUD([FromBody] TrainingModel trainingModel)
+        {
+            try
+            {
+                TrainingBL trainingBL = new TrainingBL();
+                return trainingBL.Training_CUD(trainingModel);
+            }
+            catch (Exception exception)
+            {
+                ErrorLogModel errorLogModel = new ErrorLogModel
+                {
+                    ErrorMessage = exception.Message,
+                    UpdatedBy = trainingModel.UpdatedBy
+                };
+
+                ErrorLogBL errorLogBL = new ErrorLogBL();
+                errorLogBL.ErrorLog_Insert(errorLogModel);
+
+                MessageBL messageBL = new MessageBL();
+                MessageModel messageModel = new MessageModel
+                {
+                    MessageID = "E007"
+                };
+                return messageBL.Message_Select(messageModel);
+            }
+
+        }
     }
 }

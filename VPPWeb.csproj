@@ -1798,6 +1798,7 @@
     <Content Include="Views\Product\ProductList.cshtml" />
     <Content Include="Views\Training\TrainingTypeListing.cshtml" />
     <Content Include="Views\Training\EnquiryListing.cshtml" />
+    <Content Include="Views\Training\TrainingListing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Country_BL\Country_BL.csproj">

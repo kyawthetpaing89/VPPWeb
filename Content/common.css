@@ -130,3 +130,7 @@ th,td {
 .width20p {
     width: 20%;
 }
+
+.table thead th{
+    vertical-align : top;
+}
