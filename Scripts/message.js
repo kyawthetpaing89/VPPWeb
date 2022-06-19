@@ -47,12 +47,15 @@ function ShowConfirmMessage(msgid, functionname, param1) {
     CalltoApiController('../api/MessageApi/GetMessage', Mmodel, 'ConfrimMessageResponse', functionname, param1)
 }
 
-function ConfrimMessageResponse(data, functionname, param1) {
+function ConfrimMessageResponse(data, functionname, param1,param2,param3) {
     var msgdata = JSON.parse(data);
+
+    var mtext = msgdata[0].MessageText.replace('{0}', param1);
+    mtext = mtext.replace('{1}', param2);
 
     Swal.fire({
         title: msgdata[0].MessageID,
-        text: msgdata[0].MessageText,
+        text: mtext,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',

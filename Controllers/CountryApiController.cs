@@ -52,5 +52,26 @@ namespace VPPWeb.Controllers
                 return messageBL.Message_Select(messageModel);
             }
         }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string GetCountryPhoto([FromBody] CountryModel countryModel)
+        {
+            CountryBL countryBL = new CountryBL();
+            return countryBL.CountryPhoto_Select(countryModel);
+        }
+
+        [HttpPost]
+        public string CountryPhoto_Updateapi([FromBody] CountryModel countryModel)
+        {
+            if (!string.IsNullOrWhiteSpace(countryModel.RemoveBannerPhoto))
+            {
+                if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + countryModel.RemoveBannerPhoto)))
+                    System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + countryModel.RemoveBannerPhoto));
+            }
+
+            CountryBL countryBL = new CountryBL();
+            return countryBL.CountryPhoto_Update(countryModel);
+        }
     }
 }

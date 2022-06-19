@@ -23,20 +23,26 @@
                                 <input type="text" id="STrainingName" class="form-control" />
                             </div>
                             <div class="col-sm-12 col-lg-1 col-md-1">
-                                <label col-form-label">Training Type:</label>
+                                <label col-form-label">Country:</label>
                             </div>
-                            <div class="col-sm-12 col-lg-3 col-md-3">
-                                <select id="ddlSTrainingType" class="form-control"></select>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <select id="ddlSCountry" class="form-control"></select>
                             </div>
                             <div class="col-sm-12 col-lg-2 col-md-2">
                                 <label col-form-label">Training Environment:</label>
                             </div>
-                            <div class="col-sm-12 col-lg-2 col-md-2">
+                            <div class="col-sm-12 col-lg-3 col-md-3">
                                 <select id="STrainingEnvironment" class="form-control">
                                     <option value="">All</option>
                                     <option value="1">Online</option>
                                     <option value="2">Classroom</option>
                                 </select>
+                            </div>
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Training Type:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-3 col-md-3">
+                                <select id="ddlSTrainingType" class="form-control"></select>
                             </div>
                             <div class="col-sm-12 col-lg-1 col-md-1">
                                 <label col-form-label">Date From:</label>
@@ -49,7 +55,9 @@
                             </div>
                             <div class="col-sm-12 col-lg-2 col-md-2">
                                 <input type="text" id="STrainingDateTo" class="form-control" />
-                            </div>
+                            </div>                        
+                        </div>
+                        <div class="row">
                             <div class="col-sm-12 col-lg-1 col-md-1">
                                 <label col-form-label">Status:</label>
                             </div>
@@ -60,14 +68,15 @@
                                     <option value="1">Active</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="form-group row div-centerbtn">
                             <div class="col-sm-12 col-lg-2 col-md-2">
                                 <button type="button" id="btnSearch" onclick="BindTrainingListing();" class="btn btn-block btn-grd-info"><i class="icon-magnifier"></i> Search</button>
                             </div>
                             <div class="col-sm-12 col-lg-2 col-md-2">
                                 <button type="button" id="btnClearSearch" onclick="ClearTrainingSearch();" class="btn btn-block btn-grd-inverse"><i class="icon-close"></i> Clear</button>
                             </div>
+                        </div>
+                        <div class="form-group row div-centerbtn">
+                            
                         </div>
                         <div class="row" style="padding-bottom:5px;padding-top:5px;border-top:dashed 1px black">
                             <div class="col-sm-12 col-lg-3 col-md-3">
@@ -81,6 +90,7 @@
                                         <th></th>
                                         <th>Status</th>
                                         <th>Training Type</th>
+                                        <th>Country Name</th>
                                         <th>Training Name</th>
                                         <th>Training Environment</th>
                                         <th>Available<br />Places</th>
@@ -133,6 +143,12 @@
             <label class="col-sm-3 col-form-label">Type:</label>
             <div class="col-sm-9">
                 <select id="ddlTrainingType" class="form-control"></select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Country:</label>
+            <div class="col-sm-9">
+                <select id="ddlCountry" class="form-control"></select>
             </div>
         </div>
         <div class="form-group row">
@@ -192,6 +208,7 @@
 
 <input id="HMode" type="hidden" />
 <input id="HTrainingID" type="hidden" />
+<input id="HGetCountry" type="hidden" value="@Url.Action("GetCountry", "api/CountryApi")" />
 <input id="HTrainingCUD" type="hidden" value="@Url.Action("Training_CUD", "api/TrainingApi")" />
 <input id="HGetTraining" type="hidden" value="@Url.Action("GetTraining", "api/TrainingApi")" />
 <input id="HGetTrainingType" type="hidden" value="@Url.Action("GetTrainingType", "api/TrainingApi")" />

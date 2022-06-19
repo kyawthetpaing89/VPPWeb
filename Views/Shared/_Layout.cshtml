@@ -330,7 +330,7 @@
                 <div class="pcoded-wrapper">
                     <nav class="pcoded-navbar" navbar-theme="themelight1">
                         <div class="pcoded-inner-navbar main-menu">
-                            <div class="pcoded-navigatio-lavel">Page Footer</div>
+                            <div class="pcoded-navigatio-lavel">VIP Partner</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
@@ -359,39 +359,47 @@
                                     </ul>
                                 </li>
                             </ul>
-                            <div class="pcoded-navigatio-lavel">REWARDS</div>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class=" ">
-                                    <a href="@Url.Action("ProductCategoryList","ProductCategory")">
-                                        <span class="pcoded-micon"><i class="icon-notebook"></i></span>
-                                        <span class="pcoded-mtext">Product Category</span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="@Url.Action("MinimumRedemptionPoints","Point")">
-                                        <span class="pcoded-micon"><i class="icon-magic-wand"></i></span>
-                                        <span class="pcoded-mtext">Min Redemption Points</span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="@Url.Action("RewardPrizeListing","Reward")">
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="icon-present"></i></span>
-                                        <span class="pcoded-mtext">Reward Prize Listing</span>
+                                        <span class="pcoded-mtext">Rewards Prize</span>
                                     </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="@Url.Action("importLog","Import")">
-                                        <span class="pcoded-micon"><i class="icon-cloud-download"></i></span>
-                                        <span class="pcoded-mtext">Import Log</span>
-                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="@Url.Action("RewardPrizeListing","Reward")">
+                                                <span class="pcoded-micon"><i class="icon-present"></i></span>
+                                                <span class="pcoded-mtext">Reward Prize Listing</span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="@Url.Action("MinimumRedemptionPoints","Point")">
+                                                <span class="pcoded-micon"><i class="icon-magic-wand"></i></span>
+                                                <span class="pcoded-mtext">Min Redemption Points</span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="@Url.Action("ProductCategoryList","ProductCategory")">
+                                                <span class="pcoded-micon"><i class="icon-notebook"></i></span>
+                                                <span class="pcoded-mtext">Product Category</span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
-                            <div class="pcoded-navigatio-lavel">PRODUCTS</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class=" ">
                                     <a href="@Url.Action("ProductList","Product")">
                                         <span class="pcoded-micon"><i class="ti-view-list-alt"></i></span>
-                                        <span class="pcoded-mtext">Product Listing</span>
+                                        <span class="pcoded-mtext">News Listing</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class=" ">
+                                    <a href="@Url.Action("BannerPhotoListing","Country")">
+                                        <span class="pcoded-micon"><i class="ti-image"></i></span>
+                                        <span class="pcoded-mtext">Banner Photos</span>
                                     </a>
                                 </li>
                             </ul>
@@ -413,6 +421,15 @@
                                     <a href="@Url.Action("EnquiryListing","Training")">
                                         <span class="pcoded-micon"><i class="ti-view-list-alt"></i></span>
                                         <span class="pcoded-mtext">Enquiry Listing</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="pcoded-navigatio-lavel">Log</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class=" ">
+                                    <a href="@Url.Action("importLog","Import")">
+                                        <span class="pcoded-micon"><i class="icon-cloud-download"></i></span>
+                                        <span class="pcoded-mtext">Import Log</span>
                                     </a>
                                 </li>
                             </ul>
@@ -489,7 +506,7 @@
     <script src="@Url.Content("~/Scripts/cleave.min.js")"></script>
 
     <!-- tbsCustom js-->
-    <script src="@Url.Content("~/Scripts/message.js?v=2")"></script>
+    <script src="@Url.Content("~/Scripts/message.js?v=3")"></script>
     <script src="@Url.Content("~/Scripts/api.js?v=1")"></script>
     <script src="@Url.Content("~/Scripts/common.js?v=5")"></script>
     <script src="@Url.Content("~/Scripts/fixCol.js?v=1")"></script>

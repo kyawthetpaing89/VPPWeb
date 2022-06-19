@@ -1,0 +1,207 @@
+﻿
+@{
+    ViewBag.Title = "BannerPhotoListing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-wrapper">
+    <!-- Page body start -->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Basic Form Inputs card start -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Banner Photos</h5>
+                    </div>
+                    <div class="card-block">
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Country:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <select id="ddlCountry" onchange="CuontryChange()" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Banner1:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <div id="divBanner1" style="height: 200px;background-image: url( @Url.Content("~/SystemImages/noimage.jpg")) ;background-size: 100% 100%;"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row" style="border-bottom:dashed 1px black">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Banner Link1:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-9 col-md-9">
+                                <input id="BannerUrl1" type="text" class="form-control" />
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <button class="btn btn-danger" onclick="RemoveBanner(1);" style="padding: .5rem .75rem">Remove Banner1</button>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Banner2:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <div id="divBanner2" style="height: 200px;background-image: url( @Url.Content("~/SystemImages/noimage.jpg")) ;background-size: 100% 100%;"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row" style="border-bottom:dashed 1px black">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Banner Link2:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-9 col-md-9">
+                                <input id="BannerUrl2" type="text" class="form-control" />
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <button class="btn btn-danger" onclick="RemoveBanner(2);" style="padding: .5rem .75rem">Remove Banner2</button>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Banner3:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <div id="divBanner3" style="height: 200px;background-image: url( @Url.Content("~/SystemImages/noimage.jpg")) ;background-size: 100% 100%;"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row" style="border-bottom:dashed 1px black">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Banner Link3:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-9 col-md-9">
+                                <input id="BannerUrl3" type="text" class="form-control" />
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <button class="btn btn-danger" onclick="RemoveBanner(3);" style="padding: .5rem .75rem">Remove Banner3</button>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Banner4:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <div id="divBanner4" style="height: 200px;background-image: url( @Url.Content("~/SystemImages/noimage.jpg")) ;background-size: 100% 100%;"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row" style="border-bottom:dashed 1px black">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Banner Link4:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-9 col-md-9">
+                                <input id="BannerUrl4" type="text" class="form-control" />
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <button class="btn btn-danger" onclick="RemoveBanner(4);" style="padding: .5rem .75rem">Remove Banner4</button>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Banner5:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <div id="divBanner5" style="height: 200px;background-image: url( @Url.Content("~/SystemImages/noimage.jpg")) ;background-size: 100% 100%;"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row" style="border-bottom:dashed 1px black">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Banner Link5:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-9 col-md-9">
+                                <input id="BannerUrl5" type="text" class="form-control" />
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <button class="btn btn-danger" onclick="RemoveBanner(5);" style="padding: .5rem .75rem">Remove Banner5</button>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Banner6:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <div id="divBanner6" style="height: 200px;background-image: url( @Url.Content("~/SystemImages/noimage.jpg")) ;background-size: 100% 100%;"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row" style="border-bottom:dashed 1px black">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Banner Link6:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-9 col-md-9">
+                                <input id="BannerUrl6" type="text" class="form-control" />
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <button class="btn btn-danger" onclick="RemoveBanner(6);" style="padding: .5rem .75rem">Remove Banner6</button>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Footer:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <div id="divFooter1" style="height: 100px;background-image: url( @Url.Content("~/SystemImages/noimage.jpg")) ;background-size: 100% 100%;"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row" style="border-bottom:dashed 1px black;padding-bottom:10px">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                            </div>
+                            <div class="col-sm-12 col-lg-9 col-md-9">
+
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <button class="btn btn-danger" onclick="RemoveFooter();" style="padding: .5rem .75rem">Remove Footer &nbsp;</button>
+                            </div>
+                        </div>
+                        <div id="divSave" class="form-group row div-centerbtn">
+                            <div class="col-sm-3">
+                                <button type="button" id="btnSave" onclick="BannerPhotoSave();" class="btn btn-block btn-grd-info"><span id="btnSaveText">Save</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Page body end -->
+</div>
+<input id="banner1upload" accept="image/*" class="hidden" type="file" onchange="changeBackground(this,'divBanner1');">
+<input id="banner2upload" accept="image/*" class="hidden" type="file" onchange="changeBackground(this,'divBanner2');">
+<input id="banner3upload" accept="image/*" class="hidden" type="file" onchange="changeBackground(this,'divBanner3');">
+<input id="banner4upload" accept="image/*" class="hidden" type="file" onchange="changeBackground(this,'divBanner4');">
+<input id="banner5upload" accept="image/*" class="hidden" type="file" onchange="changeBackground(this,'divBanner5');">
+<input id="banner6upload" accept="image/*" class="hidden" type="file" onchange="changeBackground(this,'divBanner6');">
+<input id="footer1upload" accept="image/*" class="hidden" type="file" onchange="changeBackground(this,'divFooter1');">
+
+<input type="hidden" id="HBannerphoto1" />
+<input type="hidden" id="HBannerphoto2" />
+<input type="hidden" id="HBannerphoto3" />
+<input type="hidden" id="HBannerphoto4" />
+<input type="hidden" id="HBannerphoto5" />
+<input type="hidden" id="HBannerphoto6" />
+<input type="hidden" id="HFooterphoto1" />
+<input id="HRemoveBannerNo" type="hidden" />
+<input id="HRemoveBannerPhoto" type="hidden" />
+
+<input id="HGetCountry" type="hidden" value="@Url.Action("GetCountry", "api/CountryApi")" />
+<input id="HGetBannerPhoto" type="hidden" value="@Url.Action("GetCountryPhoto", "api/CountryApi")" />
+<input id="HCountryPhotoUpdate" type="hidden" value="@Url.Action("CountryPhoto_Update", "Country")" />
+<input id="HCountryPhotoUpdateapi" type="hidden" value="@Url.Action("CountryPhoto_Updateapi", "api/CountryApi")" />
+<input id="HImageLocation" type="hidden" value="@Url.Content("~/SystemImages/")" />
+<input id="HNoImageLocation" type="hidden" value="@Url.Content("~/SystemImages/noimage.jpg")" />
+
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/country.js?v=2")"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            BannerPhotoLoad();
+        });
+    </script>
+}
+
+

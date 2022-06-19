@@ -36,6 +36,18 @@ function readURL(input, ctrl) {
     }
 }
 
+function changeBackground(input,ctrl) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#' + ctrl).css("background-image", "url(" + e.target.result +")");
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
 function removeImage(ctrl) {
     $('#' + ctrl)
         .attr('src', $("#noimage").val());

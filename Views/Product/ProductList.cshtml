@@ -12,12 +12,12 @@
                 <!-- Basic Form Inputs card start -->
                 <div class="card">
                     <div class="card-header">
-                        <h5>Product Listing</h5>
+                        <h5>News Listing</h5>
                     </div>
                     <div class="card-block">
                         <div class="row" style="padding-bottom:5px;">
                             <div class="col-sm-12 col-lg-2 col-md-2">
-                                <label col-form-label">Product Name:</label>
+                                <label col-form-label">News Name:</label>
                             </div>
                             <div class="col-sm-12 col-lg-3 col-md-3">
                                 <input type="text" id="SProductName" class="form-control" />
@@ -38,7 +38,7 @@
                         </div>
                         <div class="row" style="padding-bottom:5px;">
                             <div class="col-sm-12 col-lg-3 col-md-3">
-                                <button type="button" id="btnNew" onclick="AddProduct();" class="btn btn-block btn-grd-info"><i class="ion-plus-round"></i> Add Product</button>
+                                <button type="button" id="btnNew" onclick="AddProduct();" class="btn btn-block btn-grd-info"><i class="ion-plus-round"></i> Add News</button>
                             </div>
                             <div class="col-sm-12 col-lg-2 col-md-2">
                                 <button type="button" id="btnUpload" class="btn btn-block btn-grd-warning"><i class="icon-arrow-up-circle"></i> Upload</button>
@@ -71,7 +71,7 @@
 <div id="ProductModal">
     <div class="md-content">
         <div class="row">
-            <div class="col-sm-3">Product Photo:</div>
+            <div class="col-sm-3">News Photo:</div>
             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                 <img id="productphoto" src="@Url.Content("~/SystemImages/nophoto.jpg")" class="img-fluid m-b-10 img-product" alt="">
                 <p><button onclick="RemoveProductPhoto();" class="btn btn-block btn-sm btn-grd-danger">Remove</button></p>
@@ -112,7 +112,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Product Name:</label>
+            <label class="col-sm-3 col-form-label">News Name:</label>
             <div class="col-sm-9">
                 <input id="txtProductName" type="text" maxlength="200" class="form-control">
             </div>

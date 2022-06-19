@@ -140,6 +140,7 @@ function TrainingListingLoad() {
 
     GetTrainingType();
     BindTrainingListing();
+    GetCountry();
 
     new Cleave('.place1', {
         numeral: true,
@@ -255,9 +256,18 @@ function GetTrainingType() {
     CalltoApiController($("#HGetTrainingType").val(), obj, 'GetTrainingTypeResponse');
 }
 
+function GetCountry() {
+    CalltoApiController($("#HGetCountry").val(), {}, 'GetCountryResponse');
+}
+
 function GetTrainingTypeResponse(response) {
     DropdownResponse(response, 'ddlTrainingType', 'TrainingTypeID', 'TrainingTypeName', '', false);
     DropdownResponse(response, 'ddlSTrainingType', 'TrainingTypeID', 'TrainingTypeName', '', true);
+}
+
+function GetCountryResponse(response) {
+    DropdownResponse(response, 'ddlCountry', 'CountryID', 'CountryName', '', false);
+    DropdownResponse(response, 'ddlSCountry', 'CountryID', 'CountryName', '', true);
 }
 
 function BindTrainingListing() {
@@ -267,6 +277,7 @@ function BindTrainingListing() {
         TrainingName: $("#STrainingName").val(),
         ActiveStatus: $("#SStatus").children("option:selected").val(),
         TrainingTypeID: $('#ddlSTrainingType').children("option:selected").val(),
+        CountryID: $('#ddlSCountry').children("option:selected").val(),
         TrainingEnvironment: $('#STrainingEnvironment').children("option:selected").val(),
         TrainingDateFrom: $("#STrainingDateFrom").val(),
         TrainingDateTo: $("#STrainingDateTo").val(),
@@ -296,6 +307,7 @@ function TrainingResponse(response) {
             { "data": "TrainingID", width: "5%" },
             { "data": "Status", width: "5%", className: "align-center" },
             { "data": "TrainingTypeName", width: "12%" },
+            { "data": "CountryName", width: "10%" },
             { "data": "TrainingName", width: "18%" },
             { "data": "TrainingEnvironment", width: "8%" },
             { "data": "AvailablePlaces", width: "8%", className: "align-right" },
@@ -340,6 +352,7 @@ function TrainingEdit(row) {
     $("#HTrainingID").val(data["TrainingID"]);
     $("#txtTrainingName").val(data["TrainingName"]);
     $("#ddlTrainingType").val(data["TrainingTypeID"]);
+    $("#ddlCountry").val(data["CountryID"]);
     $('input[name="rdoEnvironment"][value="' + data["EnvironmentValue"] + '"]').prop('checked', true);
     $("#txtTrainingVenue").val(data["TrainingVenue"]);
     $("#txtPlaces").val(data["AvailablePlaces"]);
@@ -364,6 +377,7 @@ function ClearTraining() {
     $("#rdoInactive").prop('checked', true);
     $("#txtTrainingName").val('');
     $("#ddlTrainingType").val('1');
+    $("#ddlCountry").val('1');
     $("#rdoOnline").prop('checked', true);
     $("#txtTrainingVenue").val('');
     $("#txtTrainingVenue").prop("readonly", true);
@@ -384,6 +398,7 @@ function TrainingSave() {
             TrainingID: $("#HTrainingID").val(),
             TrainingName: $("#txtTrainingName").val(),
             TrainingTypeID: $('#ddlTrainingType').children("option:selected").val(),
+            CountryID: $('#ddlCountry').children("option:selected").val(),
             TrainingVenue: $("#txtTrainingVenue").val(),
             TrainingEnvironment: $('input[name="rdoEnvironment"]:checked').val(),
             AvailablePlaces: $("#txtPlaces").val(),
@@ -443,6 +458,7 @@ function TrainingErrorCheck() {
 function ClearTrainingSearch() {
     $("#STrainingName").val('');
     $("#ddlSTrainingType").val('');
+    $("#ddlSCountry").val('');
     $("#STrainingEnvironment").val('');
     $("#STrainingDateFrom").val('');
     $("#STrainingDateTo").val('');
