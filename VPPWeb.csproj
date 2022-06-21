@@ -1804,6 +1804,7 @@
     <Content Include="Views\Training\EnquiryListing.cshtml" />
     <Content Include="Views\Training\TrainingListing.cshtml" />
     <Content Include="Views\Country\BannerPhotoListing.cshtml" />
+    <Content Include="Views\Country\CountryPageFooter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Country_BL\Country_BL.csproj">

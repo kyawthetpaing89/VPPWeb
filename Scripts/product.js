@@ -1,6 +1,6 @@
 ﻿function ProductListingLoad() {
     $("#ProductModal").iziModal({
-        title: 'Add Product',
+        title: 'Add News',
         TransitionIn: 'FadeInRight',
         theme: 'light',
         headerColor: '#008fa2',

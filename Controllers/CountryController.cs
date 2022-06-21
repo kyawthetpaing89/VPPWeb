@@ -133,5 +133,10 @@ namespace VPPWeb.Controllers
                 return messageBL.Message_Select(messageModel);
             }
         }
+
+        public ActionResult CountryPageFooter()
+        {
+            return View();
+        }
     }
 }

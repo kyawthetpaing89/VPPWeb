@@ -73,5 +73,20 @@ namespace VPPWeb.Controllers
             CountryBL countryBL = new CountryBL();
             return countryBL.CountryPhoto_Update(countryModel);
         }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string GetCountryPageFooter([FromBody] CountryModel countryModel)
+        {
+            CountryBL countryBL = new CountryBL();
+            return countryBL.CountryPageFooter_Select(countryModel);
+        }
+
+        [HttpPost]
+        public string CountryPageFooterUpdate([FromBody] CountryModel countryModel)
+        {
+            CountryBL countryBL = new CountryBL();
+            return countryBL.CountryPageFooter_Update(countryModel);
+        }
     }
 }

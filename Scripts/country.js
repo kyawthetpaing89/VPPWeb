@@ -1,5 +1,7 @@
-﻿function BannerPhotoLoad() {
-    getBunnerCountry();
+﻿
+//Banner Country
+function BannerPhotoLoad() {
+    getBannerCountry();
 
     $('#divBanner1').on('click', function () {
         $('#banner1upload').click();
@@ -30,16 +32,23 @@
     });
 }
 
-function getBunnerCountry() {
-    CalltoApiController($("#HGetCountry").val(), {}, 'GetCountryResponse');
+function getBannerCountry() {
+    if ($("#hVIPUserRole").val() == '1') {
+        obj = {};
+    } else {
+        obj = {
+            CountryList: $("#hCountryList").val(),
+        }
+    }
+    CalltoApiController($("#HGetCountry").val(), obj, 'GetBannerCountryResponse');
 }
 
-function GetCountryResponse(response) {
+function GetBannerCountryResponse(response) {
     DropdownResponse(response, 'ddlCountry', 'CountryID', 'CountryName', '', false);
-    CuontryChange();
+    CountryChange();
 }
 
-function CuontryChange() {
+function CountryChange() {
     $('#divloader').show();
 
     var obj = {
@@ -61,31 +70,62 @@ function BannerPhotoListingResponse(response) {
 
         if (data[0].BannerPhoto1) {
             $("#HBannerphoto1").val(data[0].BannerPhoto1);
-            $('#divBanner1').css("background-image", "url(" + $("#HImageLocation").val() + data[0].BannerPhoto1 + ")");           
+            $('#divBanner1').css("background-image", "url(" + $("#HImageLocation").val() + data[0].BannerPhoto1 + ")");
+        } else {
+            $("#HBannerphoto1").val('');
+            $('#divBanner1').css("background-image", "url(" + $("#HImageLocation").val() + "noimage.jpg)");
         }
+
         if (data[0].BannerPhoto2) {
             $("#HBannerphoto2").val(data[0].BannerPhoto2);
             $('#divBanner2').css("background-image", "url(" + $("#HImageLocation").val() + data[0].BannerPhoto2 + ")");
+        } else {
+            $("#HBannerphoto2").val('');
+            $('#divBanner2').css("background-image", "url(" + $("#HImageLocation").val() + "noimage.jpg)");
         }
+
+
         if (data[0].BannerPhoto3) {
             $("#HBannerphoto3").val(data[0].BannerPhoto3);
             $('#divBanner3').css("background-image", "url(" + $("#HImageLocation").val() + data[0].BannerPhoto3 + ")");
+        } else {
+            $("#HBannerphoto3").val('');
+            $('#divBanner3').css("background-image", "url(" + $("#HImageLocation").val() + "noimage.jpg)");
         }
+
         if (data[0].BannerPhoto4) {
             $("#HBannerphoto4").val(data[0].BannerPhoto4);
             $('#divBanner4').css("background-image", "url(" + $("#HImageLocation").val() + data[0].BannerPhoto4 + ")");
+        } else {
+            $("#HBannerphoto4").val('');
+            $('#divBanner4').css("background-image", "url(" + $("#HImageLocation").val() + "noimage.jpg)");
         }
+
+
         if (data[0].BannerPhoto5) {
             $("#HBannerphoto5").val(data[0].BannerPhoto5);
             $('#divBanner5').css("background-image", "url(" + $("#HImageLocation").val() + data[0].BannerPhoto5 + ")");
+        } else {
+            $("#HBannerphoto5").val('');
+            $('#divBanner5').css("background-image", "url(" + $("#HImageLocation").val() + "noimage.jpg)");
         }
+
+
         if (data[0].BannerPhoto6) {
             $("#HBannerphoto6").val(data[0].BannerPhoto6);
             $('#divBanner6').css("background-image", "url(" + $("#HImageLocation").val() + data[0].BannerPhoto6 + ")");
+        } else {
+            $("#HBannerphoto6").val('');
+            $('#divBanner6').css("background-image", "url(" + $("#HImageLocation").val() + "noimage.jpg)");
         }
+
+
         if (data[0].FooterPhoto1) {
             $("#HFooterphoto1").val(data[0].FooterPhoto1);
             $('#divFooter1').css("background-image", "url(" + $("#HImageLocation").val() + data[0].FooterPhoto1 + ")");
+        } else {
+            $("#HFooterphoto1").val('');
+            $('#divFooter1').css("background-image", "url(" + $("#HImageLocation").val() + "noimage.jpg)");
         }
     } else {
         $('#divBanner1').css("background-image", "url(" + $("#HNoImageLocation").val() + ")");
@@ -95,6 +135,13 @@ function BannerPhotoListingResponse(response) {
         $('#divBanner5').css("background-image", "url(" + $("#HNoImageLocation").val() + ")");
         $('#divBanner6').css("background-image", "url(" + $("#HNoImageLocation").val() + ")");
         $('#divFooter1').css("background-image", "url(" + $("#HNoImageLocation").val() + ")");
+
+        $("#BannerUrl1").val('');
+        $("#BannerUrl2").val('');
+        $("#BannerUrl3").val('');
+        $("#BannerUrl4").val('');
+        $("#BannerUrl5").val('');
+        $("#BannerUrl6").val('');
     }
     $('#divloader').hide();
 }
@@ -117,6 +164,7 @@ function BannerPhotoSave() {
         BannerUrl5: $("#BannerUrl5").val(),
         BannerUrl6: $("#BannerUrl6").val(),
         Footerphoto1: $("#HFooterphoto1").val(),
+        UpdatedBy: $("#hID").val(),
     }
 
     var formdata = new FormData();
@@ -150,13 +198,14 @@ function BannerPhotoSave() {
             data = JSON.parse(response);
             MessageResponse(response, data[0].MessageID)
 
+            CountryChange();
         },
         fail: function (response) {
             data = JSON.parse(response);
             MessageResponse(response, data[0].MessageID)
         },
         complete: function (data) {
-            CuontryChange();
+            CountryChange();
             $('#divloader').hide();
         }
     });
@@ -231,3 +280,87 @@ function CountryPhotoUpdateapiResponse(response) {
     data = JSON.parse(response);
     MessageResponse(response, data[0].MessageID)
 }
+
+//Banner Country
+
+//Footer Country
+function FooterCountryLoad() {
+    getFooterCountry();
+}
+
+function getFooterCountry() {
+    if ($("#hVIPUserRole").val() == '1') {
+        obj = {};
+    } else {
+        obj = {
+            CountryList: $("#hCountryList").val(),
+        }
+    }
+    CalltoApiController($("#HGetCountry").val(), obj, 'GetFooterCountryResponse');
+}
+
+function GetFooterCountryResponse(response) {
+    DropdownResponse(response, 'ddlCountry', 'CountryID', 'CountryName', '', false);
+    FooterCountryChange();
+}
+
+function FooterCountryChange() {
+    $('#divloader').show();
+
+    var obj = {
+        CountryID: $("#ddlCountry").val(),
+    }
+    CalltoApiController($("#HGetCountryFooter").val(), obj, 'FooterCountryChangeResponse');
+}
+
+function FooterCountryChangeResponse(response) {
+    var data = JSON.parse(response);
+    if (data.length > 0) {
+        $("#txtCopyright").val(data[0].CopyrightText);
+        $("#txtDlinkUrl").val(data[0].DLinkUrl);
+        $("#txtLinkedIn").val(data[0].LinkedInUrl);
+        $("#txtFacebookUrl").val(data[0].FacebookUrl);
+        $("#txtTwitterUrl").val(data[0].TwitterUrl);
+        $("#txtYoutubeUrl").val(data[0].YoutubeUrl);
+        $("#txtInstagramUrl").val(data[0].InstagramUrl);
+        $("#txtContactUs").val(data[0].ContactUs);
+        $("#txtPrivacyPolicy").val(data[0].PrivacyPolicy);
+        $("#txtTermsNConditions").val(data[0].TermsAndConditions);
+    } else {
+        $("#txtCopyright").val('');
+        $("#txtDlinkUrl").val('');
+        $("#txtLinkedIn").val('');
+        $("#txtFacebookUrl").val('');
+        $("#txtTwitterUrl").val('');
+        $("#txtYoutubeUrl").val('');
+        $("#txtInstagramUrl").val('');
+        $("#txtContactUs").val('');
+        $("#txtPrivacyPolicy").val('');
+        $("#txtTermsNConditions").val('');
+    }
+    $('#divloader').hide();
+}
+
+function FooterPageFooterUpdate() {
+    var obj = {
+        CountryID: $("#ddlCountry").val(),
+        CopyrightText: $("#txtCopyright").val(),
+        DLinkUrl: $("#txtDlinkUrl").val(),
+        LinkedInUrl: $("#txtLinkedIn").val(),
+        FacebookUrl: $("#txtFacebookUrl").val(),
+        TwitterUrl: $("#txtTwitterUrl").val(),
+        YoutubeUrl: $("#txtYoutubeUrl").val(),
+        InstagramUrl: $("#txtInstagramUrl").val(),
+        ContactUs: $("#txtContactUs").val(),
+        PrivacyPolicy: $("#txtPrivacyPolicy").val(),
+        TermsAndConditions: $("#txtTermsNConditions").val(),
+        UpdatedBy: $("#hID").val(),
+    }
+    CalltoApiController($("#HCountryFooterUpdate").val(), obj, 'FooterPageFooterUpdateResponse');
+}
+
+function FooterPageFooterUpdateResponse(response) {
+    data = JSON.parse(response);
+    MessageResponse(response, data[0].MessageID)
+}
+//Footer Country

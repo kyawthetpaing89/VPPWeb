@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "CountryPageFooter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-wrapper">
+    <!-- Page body start -->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Basic Form Inputs card start -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Page Footer Setting</h5>
+                    </div>
+                    <div class="card-block">
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <label col-form-label">Country:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <select id="ddlCountry" onchange="FooterCountryChange()" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <label col-form-label">Copyright Text:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <input type="text" id="txtCopyright" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <label col-form-label">Dlink Url:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <input type="text" id="txtDlinkUrl" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <label col-form-label">LinkedIn Url:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <input type="text" id="txtLinkedIn" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <label col-form-label">Facebook Url:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <input type="text" id="txtFacebookUrl" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <label col-form-label">Twitter Url:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <input type="text" id="txtTwitterUrl" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <label col-form-label">Youtube Url:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <input type="text" id="txtYoutubeUrl" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <label col-form-label">Instagram Url:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <input type="text" id="txtInstagramUrl" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <label col-form-label">Contact Us:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <textarea id="txtContactUs" class="form-control height300"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <label col-form-label">Privacy Policy:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <textarea id="txtPrivacyPolicy" class="form-control height300"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <label col-form-label">Term & Conditions:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <textarea id="txtTermsNConditions" class="form-control height300"></textarea>
+                            </div>
+                        </div>
+                        <div id="divSave" class="form-group row div-centerbtn">
+                            <div class="col-sm-3">
+                                <button type="button" id="btnSave" onclick="FooterPageFooterUpdate();" class="btn btn-block btn-grd-info"><span id="btnSaveText">Save</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Page body end -->
+</div>
+
+<input id="HGetCountry" type="hidden" value="@Url.Action("GetCountry", "api/CountryApi")" />
+<input id="HGetCountryFooter" type="hidden" value="@Url.Action("GetCountryPageFooter", "api/CountryApi")" />
+<input id="HCountryFooterUpdate" type="hidden" value="@Url.Action("CountryPageFooterUpdate", "api/CountryApi")" />
+
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/country.js?v=4")"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            FooterCountryLoad();
+        });
+    </script>
+}
