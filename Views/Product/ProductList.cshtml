@@ -117,6 +117,12 @@
                 <input id="txtProductName" type="text" maxlength="200" class="form-control">
             </div>
         </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">News Url:</label>
+            <div class="col-sm-9">
+                <input id="txtNewsUrl" type="text" maxlength="500" class="form-control">
+            </div>
+        </div>
         <div id="divSave" class="form-group row div-centerbtn">
             <div class="col-sm-3">
                 <button type="button" id="btnClose" onclick="ProductEntryClose();" class="btn btn-block btn-grd-inverse">Close</button>
@@ -170,7 +176,7 @@
 <input id="HProductImportConfrim" type="hidden" value="@Url.Action("ProductImportConfirm", "Product")" />
 
 @section Scripts{
-    <script src="@Url.Content("~/Scripts/product.js?v=5")"></script>
+    <script src="@Url.Content("~/Scripts/product.js?v=6")"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {

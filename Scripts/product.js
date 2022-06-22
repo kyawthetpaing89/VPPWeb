@@ -91,6 +91,13 @@ function ProductResponse(response) {
                 },
             },
             {
+                "targets": 2,
+                "data": "ProductName",
+                "render": function (data,type, row) {
+                    return '<a href="'+ row.NewsUrl +'" target="_blank" style="color:#01a9ac" onclick="NewsNameClick(this)">'+ data +'</a>';
+                },
+            },
+            {
                 "targets": 4,
                 "data": "ProductPhoto",
                 "render": function (data) {
@@ -144,6 +151,7 @@ function ProductEdit(row) {
     $("#HProductID").val(data["ProductID"]);
     $('input[name="rdoStatus"][value="' + data["ActiveStatus"] + '"]').prop('checked', true);
     $("#txtProductName").val(data["ProductName"]);
+    $("#txtNewsUrl").val(data["NewsUrl"]);
 
     if (!data["ProductPhoto"]) {
         $("#productphoto").attr("src", $("#HImageLocation").val() + "nophoto.jpg");
@@ -172,6 +180,7 @@ function ClearProduct() {
     $("#rdoInactive").prop('checked', true);
     $("#chkAll").prop('checked', false);
     $("#txtProductName").val('');
+    $("#txtNewsUrl").val('');
     $("[name='chkCountry']").prop('checked', false);
 }
 
@@ -182,6 +191,7 @@ function ProductSave() {
         var obj = {
             ProductID: $("#HProductID").val(),
             ProductName: $("#txtProductName").val(),
+            NewsUrl: $("#txtNewsUrl").val(),
             ActiveStatus: $('input[name="rdoStatus"]:checked').val(),
             ProductPhoto: $("#Hproductphoto").val(),
             CountryJson: getCountryList(),
@@ -236,6 +246,10 @@ function ProductErrorCheck() {
     if (!$("#txtProductName").val()) {
         ShowMessage("E001", "Product Name");
         $("#txtProductName").focus();
+        return false;
+    } if (!$("#txtNewsUrl").val()) {
+        ShowMessage("E001", "News Url");
+        $("#txtNewsUrl").focus();
         return false;
     } else if ($("[name='chkCountry']:checked").length <= 0){
         ShowMessage("E006", "Country");
