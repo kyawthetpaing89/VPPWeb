@@ -28,24 +28,37 @@ namespace VPPWeb.Controllers
             {
                 RewardBL reward_BL = new RewardBL();
 
+                if (!string.IsNullOrEmpty(rewardPrizeModel.RemoveProductPhoto))
+                {
+                    if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + rewardPrizeModel.RemoveProductPhoto)))
+                        System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + rewardPrizeModel.RemoveProductPhoto));
+                }
+
+                if (!string.IsNullOrEmpty(rewardPrizeModel.RemoveQuotationPhoto))
+                {
+                    if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + rewardPrizeModel.RemoveQuotationPhoto)))
+                        System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + rewardPrizeModel.RemoveQuotationPhoto));
+                }
+
                 for (int i = 0; i < Request.Files.Count; i++)
                 {
                     string key = Request.Files.GetKey(i);
                     if (key == "product")
                     {
-                        rewardPrizeModel.ProductPhoto = "Product/" + rewardPrizeModel.ItemCode + DateTime.Now.ToString("yyyyMMddhhmmss") + ".jpg";
 
                         if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + rewardPrizeModel.ProductPhoto)))
                             System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + rewardPrizeModel.ProductPhoto));
+
+                        rewardPrizeModel.ProductPhoto = "Product/" + rewardPrizeModel.ItemCode + DateTime.Now.ToString("yyyyMMddhhmmss") + ".jpg";
 
                         Request.Files[i].SaveAs(Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/"), rewardPrizeModel.ProductPhoto));
                     }
                     else if (key == "quotation")
                     {
-                        rewardPrizeModel.QuotationPhoto = "Quotation/" + rewardPrizeModel.ItemCode + DateTime.Now.ToString("yyyyMMddhhmmss") + ".jpg";
-
                         if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + rewardPrizeModel.QuotationPhoto)))
                             System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + rewardPrizeModel.QuotationPhoto));
+
+                        rewardPrizeModel.QuotationPhoto = "Quotation/" + rewardPrizeModel.ItemCode + DateTime.Now.ToString("yyyyMMddhhmmss") + ".jpg";
 
                         Request.Files[i].SaveAs(Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/"), rewardPrizeModel.QuotationPhoto));
                     }

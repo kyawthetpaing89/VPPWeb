@@ -182,6 +182,7 @@ function ClearProduct() {
     $("#txtProductName").val('');
     $("#txtNewsUrl").val('');
     $("[name='chkCountry']").prop('checked', false);
+    $("#HRemovePhoto").val('');
 }
 
 function ProductSave() {
@@ -195,6 +196,7 @@ function ProductSave() {
             ActiveStatus: $('input[name="rdoStatus"]:checked').val(),
             ProductPhoto: $("#Hproductphoto").val(),
             CountryJson: getCountryList(),
+            RemovePhoto: $("#HRemovePhoto").val(),
             UpdatedBy: $("#hID").val(),
             Mode: $("#HMode").val(),
         };
@@ -244,7 +246,7 @@ function getCountryList() {
 
 function ProductErrorCheck() {
     if (!$("#txtProductName").val()) {
-        ShowMessage("E001", "Product Name");
+        ShowMessage("E001", "News Name");
         $("#txtProductName").focus();
         return false;
     } if (!$("#txtNewsUrl").val()) {
@@ -276,7 +278,9 @@ function ProductEntryClose() {
 }
 
 function RemoveProductPhoto() {
+    $("#HRemovePhoto").val($("#Hproductphoto").val());
     $("#productphoto").attr("src", $("#HImageLocation").val() + "nophoto.jpg");
+    $("#productupload").val('');
     $("#Hproductphoto").val('');
 }
 

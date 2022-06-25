@@ -85,20 +85,20 @@
 <div id="RewardPrizeModal">
     <div class="md-content">
         <div class="row">
-            <div class="col-sm-4"></div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-12">
+            <div class="col-sm-3"></div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-1 col-xs-12">
                 <p>Product</p>
                 <img id="productphoto" src="@Url.Content("~/SystemImages/nophoto.jpg")" class="img-fluid m-b-10 img-product" alt="">
-                <p><button onclick="RemoveProductPhoto();" class="btn btn-block btn-sm btn-grd-danger">Remove</button></p>
+                <p><button onclick="RemoveProductPhoto();" class="btn col-sm-6 btn-sm btn-grd-danger">Remove</button></p>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-12">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-1 col-xs-12">
                 <p>Quotation</p>
                 <img id="quotationphoto" src="@Url.Content("~/SystemImages/nophoto.jpg")" class="img-fluid m-b-10 img-product" alt="">
-                <p><button onclick="RemoveQuotationPhoto();" class="btn btn-block btn-sm btn-grd-danger">Remove</button></p>
+                <p><button onclick="RemoveQuotationPhoto();" class="btn col-sm-6 btn-sm btn-grd-danger">Remove</button></p>
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-4">Status:</label>
+            <label class="col-sm-3">Status:</label>
             <div class="col-sm-8">
                 <div class="form-radio">
                     <div class="radio radiofill radio-primary radio-inline">
@@ -118,27 +118,27 @@
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Country:</label>
+            <label class="col-sm-3 col-form-label">Country:</label>
             <div class="col-sm-8">
                 <select id="ddlCountry" onchange="GenerateItemCode()" class="form-control">
                 </select>
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Item Code:</label>
+            <label class="col-sm-3 col-form-label">Item Code:</label>
             <div class="col-sm-8">
                 <input id="txtItemCode" readonly type="text" maxlength="10" class="form-control">
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Category:</label>
+            <label class="col-sm-3 col-form-label">Category:</label>
             <div class="col-sm-8">
                 <select id="ddlCategory" class="form-control">
                 </select>
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Product Name:</label>
+            <label class="col-sm-3 col-form-label">Product Name:</label>
             <div class="col-sm-8">
                 <input id="txtProductName" type="text" maxlength="400" class="form-control">
             </div>
@@ -150,19 +150,19 @@
                 </div>
             </div>*@
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Reward Points Required:</label>
+            <label class="col-sm-3 col-form-label">Reward Points Required:</label>
             <div class="col-sm-8">
                 <input id="txtPoints" type="text" maxlength="13" class="form-control point1 align-right">
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Valid Till:</label>
+            <label class="col-sm-3 col-form-label">Valid Till:</label>
             <div class="col-sm-8">
                 <input id="txtValidTill" type="text" readonly class="form-control align-center">
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-4">Details:</label>
+            <label class="col-sm-3">Details:</label>
             <div class="col-sm-8">
                 <div class="form-radio">
                     <div class="radio radiofill radio-primary radio-inline">
@@ -182,25 +182,25 @@
             </div>
         </div>
         <div id="divURL" class="form-group row">
-            <label class="col-sm-4 col-form-label">URL:</label>
+            <label class="col-sm-3 col-form-label">URL:</label>
             <div class="col-sm-8">
                 <input id="txtURL" type="text" maxlength="1000" class="form-control">
             </div>
         </div>
         <div id="divDetailInfo" class="form-group row">
-            <label class="col-sm-4 col-form-label">Product Descriptions:</label>
+            <label class="col-sm-3 col-form-label">Product Descriptions:</label>
             <div class="col-sm-8">
                 <textarea id="txtProductDescriptions" class="form-control" maxlength="4000"></textarea>
             </div>
         </div>
         <div class="form-group row" style="margin-bottom:0px">
-            <label class="col-sm-4 col-form-label">D-Link Unit Cost:<br /><span style="font-size:11px">(local Currency)</span></label>
+            <label class="col-sm-3 col-form-label">D-Link Unit Cost:<br /><span style="font-size:11px">(local Currency)</span></label>
             <div class="col-sm-8">
                 <input id="txtUnitCost" type="text" maxlength="13" class="form-control point2 align-right">
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Name of Supplier:</label>
+            <label class="col-sm-3 col-form-label">Name of Supplier:</label>
             <div class="col-sm-8">
                 <input id="txtSupplierName" type="text" maxlength="100" class="form-control">
             </div>
@@ -262,6 +262,8 @@
 <input id="quotationupload" accept="image/*" class="hidden" type="file" onchange="readURL(this,'quotationphoto');">
 <input id="rewardprizeupload" accept=".csv" class="hidden" type="file">
 
+<input id="HRemoveProduct" type="hidden" />
+<input id="HRemoveQuotation" type="hidden" />
 <input id="HMode" type="hidden" />
 <input id="Hproductphoto" type="hidden" />
 <input id="Hquotation" type="hidden" />

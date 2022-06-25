@@ -6,8 +6,9 @@
         headerColor: '#008fa2',
         padding: 10,
         top: 70,
+        width:'70%',
         overlayClose: false,
-        zindex: 999
+        zindex: 1050
     });
 
     $("#RewardImportModal").iziModal({
@@ -216,6 +217,7 @@ function RewardPrizeEdit(row) {
     if (!data["Quotation"]) {
         $("#quotationphoto").attr("src", $("#HImageLocation").val() + "nophoto.jpg");
     } else {
+        alert(data["Quotation"]);
         $("#quotationphoto").attr("src", $("#HImageLocation").val() + data["Quotation"]);
     }
     
@@ -232,13 +234,17 @@ function RewardPrizeEdit(row) {
 }
 
 function RemoveProductPhoto() {
+    $("#HRemoveProduct").val($("#Hproductphoto").val());
     $("#productphoto").attr("src", $("#HImageLocation").val() + "nophoto.jpg");
     $("#Hproductphoto").val('');
+    $("#productupload").val('');
 }
 
 function RemoveQuotationPhoto() {
+    $("#HRemoveQuotation").val($("#Hquotation").val());
     $("#quotationphoto").attr("src", $("#HImageLocation").val() + "nophoto.jpg");
     $("#Hquotation").val('');
+    $("#quotationupload").val('');
 }
 
 function BindProductCategory() {
@@ -282,7 +288,7 @@ function readURL(input, ctrl) {
 
         reader.readAsDataURL(input.files[0]);
 
-        $("#Hproductphoto").val('0');
+        $("#Hproductphoto").val('');
     }
 }
 
@@ -305,6 +311,8 @@ function ClearReward() {
     $("#txtURL").val('');
     $("#txtUnitCost").val('');
     $("#txtSupplierName").val('');
+    $("#HRemoveProduct").val('');
+    $("#HRemoveQuotation").val('');
 
     $("#divURL").show();
     $("#divDetailInfo").hide();
@@ -329,6 +337,8 @@ function RewardPrizeSave() {
             ProductDescriptions: $("#txtProductDescriptions").val(),
             ProductPhoto: $("#Hproductphoto").val(),
             QuotationPhoto: $("#Hquotation").val(),
+            RemoveProductPhoto:$("#HRemoveProduct").val(),
+            RemoveQuotationPhoto:$("#HRemoveQuotation").val(),
             UpdatedBy: $("#hID").val(),
             Mode: $("#HMode").val(),
         }

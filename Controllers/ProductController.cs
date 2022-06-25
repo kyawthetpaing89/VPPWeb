@@ -34,15 +34,21 @@ namespace VPPWeb.Controllers
                     productModel.ProductID = productBL.GenerateProductID(productModel);
                 }
 
+                if (!string.IsNullOrEmpty(productModel.RemovePhoto))
+                {
+                    if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + productModel.RemovePhoto)))
+                        System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + productModel.RemovePhoto));
+                }
+
                 for (int i = 0; i < Request.Files.Count; i++)
                 {
                     string key = Request.Files.GetKey(i);
                     if (key == "product")
                     {
-                        productModel.ProductPhoto = "DLinkProduct/" + productModel.ProductID + DateTime.Now.ToString("yyyyMMddhhmmss") + ".jpg";
-
                         if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + productModel.ProductPhoto)))
                             System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + productModel.ProductPhoto));
+
+                        productModel.ProductPhoto = "DLinkProduct/" + productModel.ProductID + DateTime.Now.ToString("yyyyMMddhhmmss") + ".jpg";
 
                         Request.Files[i].SaveAs(Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/"), productModel.ProductPhoto));
                     }

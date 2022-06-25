@@ -49,12 +49,23 @@ function GetBannerCountryResponse(response) {
 }
 
 function CountryChange() {
+    ClearBanner();
     $('#divloader').show();
 
     var obj = {
         CountryID: $("#ddlCountry").val(),
     }
     CalltoApiController($("#HGetBannerPhoto").val(), obj, 'BannerPhotoListingResponse');
+}
+
+function ClearBanner() {
+    $("#banner1upload").val('');
+    $("#banner2upload").val('');
+    $("#banner3upload").val('');
+    $("#banner4upload").val('');
+    $("#banner5upload").val('');
+    $("#banner6upload").val('');
+    $("#footer1upload").val('');
 }
 
 function BannerPhotoListingResponse(response) {
@@ -279,6 +290,8 @@ function BannerRemoveConfirm() {
 function CountryPhotoUpdateapiResponse(response) {
     data = JSON.parse(response);
     MessageResponse(response, data[0].MessageID)
+    CountryChange();
+    
 }
 
 //Banner Country
