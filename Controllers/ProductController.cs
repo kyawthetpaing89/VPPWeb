@@ -94,7 +94,8 @@ namespace VPPWeb.Controllers
                 }
 
                 if (!csvTable.Columns.Contains("Country")  ||
-                    !csvTable.Columns.Contains("NewsName"))
+                    !csvTable.Columns.Contains("NewsName") ||
+                    !csvTable.Columns.Contains("NewsUrl"))
                 {
                     MessageModel messageModel = new MessageModel
                     {

@@ -47,10 +47,12 @@
     BindCountry();
 
     $('#productphoto').on('click', function () {
+        $("#productupload").val(null);
         $('#productupload').click();
     });
 
     $('#quotationphoto').on('click', function () {
+        $("#quotationupload").val(null);
         $('#quotationupload').click();
     });
 
@@ -174,7 +176,7 @@ function AddNewPrize() {
     $("#ddlCountry").attr("disabled", false);
     $("#RewardPrizeModal").iziModal('open');
 
-    $("#txtItemCode").focus();
+    $('input[name="rdoStatus"]').focus();
 
     $("#HMode").val('New');
 
@@ -297,6 +299,7 @@ function RewardPrizeClose() {
 }
 
 function ClearReward() {
+    $("#productupload").val('');
     $("#productphoto").attr("src", $("#imgnophoto").val());
     $("#quotationphoto").attr("src", $("#imgnophoto").val());
     $("#rdoInactive").prop('checked', true);

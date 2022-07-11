@@ -72,8 +72,9 @@
                 <thead>
                     <tr>
                         <th>Row</th>
-                        <th>Product Name</th>
+                        <th>News Name</th>
                         <th>Country</th>
+                        <th>News Url</th>
                     </tr>
                 </thead>
             </table>
@@ -91,7 +92,7 @@
 <input id="HGetImportProduct" type="hidden" value="@Url.Action("GetImportProduct", "api/ImportApi")" />
 
 @section Scripts{
-    <script src="@Url.Content("~/Scripts/import.js?v=4")"></script>
+    <script src="@Url.Content("~/Scripts/import.js?v=5")"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {

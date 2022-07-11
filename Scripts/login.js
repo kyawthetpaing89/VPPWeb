@@ -25,7 +25,7 @@ function LoginResponse(response) {
         var MessageID = user[0].MessageID;
         if (MessageID == '0') {
             var userinfo = user[0].RecordRef + '_' + user[0].LastName + '_' + user[0].VIPUserRole  + '_'  + user[0].ListOfCountries;
-            location.href = $("#HSetAuth").val() + '?UserLoginInfo=' + userinfo;
+            location.href = $("#HSetAuth").val() + '?UserLoginInfo=' + userinfo + '&ReturnUrl=' + $("#RURL").val();
         } else {
             ShowMessage(MessageID);
             $("#LoginEmail").focus();

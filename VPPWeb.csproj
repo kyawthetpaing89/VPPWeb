@@ -47,7 +47,18 @@
   <ItemGroup>
     <Reference Include="CKM_CommonFunction, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\VIP Partner Portal\RequireDLL\CKM_CommonFunction.dll</HintPath>
+      <HintPath>..\RequireDLL\CKM_CommonFunction.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.96.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\RequireDLL\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\RequireDLL\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
     </Reference>
     <Reference Include="LumenWorks.Framework.IO, Version=3.8.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
       <HintPath>..\packages\LumenWorks.Framework.IO.3.8.0\lib\net20\LumenWorks.Framework.IO.dll</HintPath>
@@ -123,6 +134,7 @@
       <Private>True</Private>
       <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -172,6 +184,7 @@
     <Compile Include="Controllers\MultipurposeApiController.cs" />
     <Compile Include="Controllers\MultipurposeController.cs" />
     <Compile Include="Controllers\PartnerApiController.cs" />
+    <Compile Include="Controllers\PartnerController.cs" />
     <Compile Include="Controllers\PointApiController.cs" />
     <Compile Include="Controllers\PointController.cs" />
     <Compile Include="Controllers\ProductApiController.cs" />
@@ -1718,9 +1731,6 @@
     <Content Include="Adminity\bower_components\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="Adminity\bower_components\lightgallery\fonts\lg.ttf" />
     <Content Include="Adminity\bower_components\lightgallery\fonts\lg.woff" />
-    <Content Include="RequireDLL\CKM_CommonFunction.dll" />
-    <Content Include="RequireDLL\CKM_DataLayer.dll" />
-    <Content Include="RequireDLL\Newtonsoft.Json.dll" />
     <Content Include="Scripts\api.js" />
     <Content Include="Scripts\cleave.js" />
     <Content Include="Scripts\cleave.min.js" />
@@ -1735,6 +1745,7 @@
     <Content Include="Scripts\message.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\multipurpose.js" />
+    <Content Include="Scripts\partner.js" />
     <Content Include="Scripts\point.js" />
     <Content Include="Scripts\product.js" />
     <Content Include="Scripts\productcategory.js" />
@@ -1805,6 +1816,7 @@
     <Content Include="Views\Training\TrainingListing.cshtml" />
     <Content Include="Views\Country\BannerPhotoListing.cshtml" />
     <Content Include="Views\Country\CountryPageFooter.cshtml" />
+    <Content Include="Views\Partner\PartnerList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Country_BL\Country_BL.csproj">

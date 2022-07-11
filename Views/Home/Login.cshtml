@@ -44,6 +44,7 @@
 </head>
 
 <body onload="LoginOnload()">
+    <input type="hidden" id="RURL" value="@ViewBag.ReturnUrl" />
     <!-- Pre-loader start -->
     <div class="theme-loader">
         <div class="ball-scale">
@@ -160,12 +161,13 @@
     <script src="@Url.Content("~/Scripts/sweetalert2.min.js")"></script>
 
     <!-- tbsCustom js-->
-    <script src="@Url.Content("~/Scripts/message.js?v=1")"></script>
+    <script src="@Url.Content("~/Scripts/message.js?v=2")"></script>
     <script src="@Url.Content("~/Scripts/api.js?v=1")"></script>
-    <script src="@Url.Content("~/Scripts/login.js?v=4")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/login.js?v=5")" type="text/javascript"></script>
 
     <input id="HGetUserLoginCheck" type="hidden" value="@Url.Action("GetUserLoginCheck", "api/UserApi")" />
     <input id="HSetAuth" type="hidden" value="@Url.Action("SetLoginAuth", "Home")" />
+    <input id="HGetMessage" type="hidden" value="@Url.Action("GetMessage", "api/MessageApi")" />
 
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
     <script>

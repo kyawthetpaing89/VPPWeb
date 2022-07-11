@@ -24,6 +24,7 @@
     });
 
     $('#productphoto').on('click', function () {
+        $('#productupload').val(null);
         $('#productupload').click();
     });
 
@@ -35,6 +36,7 @@
     });
 
     $('#btnUpload').on('click', function () {
+        $('#productlistupload').val(null);
         $('#productlistupload').click();
     });
 
@@ -331,7 +333,8 @@ function ImportCheck() {
                         { "data": "Status", "className": "align-center", width: "5%" },
                         { "data": "ErrorMessage", width: "10%" },
                         { "data": "Country", width: "10%" },                 
-                        { "data": "ProductName", width: "10%" },
+                        { "data": "NewsName", width: "10%" },
+                        { "data": "NewsUrl", width: "10%" },
                     ],
                     "rowCallback": function (row, data, index) {
                         if (data.Status == "Error") {
@@ -362,7 +365,6 @@ function ImportClose() {
     $("#ProductImportModal").iziModal('close');
     $("#productlistupload").val('');
 }
-
 
 function ImportConfirm() {
     $('#divloader').show();

@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "PartnerList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-wrapper">
+    <!-- Page body start -->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Basic Form Inputs card start -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>VIP Partner Listing</h5>
+                    </div>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Country:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <select id="SCountry" class="form-control"></select>
+                            </div>
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Category:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-3 col-md-3">
+                                <select id="SCategory" class="form-control"></select>
+                            </div>
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Status:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <select id="SStatus" class="form-control">
+                                    <option value="">All</option>
+                                    <option value="0">In-active</option>
+                                    <option value="1">Active</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <button type="button" id="btnSearch" onclick="BindRewardPrize();" class="btn btn-block btn-grd-info"><i class="icon-magnifier"></i> Search</button>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row" style="padding-bottom:5px;">
+                            <div class="col-sm-12 col-lg-2 col-md-2">
+                                <button type="button" id="btnStandardUpload" class="btn btn-block btn-grd-warning"><i class="icon-arrow-up-circle"></i> Standard</button>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="tblVIPPartner" class="table table-striped table-bordered widepadding" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>Register No</th>
+                                        <th>Company Name</th>
+                                        <th>Country</th>
+                                        <th>Address</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Page body end -->
+</div>
+
+<div id="PartnerImportModal">
+    <div class="md-content">
+        <div class="row" style="padding:10px">
+            <div class="table-responsive">
+                <table id="tblPartnerPopUp" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Row</th>
+                            <th>Status</th>
+                            <th>Message</th>
+                            <th>Register No</th>
+                            <th>Company Name</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>Zip Code</th>
+                            <th>Country</th>
+                            <th>Website</th>
+                            <th>Location No</th>
+                            <th>Partner Type</th>
+                            <th>Business Focus</th>
+                            <th>Email Noti</th>
+                            <th>Prefix</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Job Title</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div id="divSave" class="form-group row div-centerbtn">
+            <div class="col-sm-3">
+                <button type="button" id="btnPartnerImportClose" onclick="PartnerImportClose();" class="btn btn-block btn-grd-inverse">Cancel</button>
+            </div>
+            <div id="divconfirm" class="col-sm-3">
+                <button type="button" id="btnPartnerImportConfirm" onclick="PartnerImportConfirm();" class="btn btn-block btn-grd-info"><span id="btnSaveText">Confirm</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input id="VipPartnerUpload" accept=".xlsx" class="hidden" type="file">
+<input id="HGetVIPPartner" type="hidden" value="@Url.Action("GetVIPPartner", "api/PartnerApi")" />
+<input id="HCheckStandardImport" type="hidden" value="@Url.Action("CheckStandardPartnerImport", "Partner")" />
+<input id="HPartnerStandardImportConfirm" type="hidden" value="@Url.Action("PartnerStandardImportConfirm", "Partner")" />
+
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/partner.js?v=1")"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            LoadVIPPartner();
+        });
+    </script>
+}

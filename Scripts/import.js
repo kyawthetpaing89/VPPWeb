@@ -120,8 +120,9 @@ function ProductDetailResponse(response) {
         "ordering": false,
         "columns": [
             { "data": "ImportSEQ", "className": "align-right", width: "5%" },
-            { "data": "ProductName", width: "30%" },
-            { "data": "Country", width: "65%" },
+            { "data": "ProductName", width: "32%" },
+            { "data": "Country", width: "32%" },
+            { "data": "NewsUrl", width: "31%" },
         ],
     });
 }

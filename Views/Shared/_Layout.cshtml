@@ -64,7 +64,7 @@
         }
         else
         {
-            Response.Redirect(Url.Content("~/Home/Login"));
+            Response.Redirect(Url.Content("~/Home/Login") + "?returnUrl=" + Request.RawUrl);
         }
     }
 
@@ -332,33 +332,41 @@
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="pcoded-navigatio-lavel">VIP Partner</div>
                             @*<ul class="pcoded-item pcoded-left-item">
-                                <li class="pcoded-hasmenu">
-                                    <a href="javascript:void(0)">
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="ti-layout-media-overlay-alt"></i></span>
+                    <span class="pcoded-mtext">Footer Components</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class=" ">
+                        <a href="@Url.Action("TermsAndConditions","Multipurpose")">
+                            <span class="pcoded-micon"><i class="icon-book-open"></i></span>
+                            <span class="pcoded-mtext">Terms & Conditions</span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="@Url.Action("PrivacyAndPolicy","Multipurpose")">
+                            <span class="pcoded-micon"><i class="icon-book-open"></i></span>
+                            <span class="pcoded-mtext">Privacy & Policy</span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="@Url.Action("ContactUs","Multipurpose")">
+                            <span class="pcoded-micon"><i class="icon-book-open"></i></span>
+                            <span class="pcoded-mtext">Contact Us</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>*@
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class=" ">
+                                    <a href="@Url.Action("PartnerList","Partner")">
                                         <span class="pcoded-micon"><i class="ti-layout-media-overlay-alt"></i></span>
-                                        <span class="pcoded-mtext">Footer Components</span>
+                                        <span class="pcoded-mtext">VIP Partner Listing</span>
                                     </a>
-                                    <ul class="pcoded-submenu">
-                                        <li class=" ">
-                                            <a href="@Url.Action("TermsAndConditions","Multipurpose")">
-                                                <span class="pcoded-micon"><i class="icon-book-open"></i></span>
-                                                <span class="pcoded-mtext">Terms & Conditions</span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="@Url.Action("PrivacyAndPolicy","Multipurpose")">
-                                                <span class="pcoded-micon"><i class="icon-book-open"></i></span>
-                                                <span class="pcoded-mtext">Privacy & Policy</span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="@Url.Action("ContactUs","Multipurpose")">
-                                                <span class="pcoded-micon"><i class="icon-book-open"></i></span>
-                                                <span class="pcoded-mtext">Contact Us</span>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
-                            </ul>*@
+                            </ul>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
@@ -390,7 +398,7 @@
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class=" ">
                                     <a href="@Url.Action("CountryPageFooter","Country")">
-                                        <span class="pcoded-micon"><i class="ti-view-list-alt"></i></span>
+                                        <span class="pcoded-micon"><i class="ti-layout-media-overlay-alt"></i></span>
                                         <span class="pcoded-mtext">Page Footer</span>
                                     </a>
                                 </li>
@@ -398,7 +406,7 @@
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class=" ">
                                     <a href="@Url.Action("ProductList","Product")">
-                                        <span class="pcoded-micon"><i class="ti-view-list-alt"></i></span>
+                                        <span class="pcoded-micon"><i class="ion-social-buffer"></i></span>
                                         <span class="pcoded-mtext">News Listing</span>
                                     </a>
                                 </li>

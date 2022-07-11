@@ -2,7 +2,7 @@
     var Mmodel = {
         MessageID: msgid,
     };
-    CalltoApiController('../api/MessageApi/GetMessage', Mmodel, 'MessageResponse', msgid, ReplaceText)
+    CalltoApiController($("#HGetMessage").val(), Mmodel, 'MessageResponse', msgid, ReplaceText)
 }
 
 function MessageResponse(data, msgid, ReplaceText) {
