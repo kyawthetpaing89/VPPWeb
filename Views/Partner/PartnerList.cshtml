@@ -17,40 +17,70 @@
                     </div>
                     <div class="card-block">
                         <div class="row">
-                            <div class="col-sm-12 col-lg-1 col-md-1">
-                                <label col-form-label">Country:</label>
+                                <div class="col-sm-12 col-lg-1 col-md-1">
+                                    <label col-form-label">Country:</label>
+                                </div>
+                                <div class="col-sm-12 col-lg-2 col-md-2">
+                                    <select id="SCountry" class="form-control"></select>
+                                </div>
+                                <div class="col-sm-12 col-lg-1 col-md-1">
+                                    <label col-form-label">Company Name:</label>
+                                </div>
+                                <div class="col-sm-12 col-lg-3 col-md-3">
+                                    <input id="StxtCompanyName" type="text" class="form-control" />
+                                </div>
+                                <div class="col-sm-12 col-lg-1 col-md-1">
+                                    <label col-form-label">Status:</label>
+                                </div>
+                                <div class="col-sm-12 col-lg-2 col-md-2">
+                                    <select id="SPartnerStatus" class="form-control">
+                                        <option value="">All</option>
+                                        <option value="1">New</option>
+                                        <option value="2">Wel</option>
+                                        <option value="3">Re1</option>
+                                        <option value="4">Re2</option>
+                                        <option value="5">RPM</option>
+                                    </select>
+                                </div>                              
                             </div>
-                            <div class="col-sm-12 col-lg-2 col-md-2">
-                                <select id="SCountry" class="form-control"></select>
-                            </div>
+                        <div class="row">
                             <div class="col-sm-12 col-lg-1 col-md-1">
-                                <label col-form-label">Category:</label>
+                                <label col-form-label">Email:</label>
                             </div>
                             <div class="col-sm-12 col-lg-3 col-md-3">
-                                <select id="SCategory" class="form-control"></select>
+                                <input id="StxtEmail" type="text" class="form-control" />
                             </div>
                             <div class="col-sm-12 col-lg-1 col-md-1">
-                                <label col-form-label">Status:</label>
+                                <label col-form-label">Name:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-3 col-md-3">
+                                <input id="StxtName" type="text" class="form-control" />
                             </div>
                             <div class="col-sm-12 col-lg-2 col-md-2">
-                                <select id="SStatus" class="form-control">
-                                    <option value="">All</option>
-                                    <option value="0">In-active</option>
-                                    <option value="1">Active</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-12 col-lg-2 col-md-2">
-                                <button type="button" id="btnSearch" onclick="BindRewardPrize();" class="btn btn-block btn-grd-info"><i class="icon-magnifier"></i> Search</button>
+                                <button type="button" id="btnSearch" class="btn btn-block btn-grd-info"><i class="icon-magnifier"></i> Search</button>
                             </div>
                         </div>
                         <br />
                         <div class="row" style="padding-bottom:5px;">
-                            <div class="col-sm-12 col-lg-2 col-md-2">
-                                <button type="button" id="btnStandardUpload" class="btn btn-block btn-grd-warning"><i class="icon-arrow-up-circle"></i> Standard</button>
+                            <div class="col-sm-12 col-lg-2 col-md-3">
+                                <button type="button" id="btnStandardUpload" class="btn btn-block btn-grd-inverse"><i class="icon-arrow-up-circle"></i> Standard</button>
+                            </div>
+                            <div class="col-sm-12 col-lg-2 col-md-3">
+                                <button type="button" id="btnReviseUpload" class="btn btn-block btn-grd-warning"><i class="icon-arrow-up-circle"></i> Revise</button>
+                            </div>
+                            <div class="col-sm-12 col-lg-3 col-md-4">
+                                <button type="button" id="btnWelcomeEmail" class="btn btn-block btn-grd-primary"><i class="ti-email"></i> Send Welcome Email</button>
                             </div>
                         </div>
+                        <div class="row" style="padding-bottom:5px;font-size:11px;float:right">
+                            <span class="pcoded-badge label label-primary">New</span>New Partner&nbsp;
+                            <span class="pcoded-badge label label-success">Wel</span>Sent Welcome Email&nbsp;
+                            <span class="pcoded-badge label label-inverse">Re1</span>Resent Email 1st Time&nbsp;
+                            <span class="pcoded-badge label label-warning">Re1</span>Resent Email 2nd Time&nbsp;
+                            <span class="pcoded-badge label label-danger">RPM</span>Inform RP Manager
+                        </div>
                         <div class="table-responsive">
-                            <table id="tblVIPPartner" class="table table-striped table-bordered widepadding" style="width:100%">
+                            <table id="tblVIPPartner" class="table table-striped table-bordered widepadding" style="width:150%">
                                 <thead>
                                     <tr>
                                         <th>Status</th>
@@ -61,6 +91,16 @@
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Email</th>
+                                        <th>City</th>
+                                        <th>Zip Code</th>
+                                        <th>Location No</th>
+                                        <th>Partner Type</th>
+                                        <th>Business Focus</th>
+                                        <th>Email Noti</th>
+                                        <th>Prefix</th>
+                                        <th>Phone</th>
+                                        <th>Job Title</th>
+                                        <th>Website</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -117,13 +157,56 @@
     </div>
 </div>
 
+<div id="PartnerReviseImportModal">
+    <div class="md-content">
+        <div class="row" style="padding:10px">
+            <div class="table-responsive">
+                <table id="tblPartnerRevisePopUp" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Row</th>
+                            <th>Status</th>
+                            <th>Message</th>
+                            <th>Register No</th>
+                            <th>Company Name</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Date Of Event</th>
+                            <th>DSS Event Code</th>
+                            <th>Event Name</th>
+                            <th>Country2</th>
+                            <th>Reward Points</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div id="divSave" class="form-group row div-centerbtn">
+            <div class="col-sm-3">
+                <button type="button" id="btnPartnerReviseImportClose" class="btn btn-block btn-grd-inverse">Cancel</button>
+            </div>
+            <div id="divconfirmrevise" class="col-sm-3">
+                <button type="button" id="btnPartnerReviseImportConfirm" class="btn btn-block btn-grd-info"><span id="btnSaveText">Confirm</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <input id="VipPartnerUpload" accept=".xlsx" class="hidden" type="file">
+<input id="VipPartnerReviseUpload" accept=".xlsx" class="hidden" type="file">
+<input id="HSendWelcomeMail" type="hidden" value="@Url.Action("SendWelcomeMail", "Partner")" />
 <input id="HGetVIPPartner" type="hidden" value="@Url.Action("GetVIPPartner", "api/PartnerApi")" />
 <input id="HCheckStandardImport" type="hidden" value="@Url.Action("CheckStandardPartnerImport", "Partner")" />
+<input id="HCheckReviseImport" type="hidden" value="@Url.Action("CheckRevisePartnerImport", "Partner")" />
 <input id="HPartnerStandardImportConfirm" type="hidden" value="@Url.Action("PartnerStandardImportConfirm", "Partner")" />
+<input id="HPartnerReviseImportConfirm" type="hidden" value="@Url.Action("PartnerReviseImportConfirm", "Partner")" />
+<input id="HGetCountry" type="hidden" value="@Url.Action("GetCountry", "api/CountryApi")" />
 
 @section Scripts{
-    <script src="@Url.Content("~/Scripts/partner.js?v=1")"></script>
+    <script src="@Url.Content("~/Scripts/partner.js?v=3")"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
