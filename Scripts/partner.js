@@ -415,38 +415,39 @@ function PartnerReviseImportConfirm() {
     });
 }
 
-function SendWelcomeEmail() {
-    $('#divloader').show();
-    var obj = {
-        SendBy: $("#hID").val(),
-    }
+//function SendWelcomeEmail() {
+//    $('#divloader').show();
+//    var obj = {
+//        SendBy: $("#hID").val(),
+//        PartnerStatus: '1'
+//    }
 
-    var formdata = new FormData();
-    formdata.append('PartnerModel', JSON.stringify(obj));
+//    var formdata = new FormData();
+//    formdata.append('PartnerModel', JSON.stringify(obj));
 
-    $.ajax({
-        url: $("#HSendWelcomeMail").val(),
-        type: "POST",
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: formdata,
-        success: function (data) {
-            var jsonResult = JSON.parse(data);
-            var messageID = jsonResult[0].MessageID;
+//    $.ajax({
+//        url: $("#HSendWelcomeMail").val(),
+//        type: "POST",
+//        cache: false,
+//        contentType: false,
+//        processData: false,
+//        data: formdata,
+//        success: function (data) {
+//            var jsonResult = JSON.parse(data);
+//            var messageID = jsonResult[0].MessageID;
 
-            MessageResponse(data, messageID);
-            $("#PartnerImportModal").iziModal('close');
+//            MessageResponse(data, messageID);
+//            $("#PartnerImportModal").iziModal('close');
 
-            BindPartner();
-        },
-        fail: function (response) {
-            data = JSON.parse(response);
-            MessageResponse(response, data[0].MessageID)
-        },
-        complete: function (data) {
-            $('#divloader').hide();
-            $("#VipPartnerUpload").val('');
-        }
-    });
-}
+//            BindPartner();
+//        },
+//        fail: function (response) {
+//            data = JSON.parse(response);
+//            MessageResponse(response, data[0].MessageID)
+//        },
+//        complete: function (data) {
+//            $('#divloader').hide();
+//            $("#VipPartnerUpload").val('');
+//        }
+//    });
+//}
