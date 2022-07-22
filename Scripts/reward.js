@@ -258,7 +258,7 @@ function BindProductCategory() {
 
 function ProductCategoryResponse(response) {
     DropdownResponse(response, 'SCategory', 'ProductCategoryID', 'ProductCategoryName', '', true);
-    DropdownResponse(response, 'ddlCategory', 'ProductCategoryID', 'ProductCategoryName', '', true);
+    DropdownResponse(response, 'ddlCategory', 'ProductCategoryID', 'ProductCategoryName', '', false);
 }
 
 function BindCountry() {
@@ -290,7 +290,7 @@ function readURL(input, ctrl) {
 
         reader.readAsDataURL(input.files[0]);
 
-        $("#Hproductphoto").val('');
+
     }
 }
 
@@ -417,7 +417,7 @@ function RewardPrizeErrorCheck() {
             return false;
         }
     } else if ($("#HMode").val() == 'Edit') {
-        if ($("#rdoActive").is(":checked") && !$("#Hproductphoto").val()) {
+        if ($("#rdoActive").is(":checked") && !$("#Hproductphoto").val() && !$("#productupload").val()) {
             ShowMessage("E016","Reward Prize");
             return false;
         }

@@ -1,0 +1,120 @@
+BEGIN:VCALENDAR
+PRODID:-//Microsoft Corporation//Outlook 16.0 MIMEDIR//EN
+VERSION:2.0
+METHOD:REQUEST
+X-MS-OLK-FORCEINSPECTOROPEN:TRUE
+BEGIN:VTIMEZONE
+TZID:Singapore Standard Time
+BEGIN:STANDARD
+DTSTART:16010101T000000
+TZOFFSETFROM:+0800
+TZOFFSETTO:+0800
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+ATTENDEE;CN="Sam D-Link";RSVP=TRUE:mailto:swong@sg.dlink.com
+ATTENDEE;CN="Kyaw Thet Paing (Joe)";RSVP=TRUE:mailto:tpkyaw@sg.dlink.com
+ATTENDEE;CN="Pyae Phyo Khaing";RSVP=TRUE:mailto:pkpyae@sg.dlink.com
+ATTENDEE;CN="Jacky Chang";ROLE=OPT-PARTICIPANT;RSVP=TRUE:mailto:jacky.chang
+	@sg.dlink.com
+ATTENDEE;CN="Chong Tian Poh";ROLE=OPT-PARTICIPANT;RSVP=TRUE:mailto:tpchong@
+	sg.dlink.com
+ATTENDEE;CN="Arial Goh";ROLE=OPT-PARTICIPANT;RSVP=TRUE:mailto:agoh@sg.dlink
+	.com
+CLASS:PUBLIC
+CREATED:20220719T081442Z
+DESCRIPTION:Hi Joe and Pyae\,\n\n \n\nTo prepare the soft launch on 22 (Fri
+	) July 2022 and official launch on 5 (Fri) Aug 2022 of VPP\, will take a d
+	aily update session\n\n1.	Update development progress\n2.	Update Next deve
+	lopment modules\n3.	Discuss the SW development issues.\n\n \n\n \n\nThanks
+	 and regards\,\n\n \n\nsam\n\n
+DTEND;TZID="Singapore Standard Time":20220719T103000
+DTSTAMP:20220718T142751Z
+DTSTART;TZID="Singapore Standard Time":20220719T093000
+LAST-MODIFIED:20220719T081442Z
+ORGANIZER;CN="Sam D-Link":mailto:swong@sg.dlink.com
+PRIORITY:5
+SEQUENCE:5
+SUMMARY:DSS + VPP | SW Daily Development Update
+TRANSP:OPAQUE
+UID:040000008200E00074C5B7101A82E00800000000D0AB6B407C9AD801000000000000000
+	01000000005477ADCC4B6904E999D678D1CC3CD55
+X-ALT-DESC;FMTTYPE=text/html:<html xmlns:v="urn:schemas-microsoft-com:vml" 
+	xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-mic
+	rosoft-com:office:word" xmlns:m="http://schemas.microsoft.com/office/2004/
+	12/omml" xmlns="http://www.w3.org/TR/REC-html40"><head>\n<meta name="Gener
+	ator" content="Microsoft Word 15 (filtered medium)"><style><!--\n/* Font D
+	efinitions */\n@font-face\n	{font-family:"Cambria Math"\;\n	panose-1:2 4 5
+	 3 5 4 6 3 2 4\;}\n@font-face\n	{font-family:Calibri\;\n	panose-1:2 15 5 2
+	 2 2 4 3 2 4\;}\n@font-face\n	{font-family:"Microsoft GothicNeo"\;}\n@font
+	-face\n	{font-family:"\\@Microsoft GothicNeo"\;}\n/* Style Definitions */\
+	np.MsoNormal\, li.MsoNormal\, div.MsoNormal\n	{margin:0cm\;\n	font-size:11
+	.0pt\;\n	font-family:"Calibri"\,sans-serif\;\n	mso-fareast-language:EN-US\
+	;}\np.MsoListParagraph\, li.MsoListParagraph\, div.MsoListParagraph\n	{mso
+	-style-priority:34\;\n	margin-top:0cm\;\n	margin-right:0cm\;\n	margin-bott
+	om:0cm\;\n	margin-left:36.0pt\;\n	font-size:11.0pt\;\n	font-family:"Calibr
+	i"\,sans-serif\;\n	mso-fareast-language:EN-US\;}\nspan.EmailStyle19\n	{mso
+	-style-type:personal-compose\;\n	font-family:"Microsoft GothicNeo"\,sans-s
+	erif\;\n	color:windowtext\;}\n.MsoChpDefault\n	{mso-style-type:export-only
+	\;\n	font-size:10.0pt\;}\n@page WordSection1\n	{size:612.0pt 792.0pt\;\n	m
+	argin:72.0pt 72.0pt 72.0pt 72.0pt\;}\ndiv.WordSection1\n	{page:WordSection
+	1\;}\n/* List Definitions */\n@list l0\n	{mso-list-id:155390535\;\n	mso-li
+	st-template-ids:-575792710\;}\n@list l1\n	{mso-list-id:970984982\;\n	mso-l
+	ist-type:hybrid\;\n	mso-list-template-ids:97534534 -1844142364 1208549401 
+	1208549403 1208549391 1208549401 1208549403 1208549391 1208549401 12085494
+	03\;}\n@list l1:level1\n	{mso-level-text:"\\(%1\\)"\;\n	mso-level-tab-stop
+	:none\;\n	mso-level-number-position:left\;\n	text-indent:-18.0pt\;}\n@list
+	 l1:level2\n	{mso-level-number-format:alpha-lower\;\n	mso-level-tab-stop:n
+	one\;\n	mso-level-number-position:left\;\n	text-indent:-18.0pt\;}\n@list l
+	1:level3\n	{mso-level-number-format:roman-lower\;\n	mso-level-tab-stop:non
+	e\;\n	mso-level-number-position:right\;\n	text-indent:-9.0pt\;}\n@list l1:
+	level4\n	{mso-level-tab-stop:none\;\n	mso-level-number-position:left\;\n	t
+	ext-indent:-18.0pt\;}\n@list l1:level5\n	{mso-level-number-format:alpha-lo
+	wer\;\n	mso-level-tab-stop:none\;\n	mso-level-number-position:left\;\n	tex
+	t-indent:-18.0pt\;}\n@list l1:level6\n	{mso-level-number-format:roman-lowe
+	r\;\n	mso-level-tab-stop:none\;\n	mso-level-number-position:right\;\n	text
+	-indent:-9.0pt\;}\n@list l1:level7\n	{mso-level-tab-stop:none\;\n	mso-leve
+	l-number-position:left\;\n	text-indent:-18.0pt\;}\n@list l1:level8\n	{mso-
+	level-number-format:alpha-lower\;\n	mso-level-tab-stop:none\;\n	mso-level-
+	number-position:left\;\n	text-indent:-18.0pt\;}\n@list l1:level9\n	{mso-le
+	vel-number-format:roman-lower\;\n	mso-level-tab-stop:none\;\n	mso-level-nu
+	mber-position:right\;\n	text-indent:-9.0pt\;}\nol\n	{margin-bottom:0cm\;}\
+	nul\n	{margin-bottom:0cm\;}\n--></style><!--[if gte mso 9]><xml>\n<o:shape
+	defaults v:ext="edit" spidmax="1026" />\n</xml><![endif]--><!--[if gte mso
+	 9]><xml>\n<o:shapelayout v:ext="edit">\n<o:idmap v:ext="edit" data="1" />
+	\n</o:shapelayout></xml><![endif]--></head><body lang="EN-SG" link="#0563C
+	1" vlink="#954F72" style="word-wrap:break-word"><div class="WordSection1">
+	<p class="MsoNormal"><span lang="EN-US" style="font-family:&quot\;Microsof
+	t GothicNeo&quot\;\,sans-serif">Hi Joe and Pyae\,<o:p></o:p></span></p><p 
+	class="MsoNormal"><span lang="EN-US" style="font-family:&quot\;Microsoft G
+	othicNeo&quot\;\,sans-serif"><o:p>&nbsp\;</o:p></span></p><p class="MsoNor
+	mal"><span lang="EN-US" style="font-family:&quot\;Microsoft GothicNeo&quot
+	\;\,sans-serif">To prepare the soft launch on 22 (Fri) July 2022 and offic
+	ial launch on 5 (Fri) Aug 2022 of VPP\, will take a daily update session<o
+	:p></o:p></span></p><ol style="margin-top:0cm" start="1" type="1"><li clas
+	s="MsoListParagraph" style="margin-left:0cm\;mso-list:l1 level1 lfo3"><spa
+	n lang="EN-US" style="font-family:&quot\;Microsoft GothicNeo&quot\;\,sans-
+	serif">Update development progress<o:p></o:p></span></li><li class="MsoLis
+	tParagraph" style="margin-left:0cm\;mso-list:l1 level1 lfo3"><span lang="E
+	N-US" style="font-family:&quot\;Microsoft GothicNeo&quot\;\,sans-serif">Up
+	date Next development modules<o:p></o:p></span></li><li class="MsoListPara
+	graph" style="margin-left:0cm\;mso-list:l1 level1 lfo3"><span lang="EN-US"
+	 style="font-family:&quot\;Microsoft GothicNeo&quot\;\,sans-serif">Discuss
+	 the SW development issues.<o:p></o:p></span></li></ol><p class="MsoNormal
+	"><span lang="EN-US" style="font-family:&quot\;Microsoft GothicNeo&quot\;\
+	,sans-serif"><o:p>&nbsp\;</o:p></span></p><p class="MsoNormal"><span lang=
+	"EN-US" style="font-family:&quot\;Microsoft GothicNeo&quot\;\,sans-serif">
+	<o:p>&nbsp\;</o:p></span></p><p class="MsoNormal"><span lang="EN-US" style
+	="font-family:&quot\;Microsoft GothicNeo&quot\;\,sans-serif">Thanks and re
+	gards\,<o:p></o:p></span></p><p class="MsoNormal"><span lang="EN-US" style
+	="font-family:&quot\;Microsoft GothicNeo&quot\;\,sans-serif"><o:p>&nbsp\;<
+	/o:p></span></p><p class="MsoNormal"><span lang="EN-US" style="font-family
+	:&quot\;Microsoft GothicNeo&quot\;\,sans-serif">sam<o:p></o:p></span></p><
+	/div></body></html>
+X-MICROSOFT-CDO-BUSYSTATUS:TENTATIVE
+X-MICROSOFT-CDO-IMPORTANCE:1
+X-MICROSOFT-CDO-INTENDEDSTATUS:BUSY
+X-MICROSOFT-DISALLOW-COUNTER:FALSE
+X-MS-OLK-APPTSEQTIME:20220718T035154Z
+END:VEVENT
+END:VCALENDAR

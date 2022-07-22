@@ -7,6 +7,14 @@
     z-index: 9999;
 }
 
+.pr10{
+    padding-right: 10px !important;
+}
+
+.pointerCursor {
+    cursor: pointer;
+}
+
 .navbar-logo{
     border-right:1px black solid;
 }

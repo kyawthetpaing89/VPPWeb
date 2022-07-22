@@ -138,5 +138,10 @@ namespace VPPWeb.Controllers
         {
             return View();
         }
+
+        public ActionResult BannerListing()
+        {
+            return View();
+        }
     }
 }

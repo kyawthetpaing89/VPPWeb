@@ -241,98 +241,98 @@ namespace VPPWeb.Controllers
             return new string(chars);
         }
 
-        public string SendWelcomeMail()
-        {
-            MessageBL messageBL = new MessageBL();
-            string j1 = HttpContext.Request.Params.Get("PartnerModel");
-            PartnerModel partnerModel = JsonConvert.DeserializeObject<PartnerModel>(j1);
-            try
-            {
-                PartnerBL partnerBL = new PartnerBL();
-                DataTable dtPartner = partnerBL.VIPPartner_SelectDT(partnerModel);
+        //public string SendWelcomeMail()
+        //{
+        //    MessageBL messageBL = new MessageBL();
+        //    string j1 = HttpContext.Request.Params.Get("PartnerModel");
+        //    PartnerModel partnerModel = JsonConvert.DeserializeObject<PartnerModel>(j1);
+        //    try
+        //    {
+        //        PartnerBL partnerBL = new PartnerBL();
+        //        DataTable dtPartner = partnerBL.VIPPartner_SelectDT(partnerModel);
 
-                DataTable dtPartnerAfterMail = new DataTable();
-                dtPartnerAfterMail.Columns.Add("Register_No");
-                dtPartnerAfterMail.Columns.Add("LoginPassword");
-                dtPartnerAfterMail.Columns.Add("WelcomeMail");
+        //        DataTable dtPartnerAfterMail = new DataTable();
+        //        dtPartnerAfterMail.Columns.Add("Register_No");
+        //        dtPartnerAfterMail.Columns.Add("LoginPassword");
+        //        dtPartnerAfterMail.Columns.Add("WelcomeMail");
 
-                for (int i = 0; i < dtPartner.Rows.Count; i++)
-                {
-                    try
-                    {
-                        MailMessage mail = new MailMessage();
-                        SmtpClient SmtpServer = new SmtpClient();
-                        //mail.From = new MailAddress("kyawthetpaing.mm@gmail.com");
-                        mail.From = new MailAddress("dlinkvip@gmail.com");
-                        mail.IsBodyHtml = true;
-                        mail.To.Add(dtPartner.Rows[i]["Email"].ToString());
-                        mail.Subject = "Welcome aboard | D-Link Registered Partner Rewards Program";
-                        string password = CreateRandomPassword(8);
-                        mail.Body = "<html><body>Dear " + dtPartner.Rows[i]["LastName"] + " " + dtPartner.Rows[i]["FirstName"] + "" + ",<br/>"
-                            + "&emsp;&emsp;Thank you so much for joining D-Link Registered Partner Rewards Program! We’re so excited to have you on board and can’t wait to get to know and serve you.<br/><br/>"
-                            + "&emsp;&emsp;We invite you to log in at http://viplogin.dlink.com.sg:88/VipPartner and access the exclusive, members-only resources.<br/><br/>"
-                            + "&emsp;&emsp;For security reason, please change the default password.</p><br/>"
-                            + "&emsp;&emsp;Login Name: " + dtPartner.Rows[i]["Email"] + "<br/>"
-                            + "&emsp;&emsp;Default Password: " + password + "<br/><br/>"
-                            + "&emsp;&emsp;Should you need any assistance or have questions, feel free to contact us.<br/><br/>"
-                            + "&emsp;&emsp;Thank you for being a part of D-Link Registered Partner family.<br/><br/>"
-                            + "&emsp;&emsp;Best Regards,<br/><br/>"
-                            + "&emsp;&emsp;Jacky Chang<br/>"
-                            + "&emsp;&emsp;President of D-Link ASEAN"
-                            + "</body></html>";
-                        SmtpServer.UseDefaultCredentials = false;
-                        //NetworkCredential NetworkCred = new NetworkCredential("kyawthetpaing.mm@gmail.com", "pjeqdhmncmktuatd");
-                        NetworkCredential NetworkCred = new NetworkCredential("dlinkvip@gmail.com", "vfgzvvdmfdmsdgxn");
-                        SmtpServer.Credentials = NetworkCred;
-                        SmtpServer.EnableSsl = true;
-                        SmtpServer.Port = 587;
-                        SmtpServer.Host = "smtp.gmail.com";
-                        SmtpServer.Send(mail);
+        //        for (int i = 0; i < dtPartner.Rows.Count; i++)
+        //        {
+        //            try
+        //            {
+        //                MailMessage mail = new MailMessage();
+        //                SmtpClient SmtpServer = new SmtpClient();
+        //                //mail.From = new MailAddress("kyawthetpaing.mm@gmail.com");
+        //                mail.From = new MailAddress("dlinkvip@gmail.com");
+        //                mail.IsBodyHtml = true;
+        //                mail.To.Add(dtPartner.Rows[i]["Email"].ToString());
+        //                mail.Subject = "Welcome aboard | D-Link Registered Partner Rewards Program";
+        //                string password = CreateRandomPassword(8);
+        //                mail.Body = "<html><body>Dear " + dtPartner.Rows[i]["LastName"] + " " + dtPartner.Rows[i]["FirstName"] + "" + ",<br/>"
+        //                    + "&emsp;&emsp;Thank you so much for joining D-Link Registered Partner Rewards Program! We’re so excited to have you on board and can’t wait to get to know and serve you.<br/><br/>"
+        //                    + "&emsp;&emsp;We invite you to log in at http://viplogin.dlink.com.sg:88/VipPartner and access the exclusive, members-only resources.<br/><br/>"
+        //                    + "&emsp;&emsp;For security reason, please change the default password.</p><br/>"
+        //                    + "&emsp;&emsp;Login Name: " + dtPartner.Rows[i]["Email"] + "<br/>"
+        //                    + "&emsp;&emsp;Default Password: " + password + "<br/><br/>"
+        //                    + "&emsp;&emsp;Should you need any assistance or have questions, feel free to contact us.<br/><br/>"
+        //                    + "&emsp;&emsp;Thank you for being a part of D-Link Registered Partner family.<br/><br/>"
+        //                    + "&emsp;&emsp;Best Regards,<br/><br/>"
+        //                    + "&emsp;&emsp;Jacky Chang<br/>"
+        //                    + "&emsp;&emsp;President of D-Link ASEAN"
+        //                    + "</body></html>";
+        //                SmtpServer.UseDefaultCredentials = false;
+        //                //NetworkCredential NetworkCred = new NetworkCredential("kyawthetpaing.mm@gmail.com", "pjeqdhmncmktuatd");
+        //                NetworkCredential NetworkCred = new NetworkCredential("dlinkvip@gmail.com", "vfgzvvdmfdmsdgxn");
+        //                SmtpServer.Credentials = NetworkCred;
+        //                SmtpServer.EnableSsl = true;
+        //                SmtpServer.Port = 587;
+        //                SmtpServer.Host = "smtp.gmail.com";
+        //                SmtpServer.Send(mail);
 
-                        dtPartnerAfterMail.Rows.Add();
-                        dtPartnerAfterMail.Rows[i]["Register_No"] = dtPartner.Rows[i]["Register_No"].ToString();
-                        dtPartnerAfterMail.Rows[i]["LoginPassword"] = password;
-                        dtPartnerAfterMail.Rows[i]["WelcomeMail"] = "1";
+        //                dtPartnerAfterMail.Rows.Add();
+        //                dtPartnerAfterMail.Rows[i]["Register_No"] = dtPartner.Rows[i]["Register_No"].ToString();
+        //                dtPartnerAfterMail.Rows[i]["LoginPassword"] = password;
+        //                dtPartnerAfterMail.Rows[i]["WelcomeMail"] = "1";
 
-                    }
-                    catch (Exception)
-                    {
-                        dtPartnerAfterMail.Rows.Add();
-                        dtPartnerAfterMail.Rows[i]["Register_No"] = dtPartner.Rows[i]["Register_No"].ToString();
-                        dtPartnerAfterMail.Rows[i]["LoginPassword"] = "";
-                        dtPartnerAfterMail.Rows[i]["WelcomeMail"] = "2";
-                    }
-                }
+        //            }
+        //            catch (Exception)
+        //            {
+        //                dtPartnerAfterMail.Rows.Add();
+        //                dtPartnerAfterMail.Rows[i]["Register_No"] = dtPartner.Rows[i]["Register_No"].ToString();
+        //                dtPartnerAfterMail.Rows[i]["LoginPassword"] = "";
+        //                dtPartnerAfterMail.Rows[i]["WelcomeMail"] = "2";
+        //            }
+        //        }
 
-                CommonFunction commonFunction = new CommonFunction();           
+        //        CommonFunction commonFunction = new CommonFunction();           
 
-                partnerModel.ImportJson = commonFunction.DataTableToJSONWithJSONNet(dtPartnerAfterMail);
+        //        partnerModel.ImportJson = commonFunction.DataTableToJSONWithJSONNet(dtPartnerAfterMail);
 
-                partnerBL.PartnerRegister_AfterWelcomeMail(partnerModel);
+        //        partnerBL.PartnerRegister_AfterWelcomeMail(partnerModel);
 
-                MessageModel messageModel = new MessageModel
-                {
-                    MessageID = "I008"
-                };
-                return messageBL.Message_Select(messageModel);
-            }
-            catch (Exception exception)
-            {
-                ErrorLogModel errorLogModel = new ErrorLogModel
-                {
-                    ErrorMessage = exception.Message,
-                    UpdatedBy = partnerModel.UpdatedBy
-                };
+        //        MessageModel messageModel = new MessageModel
+        //        {
+        //            MessageID = "I008"
+        //        };
+        //        return messageBL.Message_Select(messageModel);
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        ErrorLogModel errorLogModel = new ErrorLogModel
+        //        {
+        //            ErrorMessage = exception.Message,
+        //            UpdatedBy = partnerModel.UpdatedBy
+        //        };
 
-                ErrorLogBL errorLogBL = new ErrorLogBL();
-                errorLogBL.ErrorLog_Insert(errorLogModel);
+        //        ErrorLogBL errorLogBL = new ErrorLogBL();
+        //        errorLogBL.ErrorLog_Insert(errorLogModel);
 
-                MessageModel messageModel = new MessageModel
-                {
-                    MessageID = "E018"
-                };
-                return messageBL.Message_Select(messageModel);
-            }        
-        }
+        //        MessageModel messageModel = new MessageModel
+        //        {
+        //            MessageID = "E018"
+        //        };
+        //        return messageBL.Message_Select(messageModel);
+        //    }        
+        //}
     }
 }

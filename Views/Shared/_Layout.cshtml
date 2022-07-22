@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>D-link Admin[@ViewBag.Title]</title>
+    <title>D-Link Admin[@ViewBag.Title]</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -332,33 +332,33 @@
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="pcoded-navigatio-lavel">VIP Partner</div>
                             @*<ul class="pcoded-item pcoded-left-item">
-            <li class="pcoded-hasmenu">
-                <a href="javascript:void(0)">
-                    <span class="pcoded-micon"><i class="ti-layout-media-overlay-alt"></i></span>
-                    <span class="pcoded-mtext">Footer Components</span>
-                </a>
-                <ul class="pcoded-submenu">
-                    <li class=" ">
-                        <a href="@Url.Action("TermsAndConditions","Multipurpose")">
-                            <span class="pcoded-micon"><i class="icon-book-open"></i></span>
-                            <span class="pcoded-mtext">Terms & Conditions</span>
-                        </a>
-                    </li>
-                    <li class=" ">
-                        <a href="@Url.Action("PrivacyAndPolicy","Multipurpose")">
-                            <span class="pcoded-micon"><i class="icon-book-open"></i></span>
-                            <span class="pcoded-mtext">Privacy & Policy</span>
-                        </a>
-                    </li>
-                    <li class=" ">
-                        <a href="@Url.Action("ContactUs","Multipurpose")">
-                            <span class="pcoded-micon"><i class="icon-book-open"></i></span>
-                            <span class="pcoded-mtext">Contact Us</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>*@
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)">
+                                            <span class="pcoded-micon"><i class="ti-layout-media-overlay-alt"></i></span>
+                                            <span class="pcoded-mtext">Footer Components</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class=" ">
+                                                <a href="@Url.Action("TermsAndConditions","Multipurpose")">
+                                                    <span class="pcoded-micon"><i class="icon-book-open"></i></span>
+                                                    <span class="pcoded-mtext">Terms & Conditions</span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="@Url.Action("PrivacyAndPolicy","Multipurpose")">
+                                                    <span class="pcoded-micon"><i class="icon-book-open"></i></span>
+                                                    <span class="pcoded-mtext">Privacy & Policy</span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="@Url.Action("ContactUs","Multipurpose")">
+                                                    <span class="pcoded-micon"><i class="icon-book-open"></i></span>
+                                                    <span class="pcoded-mtext">Contact Us</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>*@
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class=" ">
                                     <a href="@Url.Action("PartnerList","Partner")">
@@ -422,6 +422,12 @@
                             <div class="pcoded-navigatio-lavel">TRAINING & CERTIFICATION</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class=" ">
+                                    <a href="@Url.Action("EventListing","Event")">
+                                        <span class="pcoded-micon"><i class="ti-view-list-alt"></i></span>
+                                        <span class="pcoded-mtext">Event Listing</span>
+                                    </a>
+                                </li>
+                                @*<li class=" ">
                                     <a href="@Url.Action("TrainingListing","Training")">
                                         <span class="pcoded-micon"><i class="ti-view-list-alt"></i></span>
                                         <span class="pcoded-mtext">Training Listing</span>
@@ -438,7 +444,7 @@
                                         <span class="pcoded-micon"><i class="ti-view-list-alt"></i></span>
                                         <span class="pcoded-mtext">Enquiry Listing</span>
                                     </a>
-                                </li>
+                                </li>*@
                             </ul>
                             <div class="pcoded-navigatio-lavel">Log</div>
                             <ul class="pcoded-item pcoded-left-item">
@@ -446,6 +452,12 @@
                                     <a href="@Url.Action("importLog","Import")">
                                         <span class="pcoded-micon"><i class="icon-cloud-download"></i></span>
                                         <span class="pcoded-mtext">Import Log</span>
+                                    </a>
+                                </li>
+                                <li class=" ">
+                                    <a href="@Url.Action("PartnerLoginLog","Log")">
+                                        <span class="pcoded-micon"><i class="icon-cloud-download"></i></span>
+                                        <span class="pcoded-mtext">Partner Login Frequency</span>
                                     </a>
                                 </li>
                             </ul>
@@ -470,6 +482,7 @@
     <input type="hidden" id="hVIPUserRole" value="@VIPUserRole" />
     <input type="hidden" id="hCountryList" value="@CountryList" />
     <input id="HErrorPageUrl" type="hidden" value="@Url.Action("ErrorPage", "Home")" />
+    <input id="HGetMessage" type="hidden" value="@Url.Action("GetMessage", "api/MessageApi")" />
 
     <div id="divloader" class="waitingloader" style="background: url('@Url.Content("~/SystemImages/loading.gif")') 50% 50% no-repeat rgb(249,249,249)"></div>
 

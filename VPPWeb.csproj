@@ -177,9 +177,12 @@
     <Compile Include="Controllers\CountryApiController.cs" />
     <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\EnquiryApiController.cs" />
+    <Compile Include="Controllers\EventApiController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImportApiController.cs" />
     <Compile Include="Controllers\ImportController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\MultipurposeApiController.cs" />
     <Compile Include="Controllers\MultipurposeController.cs" />
@@ -1737,6 +1740,7 @@
     <Content Include="Scripts\common.js" />
     <Content Include="Scripts\country.js" />
     <Content Include="Scripts\enquiry.js" />
+    <Content Include="Scripts\event.js" />
     <Content Include="Scripts\fixCol.js" />
     <Content Include="Scripts\import.js" />
     <Content Include="Scripts\iziModal.js" />
@@ -1782,6 +1786,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="SystemImages\BannerPhotos\" />
+    <Folder Include="SystemImages\DLinkProduct\" />
+    <Folder Include="SystemImages\Event\" />
     <Folder Include="SystemImages\Product\" />
     <Folder Include="SystemImages\Quotation\" />
   </ItemGroup>
@@ -1817,6 +1823,10 @@
     <Content Include="Views\Country\BannerPhotoListing.cshtml" />
     <Content Include="Views\Country\CountryPageFooter.cshtml" />
     <Content Include="Views\Partner\PartnerList.cshtml" />
+    <Content Include="Views\Country\BannerListing.cshtml" />
+    <Content Include="Views\Log\PartnerLoginLog.cshtml" />
+    <Content Include="Views\Event\EventListing.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Country_BL\Country_BL.csproj">
@@ -1830,6 +1840,10 @@
     <ProjectReference Include="..\ErrorLog_BL\ErrorLog_BL.csproj">
       <Project>{f67a8fa2-cdd5-4202-b87d-17e0c48ca8e0}</Project>
       <Name>ErrorLog_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Event_BL\Event_BL.csproj">
+      <Project>{89b39f22-f1dc-472f-9e76-b840e3617de2}</Project>
+      <Name>Event_BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Import_BL\Import_BL.csproj">
       <Project>{1144ac90-ef2f-4005-802a-024928e2dac3}</Project>

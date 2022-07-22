@@ -232,6 +232,8 @@ function GetVIPPartnerResponse(response) {
                     } else if (data == '5') {
                         t1 = 'RPM'
                         c1 = 'label-danger';
+                    } else if (data == '0') {
+                        return '';
                     }
                     return '<span class="pcoded-badge label '+ c1 +'">'+ t1 +'</span>';
                 },
@@ -451,3 +453,95 @@ function PartnerReviseImportConfirm() {
 //        }
 //    });
 //}
+
+function PartnerloginLogLoad() {
+    BindPartnerLoginLog();
+
+    $("#PartnerLoginHistoryModal").iziModal({
+        title: 'Reward Prize Import',
+        TransitionIn: 'FadeInRight',
+        theme: 'light',
+        headerColor: '#008fa2',
+        padding: 10,
+        top: 70,
+        overlayClose: false,
+        zindex: 1100,
+    });
+}
+
+function BindPartnerLoginLog() {
+    $('#tblPartnerLoginLog tbody').empty();
+
+    var obj = {
+
+    };
+    CalltoApiController($("#HGetPartnerLoginLog").val(), obj, 'PartnerLoginLogResponse');
+}
+
+function PartnerLoginLogResponse(response) {
+    $('#tblPartnerLoginLog').DataTable({
+
+        data: JSON.parse(response),
+        datasrc: "",
+        destroy: true,
+        "bInfo": false,
+        filter: true,
+        "searching": true,
+        "bPaginate": true,
+        "bLengthChange": false,
+        "pageLength": 50,
+        "ordering": false,
+        "columns": [
+            { "data": "Email", width: "10%" },
+            { "data": "Email", width: "20%" },
+            { "data": "CountryName", width: "20%" },
+            { "data": "FirstName", width: "20%" },
+            { "data": "LastName", width: "20%" },     
+            { "data": "LoginFrequent", width: "10%" },
+        ],
+        "columnDefs": [
+            {
+                "targets": 0,
+                "data": "Email",
+                "render": function (data) {                  
+                    return '<button type = "button" style="width:70px;" class="btn btn-grd-info gridbtn" onclick= "LoginDetail(this);" > <i class="icon-note"></i>Detail</button >';
+                },
+            },
+        ],
+    });
+}
+
+function LoginDetail(row) {
+    var currentRow = $(row).closest("tr");
+    var data = $('#tblPartnerLoginLog').DataTable().row(currentRow).data();
+
+    $("#PartnerLoginHistoryModal").iziModal('open');
+
+    var obj = {
+        Email: data["Email"],
+    }
+
+    CalltoApiController($("#HGetPartnerLoginLogDetail").val(), obj, 'PartnerLoginLogDetailResponse');
+}
+
+function PartnerLoginLogDetailResponse(response) {
+    $('#tblPartnerLoginLogDetail').DataTable({
+
+        data: JSON.parse(response),
+        datasrc: "",
+        destroy: true,
+        searching: false,
+        "bInfo": false,
+        "bPaginate": false,
+        "bLengthChange": false,
+        "ordering": false,
+        "columns": [
+            { "data": "Email", width: "50%", className: "align-center" },
+            { "data": "LoginDate", width: "50%", className: "align-center" },
+        ],
+    });
+}
+
+function PartnerLoginHistoryClose() {
+    $("#PartnerLoginHistoryModal").iziModal('close');
+}

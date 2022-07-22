@@ -31,5 +31,10 @@ namespace VPPWeb.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
+
+        public ActionResult Test()
+        {
+            return View();
+        }
     }
 }

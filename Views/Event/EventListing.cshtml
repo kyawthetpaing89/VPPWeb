@@ -1,0 +1,250 @@
+﻿
+@{
+    ViewBag.Title = "EventListing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-wrapper">
+    <!-- Page body start -->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Basic Form Inputs card start -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Event List</h5>
+                    </div>
+                    <div class="card-block">
+                        @*<div class="row" style="padding-bottom:5px;">
+                            <div class="col-sm-12 col-lg-3 col-md-3">
+                                <button type="button" id="btnNewEvent" class="btn btn-block btn-grd-info"><i class="ion-plus-round"></i> Add Event</button>
+                            </div>
+                        </div>*@
+                        <div class="table-responsive">
+                            <table id="tblEvent" class="table table-striped" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Event Code</th>
+                                        <th>Event Date</th>
+                                        <th>Event Time</th>
+                                        <th>Event Name</th>
+                                        <th>Country List</th>
+                                        <th>Event Type</th>
+                                        <th>Cost(USD)</th>
+                                        <th>Reward Points</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Page body end -->
+</div>
+
+<div id="EventModal">
+    <div class="md-content">
+        <div class="form-group row">
+            <label class="col-sm-3">Status:</label>
+            <div class="col-sm-8">
+                <div class="form-radio">
+                    <div class="radio radiofill radio-primary radio-inline">
+                        <label>
+                            <input id="rdoInactive" type="radio" name="rdoStatus" value="0" checked>
+                            <i class="helper"></i>In-active
+                        </label>
+                    </div>
+                    <div class="radio radiofill radio-primary radio-inline">
+                        <label>
+                            <input id="rdoActive" type="radio" name="rdoStatus" value="1">
+                            <i class="helper"></i>Active
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Event Code:</label>
+            <div class="col-sm-8">
+                <input id="txtEventCode" readonly type="text" maxlength="10" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Country:</label>
+            <div id="divCheckBoxList" class="col-sm-8">
+                <div class="col-sm-12 checkbox-fade fade-in-primary" style="padding:0">
+                    <label>
+                        <input type="checkbox" id="chkAll" name="Language" value="HTML" class="input-danger">
+                        <span class="cr">
+                            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                        </span>
+                        <span>All</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Event Date:</label>
+            <div class="col-sm-4">
+                <input id="txtEventDate" type="text" maxlength="10" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Event Time:</label>
+            <div class="col-sm-8">
+                <input id="txtEventTime" type="text" maxlength="50" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Event Name:</label>
+            <div class="col-sm-8">
+                <input id="txtEventName" type="text" maxlength="50" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Event Type:</label>
+            <div class="col-sm-8">
+                <select class="form-control" id="EventType">
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3">Course Code:</label>
+            <div class="col-sm-8">
+                <select id="CourseCode" class="form-control">
+                    <option value="1">DCNA</option>
+                    <option value="2">DCNP</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Title:</label>
+            <div class="col-sm-8">
+                <input id="txtTitle" type="text" maxlength="200" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Agenda:</label>
+            <div class="col-sm-8">
+                <textarea id="txtAgenda" maxlength="400" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Speaker:</label>
+            <div class="col-sm-8">
+                <input id="txtSpeaker" type="text" maxlength="50" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Cost(USD):</label>
+            <div class="col-sm-3">
+                <input type="text" id="txtCost" maxlength="10" class="form-control eventcost align-right">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Reward Points:</label>
+            <div class="col-sm-3">
+                <input type="text" id="txtRewardPoints" maxlength="10" class="form-control points align-right">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Environment:</label>
+            <div class="col-sm-8">
+                <div class="form-radio">
+                    <div class="radio radiofill radio-primary radio-inline">
+                        <label>
+                            <input id="rdoPhysical" type="radio" name="rdoEnvironment" value="0" checked>
+                            <i class="helper"></i>Physical
+                        </label>
+                    </div>
+                    <div class="radio radiofill radio-primary radio-inline">
+                        <label>
+                            <input id="rdoOnline" type="radio" name="rdoEnvironment" value="1">
+                            <i class="helper"></i>Online
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3">Venue:</label>
+            <div class="col-sm-8">
+                <select class="form-control" id="Venue">
+                    <option value=""></option>
+                    <option value="1">Name of hotel or Webinar</option>
+                    <option value="2">Webinar</option>
+                    <option value="3">Online (Self-study)</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Address:</label>
+            <div class="col-sm-8">
+                <input id="txtAddress" type="text" maxlength="100" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Event Link:</label>
+            <div class="col-sm-8">
+                <input id="txtEventLink" type="text" maxlength="200" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Outlook Calendar ics:</label>
+            <div class="col-sm-3">
+                <button type="button" id="btnUploadCalendar" style="padding: .5rem .75rem;" class="btn btn-block btn-grd-warning">upload</button>
+            </div>
+            <div class="col-sm-3">
+                <span id="btnCalendar"><i class="icofont icofont-calendar" style="font-size: 2em; color: cornflowerblue; cursor: pointer"></i></span>
+                <span id="btnCalendarRemove"><i class="icofont icofont-ui-delete" style="font-size: 2em; color: indianred; cursor: pointer "></i></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Event Flyer:</label>
+            <div class="col-sm-3">
+                <button type="button" id="btnUploadFlyer" style="padding: .5rem .75rem;" class="btn btn-block btn-grd-warning">upload</button>
+            </div>
+            <div class="col-sm-3">
+                <span id="btnFlyer"><i class="icofont icofont-file-pdf" style="font-size:2em;color:cornflowerblue;cursor:pointer"></i></span>
+                <span id="btnFlyerRemove"><i class="icofont icofont-ui-delete" style="font-size: 2em; color: indianred;cursor:pointer"></i></span>
+            </div>
+        </div>
+        <div id="divSave" class="form-group row div-centerbtn">
+            <div class="col-sm-3">
+                <button type="button" id="btnEventClose" class="btn btn-block btn-grd-inverse">Close</button>
+            </div>
+            <div class="col-sm-3">
+                <button type="button" id="btnEventSave" class="btn btn-block btn-grd-info"><span id="btnSaveText">Save</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input id="calendarupload" accept=".ics" class="hidden" type="file">
+<input id="flyerupload" accept="application/pdf" class="hidden" type="file">
+<input type="hidden" id="hcalendaruploadvalue" />
+
+<input id="HGetEventType" type="hidden" value="@Url.Action("GetEventType", "api/EventApi")" />
+<input id="HGetEvent" type="hidden" value="@Url.Action("GetEvent", "api/EventApi")" />
+<input id="HGetCountry" type="hidden" value="@Url.Action("GetCountry", "api/CountryApi")" />
+<input id="HEventCUD" type="hidden" value="@Url.Action("Event_CUD", "Event")" />
+<input type="hidden" id="hflyeruploadvalue" />
+
+<input type="hidden" id="HMode" />
+
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/event.js?v=1")"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            EventListingLoad();
+        });
+    </script>
+}
+
+
