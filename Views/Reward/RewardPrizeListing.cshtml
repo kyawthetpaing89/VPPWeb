@@ -21,39 +21,37 @@
                                 <label col-form-label">Country:</label>
                             </div>
                             <div class="col-sm-12 col-lg-2 col-md-2">
-                                <select id="SCountry" class="form-control"></select>
+                                <select id="SCountry" class="form-control form-control-sm"></select>
                             </div>
                             <div class="col-sm-12 col-lg-1 col-md-1">
                                 <label col-form-label">Category:</label>
                             </div>
                             <div class="col-sm-12 col-lg-3 col-md-3">
-                                <select id="SCategory" class="form-control"></select>
+                                <select id="SCategory" class="form-control form-control-sm"></select>
                             </div>
                             <div class="col-sm-12 col-lg-1 col-md-1">
                                 <label col-form-label">Status:</label>
                             </div>
                             <div class="col-sm-12 col-lg-2 col-md-2">
-                                <select id="SStatus" class="form-control">
+                                <select id="SStatus" class="form-control form-control-sm">
                                     <option value="">All</option>
                                     <option value="0">In-active</option>
                                     <option value="1">Active</option>
                                 </select>
                             </div>
                             <div class="col-sm-12 col-lg-2 col-md-2">
-                                <button type="button" id="btnSearch" onclick="BindRewardPrize();" class="btn btn-block btn-grd-info"><i class="icon-magnifier"></i> Search</button>
+                                <button type="button" id="btnSearch" onclick="BindRewardPrize();" class="btn btn-sm btn-grd-info"><i class="icon-magnifier"></i> Search</button>
                             </div>
                         </div>
                         <br />
                         <div class="row" style="padding-bottom:5px;">
                             <div class="col-sm-12 col-lg-3 col-md-3">
-                                <button type="button" id="btnNew" onclick="AddNewPrize();" class="btn btn-block btn-grd-info"><i class="ion-plus-round"></i> Add Reward Prize</button>
-                            </div>
-                            <div class="col-sm-12 col-lg-2 col-md-2">
-                                <button type="button" id="btnUpload" class="btn btn-block btn-grd-warning"><i class="icon-arrow-up-circle"></i> Upload</button>
+                                <button type="button" id="btnNew" onclick="AddNewPrize();" class="btn btn-sm  btn-grd-info"><i class="ion-plus-round"></i> Add Reward Prize</button>
+                                <button type="button" id="btnUpload" class="btn btn-sm btn-grd-warning"><i class="icon-arrow-up-circle"></i> Upload</button>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table id="tblReward" class="table table-striped table-bordered" style="width:130%">
+                            <table id="tblReward" class="table table-striped table-bordered widepadding" style="width:150%">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -64,7 +62,7 @@
                                         <th>Product</th>
                                         <th>Reward<br />Points<br />Required</th>
                                         <th>Valid Till</th>
-                                        <th>Unit Cost</th>
+                                        <th>Unit Cost<br />(Local Currency)</th>
                                         <th>Suppiler</th>
                                         <th>Creation Date</th>
                                         <th>Quotation</th>
@@ -194,7 +192,7 @@
             </div>
         </div>
         <div class="form-group row" style="margin-bottom:0px">
-            <label class="col-sm-3 col-form-label">D-Link Unit Cost:<br /><span style="font-size:11px">(local Currency)</span></label>
+            <label class="col-sm-3 col-form-label">D-Link Unit Cost:<br /><span style="font-size:11px">(Local Currency)</span></label>
             <div class="col-sm-8">
                 <input id="txtUnitCost" type="text" maxlength="13" class="form-control point2 align-right">
             </div>
@@ -213,10 +211,10 @@
             </div>*@
         <div id="divSave" class="form-group row div-centerbtn">
             <div class="col-sm-3">
-                <button type="button" id="btnClose" onclick="RewardPrizeClose();" class="btn btn-block btn-grd-inverse">Close</button>
+                <button type="button" id="btnClose" onclick="RewardPrizeClose();" class="btn  btn-grd-inverse">Close</button>
             </div>
             <div class="col-sm-3">
-                <button type="button" id="btnSave" onclick="RewardPrizeSave();" class="btn btn-block btn-grd-info"><span id="btnSaveText">Save</span></button>
+                <button type="button" id="btnSave" onclick="RewardPrizeSave();" class="btn  btn-grd-info"><span id="btnSaveText">Save</span></button>
             </div>
         </div>
     </div>
@@ -249,10 +247,10 @@
         </div>
         <div id="divSave" class="form-group row div-centerbtn">
             <div class="col-sm-3">
-                <button type="button" id="btnImportClose" onclick="ImportClose();" class="btn btn-block btn-grd-inverse">Cancel</button>
+                <button type="button" id="btnImportClose" onclick="ImportClose();" class="btn  btn-grd-inverse">Cancel</button>
             </div>
             <div id="divconfirm" class="col-sm-3">
-                <button type="button" id="btnImportConfirm" onclick="ImportConfirm();" class="btn btn-block btn-grd-info"><span id="btnSaveText">Confirm</span></button>
+                <button type="button" id="btnImportConfirm" onclick="ImportConfirm();" class="btn  btn-grd-info"><span id="btnSaveText">Confirm</span></button>
             </div>
         </div>
     </div>
@@ -267,7 +265,7 @@
 <input id="HMode" type="hidden" />
 <input id="Hproductphoto" type="hidden" />
 <input id="Hquotation" type="hidden" />
-<input id="HImageLocation" type="hidden" value="@Url.Content("~/SystemImages/")" />
+
 <input id="HGetProductCategory" type="hidden" value="@Url.Action("GetProductCategory", "api/ProductCategoryApi")" />
 <input id="HGetRewardPrize" type="hidden" value="@Url.Action("GetRewardPrize", "api/RewardApi")" />
 <input id="imgnophoto" type="hidden" value="@Url.Content("~/SystemImages/nophoto.jpg")" />

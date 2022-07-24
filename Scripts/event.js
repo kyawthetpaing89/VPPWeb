@@ -58,24 +58,30 @@
 
     $('#calendarupload').on('change', function () {
         $("#btnCalendar").show();
+        $("#CalendarName").show();
+        $("#CalendarName").html($("#calendarupload")[0].files[0].name);
         $("#btnCalendarRemove").show();
     });
 
     $('#flyerupload').on('change', function () {
         $("#btnFlyer").show();
+        $("#FlyerName").show();
+        $("#FlyerName").html($("#flyerupload")[0].files[0].name);
         $("#btnFlyerRemove").show();
     });
 
     $("#btnFlyerRemove").on('click', function () {
         $("#hflyeruploadvalue").val('');
-
+        $("#FlyerName").hide();
+        $("#FlyerName").html('');
         $("#btnFlyer").hide();
         $("#btnFlyerRemove").hide();
     });
 
     $("#btnCalendarRemove").on('click', function () {
         $("#hcalendaruploadvalue").val('');
-
+        $("#CalendarName").hide();
+        $("#CalendarName").html('');
         $("#btnCalendar").hide();
         $("#btnCalendarRemove").hide();
     });
@@ -95,6 +101,17 @@
 
     $(".iziModal-button-close").on('click', function () {
         EventClose();
+    });
+
+    $("#btnFlyer").on('click', function () {
+
+        if ($("#txtEventCode").val()) {
+            var url = $("#HImageLocation").val() + 'Event/' + $("#txtEventCode").val() + '.pdf';
+            window.open(
+                url,
+                '_blank' // <- This is what makes it open in a new window.
+            );
+        }  
     });
 }
 
@@ -128,11 +145,13 @@ function EventResponse(response) {
         destroy: true,
         searching: true,
         "bInfo": false,
-        "bPaginate": false,
+        "bPaginate": true,
+        "bLengthChange": false,
+        "pageLength": 50,
         "ordering": false,
         buttons: [
             {
-                className: 'btn btn-block btn-grd-info',
+                className: 'btn btn-sm btn-grd-info',
                 text: '<i class="ion- plus - round"></i> Add Event',
                 action: function (e, dt, node, config) {
                     AddEvent();
@@ -141,22 +160,22 @@ function EventResponse(response) {
             }
         ],
         "columns": [
-            { "data": "EventCode", width: "7%", className: "align-center" },
+            { "data": "EventCode", width: "4%", className: "align-center" },
             { "data": "EventCode", width: "7%", className: "align-center" },
             { "data": "EventDate", width: "8%", className: "align-center" },
             { "data": "EventTime", width: "8%" },
-            { "data": "EventName", width: "10%" },
-            { "data": "Countrylist", width: "30%", },
-            { "data": "EventTypeName", width: "10%"},
-            { "data": "CostUSD", width: "5%", className: "align-right" },
-            { "data": "RewardPoints", width: "5%", className: "align-right pr10" },
+            //{ "data": "EventName", width: "10%" },
+            { "data": "Countrylist", width: "20%", },
+            { "data": "EventTypeName", width: "16%"},
+            { "data": "CostUSD", width: "7%", className: "align-right" },
+            { "data": "RewardPoints", width: "10%", className: "align-right pr10" },
         ],
         "columnDefs": [
             {
                 "targets": 0,
                 "data": "EventCode",
                 "render": function (data) {
-                    return '<button type="button" class="btn btn-grd-info gridbtn" onclick="EventEdit(this);"><i class="icon-note"></i>Edit</button>';
+                    return '<button type="button" title="Edit Event" class="gridbtnedit" onclick="EventEdit(this);"><i class="icon-note"></i></button>';
                 },
             },
         ],
@@ -173,10 +192,11 @@ function EventSave() {
             EventCode: $("#txtEventCode").val(),
             CountryJson: getCountryList(),
             EventDate: $("#txtEventDate").val(),
-            EventTime: $("#txtEventTime").val(),
+            EventTimeFrom: $(".timefrom").attr('value'),
+            EventTimeTo: $(".timeto").attr('value'),
             EventName: $("#txtEventName").val(),
             EventTypeID: $('#EventType').children("option:selected").val(),
-            CourseCode: $('#CourseCode').children("option:selected").val(),
+            CourseCode: $('#CourseCode').val(),
             Title: $("#txtTitle").val(),
             Agenda: $("#txtAgenda").val(),
             Speakers: $("#txtSpeaker").val(),
@@ -186,8 +206,10 @@ function EventSave() {
             Venue: $('#Venue').children("option:selected").val(),
             EventAddress: $("#txtAddress").val(),
             EventLink: $("#txtEventLink").val(),
-            OutlookClanderICS: $("#hcalendaruploadvalue").val(),
+            OutlookCalendarICS: $("#hcalendaruploadvalue").val(),
+            OutlookCalendarFileName: $("#CalendarName").html(),
             EventFlyer: $("#hflyeruploadvalue").val(),
+            EventFlyerFlyerName: $("#FlyerName").html(),
             UpdatedBy: $("#hID").val(),
             Mode: $("#HMode").val(),
         };
@@ -234,11 +256,14 @@ function EventEdit(row) {
 
     var currentRow = $(row).closest("tr");
     var data = $('#tblEvent').DataTable().row(currentRow).data();
-
     $("#txtEventCode").val(data["EventCode"]);
     $('input[name="rdoStatus"][value="' + data["ActiveStatus"] + '"]').prop('checked', true);
     $("#txtEventDate").val(data["EventDate"]);
-    $("#txtEventTime").val(data["EventTime"]);
+    $("#txtEventTimeFrom").val(data["EventTimeFrom"]);
+    $(".timefrom").attr("value", data["EventTimeFrom"])
+    $(".timeto").attr("value", data["EventTimeTo"])
+    $("#txtEventTimeTo").val(data["EventTimeTo"]);
+    $(".TimeTo").val(data["EventTimeTo"]);
     $("#txtEventName").val(data["EventName"]);
     $("#EventType").val(data["EventTypeID"]);
     $("#CourseCode").val(data["CourseCode"]);
@@ -251,6 +276,9 @@ function EventEdit(row) {
     $("#Venue").val(data["Venue"]);
     $("#txtAddress").val(data["EventAddress"]);
     $("#txtEventLink").val(data["EventLink"]);
+    $("#CalendarName").html(data["OutlookCalendarFileName"]);
+    $("#FlyerName").html(data["EventFlyerFileName"]);
+
 
     $("input[type=checkbox][name='chkCountry']").each(function () {
 
@@ -263,21 +291,25 @@ function EventEdit(row) {
 
     ControlDisable();
 
-    $("#hcalendaruploadvalue").val(data["OutlookClanderICS"]);
+    $("#hcalendaruploadvalue").val(data["OutlookCalendarICS"]);
     $("#hflyeruploadvalue").val(data["EventFlyer"]);
 
     if (!$("#hcalendaruploadvalue").val()) {
+        $("#CalendarName").hide();
         $("#btnCalendar").hide();
         $("#btnCalendarRemove").hide();
     } else {
+        $("#CalendarName").show();
         $("#btnCalendar").show();
         $("#btnCalendarRemove").show();
     }
 
     if (!$("#hflyeruploadvalue").val()) {
+        $("#FlyerName").hide();
         $("#btnFlyer").hide();
         $("#btnFlyerRemove").hide();
     } else {
+        $("#FlyerName").show();
         $("#btnFlyer").show();
         $("#btnFlyerRemove").show();
     }
@@ -308,14 +340,6 @@ function EventErrorcheck() {
     } else if (!$("#txtEventDate").val()) {
         ShowMessage("E001", "Event Date");
         $("#txtEventDate").focus();
-        return false;
-    } else if (!$("#txtEventTime").val()) {
-        ShowMessage("E001", "Event Time");
-        $("#txtEventTime").focus();
-        return false;
-    } else if (!$("#txtEventName").val()) {
-        ShowMessage("E001", "Event Name");
-        $("#txtEventName").focus();
         return false;
     } else if (!$("#txtTitle").val()) {
         ShowMessage("E001", "Title");
@@ -383,7 +407,10 @@ function CountryCheckBoxResponse(response) {
 }
 
 function BindEventType() {
-    CalltoApiController($("#HGetEventType").val(), {}, 'GetEventTypeResponse');
+    var obj = {
+        ActiveStatus : '1'
+    }
+    CalltoApiController($("#HGetEventType").val(), obj, 'GetEventTypeResponse');
 }
 
 function GetEventTypeResponse(response) {
@@ -407,7 +434,7 @@ function ControlDisable() {
 
 function ClearEventModal() {
     $(".iziModal-header-title").html('Add Event')
-
+    $("#btnSaveText").html("Save");
     $("#rdoInactive").prop('checked', true);
     $("#txtEventCode").val('');
     $("#chkAll").prop('checked', false);
@@ -416,7 +443,7 @@ function ClearEventModal() {
     $("#txtEventTime").val('');
     $("#txtEventName").val('');
     $("#EventType").val($("#EventType option:first").val());
-    $("#CourseCode").val($("#EventType option:first").val());
+    $("#CourseCode").val($("#CourseCode").val());
     $("#txtTitle").val('');
     $("#txtAgenda").val('');
     $("#txtSpeaker").val('');
@@ -425,11 +452,21 @@ function ClearEventModal() {
     $("#Venue").val('');
     $("#txtAddress").val('');
     $("#txtEventLink").val('');
-    $("hcalendaruploadvalue").val('');
-    $("hflyeruploadvalue").val('');
+    $("#hcalendaruploadvalue").val('');
+    $("#hflyeruploadvalue").val('');
+    $('#calendarupload').val('');
+    $('#flyerupload').val('');
+
+
+    $("#CalendarName").val('');
+    $("#FlyerName").val('');
 
     $("#btnCalendar").hide();
+    $("#CalendarName").hide();
     $("#btnCalendarRemove").hide();
     $("#btnFlyer").hide();
+    $("#FlyerName").hide();
     $("#btnFlyerRemove").hide();
+
+    ControlDisable();
 }

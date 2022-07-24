@@ -1,4 +1,8 @@
-﻿.waitingloader {
+﻿.pcoded .pcoded-navbar .pcoded-item .pcoded-hasmenu .pcoded-submenu li > a{
+    font-size : 12px;
+}
+
+.waitingloader {
     position: fixed;
     left: 0px;
     top: 0px;
@@ -7,7 +11,47 @@
     z-index: 9999;
 }
 
-.pr10{
+.gj-datepicker-bootstrap [role=right-icon] button .gj-icon, .gj-datepicker-bootstrap [role=right-icon] button .material-icons{
+    top:5px !important;
+}
+
+.card .card-header h5 {
+    font-size: 18px;
+    color: midnightblue;
+    font-weight: bold;
+}
+
+.gridbtnedit{
+    background-color:lemonchiffon;
+    border:1px dashed black;
+    cursor:pointer;
+}
+
+.main-body .page-wrapper{
+    padding: 0;
+}
+
+.pcoded .pcoded-navbar .pcoded-item > li > a{
+    font-size:12px;
+}
+
+.pcoded .pcoded-navbar .pcoded-item > li > a > .pcoded-micon{
+    font-size:12px;
+}
+
+.pcoded[theme-layout="vertical"][vertical-nav-type="expanded"] .pcoded-header .pcoded-left-header, .pcoded[theme-layout="vertical"][vertical-nav-type="expanded"] .pcoded-navbar{
+    width:180px;
+}
+
+.main-menu {
+    width: 180px;
+}
+
+.pcoded[theme-layout="vertical"][vertical-placement="left"][vertical-nav-type="expanded"][vertical-effect="shrink"] .pcoded-content{
+    margin-left:180px;
+}
+
+.pr10 {
     padding-right: 10px !important;
 }
 

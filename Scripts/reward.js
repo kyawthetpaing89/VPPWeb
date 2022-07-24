@@ -99,7 +99,7 @@ function BindRewardPrize() {
 
 function RewardPrizeResponse(response) {
     $('#tblReward').DataTable({
-        //responsive: true,
+        responsive: true,
         scrollY: '1000px',
         scrollX: true,
         scrollCollapse: true,
@@ -111,33 +111,33 @@ function RewardPrizeResponse(response) {
         data: JSON.parse(response),
         datasrc: "",
         destroy: true,
-        searching: false,
+        searching: true,
         "bInfo": false,
         "bPaginate": true,
         "bLengthChange": false,
         "pageLength": 50,
         "ordering": false,
         "columns": [
-            { "data": "ItemCode", width: "5%", className: "align-center"},
-            { "data": "Status", width: "5%", className: "align-center"},
-            { "data": "ItemCode", width: "7%", className: "align-center" },
+            { "data": "ItemCode", width: "10%",  className: "align-center"},
+            { "data": "Status", width: "10%",  className: "align-center"},
+            { "data": "ItemCode", width: "10%", className: "align-center" },
             { "data": "ProductCategoryName", width: "10%" },
-            { "data": "ProductName", width:"20%"},
-            { "data": "ProductPhoto", width: "5%", className: "align-center" },
-            { "data": "Points", width: "5%", className: "align-right" },
-            { "data": "ValidTill", width: "8%",className:"align-center" },
-            { "data": "UnitCost", width: "5%",className: "align-right"},
-            { "data": "SupplierName" ,width: "10%" },
-            { "data": "CreatedDate", width: "8%", className: "align-center",},
-            { "data": "Quotation", width: "5%",  className: "align-center", },
-            { "data": "CreatedBy" },
+            { "data": "ProductName", width: "10%", },
+            { "data": "ProductPhoto", width: "10%", className: "align-center" },
+            { "data": "Points", width: "10%", className: "align-right" },
+            { "data": "ValidTill", width: "10%", className:"align-center" },
+            { "data": "UnitCost", width: "10%", className: "align-right"},
+            { "data": "SupplierName",width: "10%", },
+            { "data": "CreatedDate", width: "10%", className: "align-center",},
+            { "data": "Quotation", width: "10%", className: "align-center", },
+            { "data": "CreatedBy",width: "10%", },
         ],
         "columnDefs": [
             {
             "targets": 0,
             "data": "ItemCode",
             "render": function (data) {
-                return '<button type="button" class="btn btn-grd-info gridbtn" onclick="RewardPrizeEdit(this);"><i class="icon-note"></i>Edit</button>';
+                return '<button type="button" class="btn btn-sm btn-grd-info" onclick="RewardPrizeEdit(this);"><i class="icon-note"></i>Edit</button>';
                 },
             },
             {

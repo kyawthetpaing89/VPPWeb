@@ -44,7 +44,7 @@
     <link href="@Url.Content("~/Content/iziModal.min.css")" rel="stylesheet" />
 
     <!--TBS Style-->
-    <link href="@Url.Content("~/Content/common.css?v=11")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/common.css?v=12")" rel="stylesheet" type="text/css" />
 
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
@@ -69,7 +69,7 @@
     }
 
 </head>
-<body>
+<body style="font-size:12px;">
     <!-- Pre-loader start -->
     <div class="theme-loader">
         <div class="ball-scale">
@@ -428,23 +428,23 @@
                                     </a>
                                 </li>
                                 @*<li class=" ">
-                                    <a href="@Url.Action("TrainingListing","Training")">
-                                        <span class="pcoded-micon"><i class="ti-view-list-alt"></i></span>
-                                        <span class="pcoded-mtext">Training Listing</span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="@Url.Action("TrainingTypeListing","Training")">
-                                        <span class="pcoded-micon"><i class="ti-view-list-alt"></i></span>
-                                        <span class="pcoded-mtext">TrainingType Listing</span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="@Url.Action("EnquiryListing","Training")">
-                                        <span class="pcoded-micon"><i class="ti-view-list-alt"></i></span>
-                                        <span class="pcoded-mtext">Enquiry Listing</span>
-                                    </a>
-                                </li>*@
+                                        <a href="@Url.Action("TrainingListing","Training")">
+                                            <span class="pcoded-micon"><i class="ti-view-list-alt"></i></span>
+                                            <span class="pcoded-mtext">Training Listing</span>
+                                        </a>
+                                    </li>
+                                    <li class=" ">
+                                        <a href="@Url.Action("TrainingTypeListing","Training")">
+                                            <span class="pcoded-micon"><i class="ti-view-list-alt"></i></span>
+                                            <span class="pcoded-mtext">TrainingType Listing</span>
+                                        </a>
+                                    </li>
+                                    <li class=" ">
+                                        <a href="@Url.Action("EnquiryListing","Training")">
+                                            <span class="pcoded-micon"><i class="ti-view-list-alt"></i></span>
+                                            <span class="pcoded-mtext">Enquiry Listing</span>
+                                        </a>
+                                    </li>*@
                             </ul>
                             <div class="pcoded-navigatio-lavel">Log</div>
                             <ul class="pcoded-item pcoded-left-item">
@@ -483,6 +483,7 @@
     <input type="hidden" id="hCountryList" value="@CountryList" />
     <input id="HErrorPageUrl" type="hidden" value="@Url.Action("ErrorPage", "Home")" />
     <input id="HGetMessage" type="hidden" value="@Url.Action("GetMessage", "api/MessageApi")" />
+    <input id="HImageLocation" type="hidden" value="@Url.Content("~/SystemImages/")" />
 
     <div id="divloader" class="waitingloader" style="background: url('@Url.Content("~/SystemImages/loading.gif")') 50% 50% no-repeat rgb(249,249,249)"></div>
 

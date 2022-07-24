@@ -1745,6 +1745,7 @@
     <Content Include="Scripts\import.js" />
     <Content Include="Scripts\iziModal.js" />
     <Content Include="Scripts\iziModal.min.js" />
+    <Content Include="Scripts\jquery.dateandtime.js" />
     <Content Include="Scripts\login.js" />
     <Content Include="Scripts\message.js" />
     <Content Include="Scripts\moment.min.js" />

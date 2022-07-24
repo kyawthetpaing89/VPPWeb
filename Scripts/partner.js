@@ -187,7 +187,7 @@ function GetVIPPartnerResponse(response) {
         data: JSON.parse(response),
         datasrc: "",
         destroy: true,
-        searching: false,
+        searching: true,
         "bInfo": false,
         "bPaginate": true,
         "bLengthChange": false,

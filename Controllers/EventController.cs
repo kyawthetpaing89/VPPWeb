@@ -39,12 +39,13 @@ namespace VPPWeb.Controllers
                     string key = Request.Files.GetKey(i);
                     if (key == "calendar")
                     {
-                        if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + eventModel.OutlookClanderICS)))
-                            System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + eventModel.OutlookClanderICS));
+                        if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + eventModel.OutlookCalendarICS)))
+                            System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + eventModel.OutlookCalendarICS));
 
-                        eventModel.OutlookClanderICS = "Event/" + eventModel.EventCode + "_.ics";
+                        eventModel.OutlookCalendarICS = "Event/" + eventModel.EventCode + "_.ics";
+                        eventModel.OutlookCalendarFileName = Request.Files[0].FileName;
 
-                        Request.Files[i].SaveAs(Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/"), eventModel.OutlookClanderICS));
+                        Request.Files[i].SaveAs(Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/"), eventModel.OutlookCalendarICS));
                     }
                     else if (key == "flyer")
                     {
@@ -52,6 +53,7 @@ namespace VPPWeb.Controllers
                             System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + eventModel.EventFlyer));
 
                         eventModel.EventFlyer = "Event/" + eventModel.EventCode + ".pdf";
+                        eventModel.EventFlyerFileName = Request.Files[i].FileName;
 
                         Request.Files[i].SaveAs(Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/"), eventModel.EventFlyer));
                     }
