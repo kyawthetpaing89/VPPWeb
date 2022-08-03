@@ -52,7 +52,7 @@ namespace VPPWeb.Controllers
                         if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + eventModel.EventFlyer)))
                             System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + eventModel.EventFlyer));
 
-                        eventModel.EventFlyer = "Event/" + eventModel.EventCode + ".pdf";
+                        eventModel.EventFlyer = "Event/" + eventModel.EventCode + Path.GetExtension(Request.Files[i].FileName);
                         eventModel.EventFlyerFileName = Request.Files[i].FileName;
 
                         Request.Files[i].SaveAs(Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/"), eventModel.EventFlyer));

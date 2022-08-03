@@ -33,7 +33,7 @@
     <link href="@Url.Content("~/Adminity/assets/pages/data-table/css/buttons.dataTables.min.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Adminity/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css")" rel="stylesheet" type="text/css" />
     <!-- Style.css -->
-    <link href="@Url.Content("~/Adminity/assets/css/style.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Adminity/assets/css/style.css?v=1")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Adminity/assets/css/jquery.mCustomScrollbar.css")" rel="stylesheet" type="text/css" />
     @*<link href="@Url.Content("~/Adminity/assets/css/pcoded-horizontal.min.css")" rel="stylesheet" type="text/css" />*@
 
@@ -44,7 +44,7 @@
     <link href="@Url.Content("~/Content/iziModal.min.css")" rel="stylesheet" />
 
     <!--TBS Style-->
-    <link href="@Url.Content("~/Content/common.css?v=12")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/common.css?v=14")" rel="stylesheet" type="text/css" />
 
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
@@ -484,7 +484,8 @@
     <input id="HErrorPageUrl" type="hidden" value="@Url.Action("ErrorPage", "Home")" />
     <input id="HGetMessage" type="hidden" value="@Url.Action("GetMessage", "api/MessageApi")" />
     <input id="HImageLocation" type="hidden" value="@Url.Content("~/SystemImages/")" />
-
+    <input id="HTrainingRegister" type="hidden" value="https://viplogin.dlink.com.sg/TrainingEvents/Training/TrainingRegister" />
+    
     <div id="divloader" class="waitingloader" style="background: url('@Url.Content("~/SystemImages/loading.gif")') 50% 50% no-repeat rgb(249,249,249)"></div>
 
     <!-- Required Jquery -->

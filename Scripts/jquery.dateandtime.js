@@ -52,7 +52,7 @@
 				.hide();
 
 			// put event into the loop
-			$(eleDateTime, $(element).not('[done="true"]')).change(function(e) {
+			$(eleDateTime, $(element).not('[done="true"]')).change(function (e) {
 				let currentDateTime = $(e.currentTarget),	
 				      selectElement = element;
 
@@ -64,8 +64,9 @@
 				} else { 
 					time = currentDateTime.val();
 				}
+
 				// set values on inputs
-				selectElement.attr('value', date + '' + time);
+				selectElement.attr('value', time);
 
 				return false;
 

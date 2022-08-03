@@ -1,5 +1,70 @@
-﻿.pcoded .pcoded-navbar .pcoded-item .pcoded-hasmenu .pcoded-submenu li > a{
+﻿.customaddon {
+    background-color: #e9ecef;
+}
+
+.customaddon img{
+    width: 14px;
+}
+
+.nomarginbottom{
+    margin-bottom : 0;
+}
+
+.addbtn {
+    background: #01a9ac;
+    border: #01a9ac;
+}
+
+input[type=search]::-webkit-search-cancel-button {
+    -webkit-appearance: searchfield-cancel-button;
+}
+
+.advsearch {
+    background-color: #a17097 !important;
+    border-color: #a17097 !important;
+}
+
+.searchbtn {
+    background-color: #a17097;
+    border-color: #a17097;
+    border-radius: 2px;
+    color:#fff;
+    font-size:14px;
+}
+
+.searchclearbtn {
+    background-color: #e38b77;
+    border-color: #e38b77;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 14px;
+    margin-right:10px
+}
+
+.searchcard {
+    border: 1px #a17097 dashed;
+    display:none;
+}
+
+.searchfooter {
+    background-color: #e4e0e5 !important;
+    padding:5px;
+}
+
+.pcoded .pcoded-navbar .pcoded-item .pcoded-hasmenu .pcoded-submenu li > a{
     font-size : 12px;
+}
+
+.col-form-label{
+    font-size : 12px;
+}
+
+.form-control{
+    font-size: 12px;
+}
+
+.date{
+    text-align:center;
 }
 
 .waitingloader {
@@ -25,6 +90,19 @@
     background-color:lemonchiffon;
     border:1px dashed black;
     cursor:pointer;
+}
+
+.gridbtnregister {
+    background-color: lavenderblush;
+    border: 1px dashed black;
+    cursor: pointer;
+}
+
+.gridbtnphoto {
+    background-color: deepskyblue;
+    color:white;
+    border: 1px dashed white;
+    cursor: pointer;
 }
 
 .main-body .page-wrapper{
@@ -102,10 +180,6 @@
     padding: 5px;
     width: 50px;
     margin-left: 2px;
-}
-
-.searchbtn{
-    padding : 5px;
 }
 
 textarea.form-control {

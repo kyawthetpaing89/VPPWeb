@@ -16,92 +16,144 @@
                     </div>
                     <div class="card-block">
                         <div class="form-group row">
-                            <div class="col-sm-12 col-lg-2 col-md-2">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
                                 <label col-form-label">Country:</label>
                             </div>
-                            <div class="col-sm-12 col-lg-2 col-md-2">
-                                <select id="ddlCountry" onchange="FooterCountryChange()" class="form-control">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <select id="ddlCountry" onchange="FooterCountryChange()" class="form-control form-control-sm">
                                 </select>
                             </div>
                         </div>
                         <div style="display:none;" class="form-group row">
-                            <div class="col-sm-12 col-lg-2 col-md-2">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
                                 <label col-form-label">Copyright Text:</label>
                             </div>
                             <div class="col-sm-12 col-lg-10 col-md-10">
-                                <input type="text" id="txtCopyright" class="form-control" />
+                                <input type="text" id="txtCopyright" class="form-control form-control-sm" />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-12 col-lg-2 col-md-2">
-                                <label col-form-label">Dlink Url:</label>
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">D-Link Web Page:</label>
                             </div>
                             <div class="col-sm-12 col-lg-10 col-md-10">
-                                <input type="text" id="txtDlinkUrl" class="form-control" />
+                                
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-12 col-lg-2 col-md-2">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
                                 <label col-form-label">LinkedIn Url:</label>
                             </div>
                             <div class="col-sm-12 col-lg-10 col-md-10">
-                                <input type="text" id="txtLinkedIn" class="form-control" />
+                                <div class="input-group nomarginbottom">
+                                    <span class="input-group-addon customaddon" id="basic-addon2"><img src="@Url.Content("~/SystemImages/fav.ico")" /></span>
+                                    <input type="text" id="txtDlinkUrl" class="form-control form-control-sm" />
+                                </div>
+
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-12 col-lg-2 col-md-2">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">LinkedIn Url:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <div class="input-group nomarginbottom">
+                                    <span class="input-group-addon customaddon" id="basic-addon2"><img src="@Url.Content("~/SystemImages/linkedin.ico")" /></span>
+                                    <input type="text" id="txtLinkedIn" class="form-control form-control-sm" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
                                 <label col-form-label">Facebook Url:</label>
                             </div>
                             <div class="col-sm-12 col-lg-10 col-md-10">
-                                <input type="text" id="txtFacebookUrl" class="form-control" />
+                                <div class="input-group nomarginbottom">
+                                    <span class="input-group-addon customaddon" id="basic-addon2"><img src="@Url.Content("~/SystemImages/facebook.ico")" /></span>
+                                    <input type="text" id="txtFacebookUrl" class="form-control form-control-sm" />
+                                </div>
+
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-12 col-lg-2 col-md-2">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
                                 <label col-form-label">Twitter Url:</label>
                             </div>
                             <div class="col-sm-12 col-lg-10 col-md-10">
-                                <input type="text" id="txtTwitterUrl" class="form-control" />
+                                <div class="input-group nomarginbottom">
+                                    <span class="input-group-addon customaddon" id="basic-addon2"><img src="@Url.Content("~/SystemImages/twitter.ico")" /></span>
+                                    <input type="text" id="txtTwitterUrl" class="form-control form-control-sm" />
+                                </div>
+
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-12 col-lg-2 col-md-2">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
                                 <label col-form-label">Youtube Url:</label>
                             </div>
                             <div class="col-sm-12 col-lg-10 col-md-10">
-                                <input type="text" id="txtYoutubeUrl" class="form-control" />
+                                <div class="input-group nomarginbottom">
+                                    <span class="input-group-addon customaddon" id="basic-addon2"><img src="@Url.Content("~/SystemImages/youtube.ico")" /></span>
+                                    <input type="text" id="txtYoutubeUrl" class="form-control form-control-sm" />
+                                </div>
+
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-12 col-lg-2 col-md-2">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
                                 <label col-form-label">Instagram Url:</label>
                             </div>
                             <div class="col-sm-12 col-lg-10 col-md-10">
-                                <input type="text" id="txtInstagramUrl" class="form-control" />
+                                <div class="input-group nomarginbottom">
+                                    <span class="input-group-addon customaddon" id="basic-addon2"><img src="@Url.Content("~/SystemImages/instagram.ico")" /></span>
+                                    <input type="text" id="txtInstagramUrl" class="form-control form-control-sm" />
+                                </div>
+
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-12 col-lg-2 col-md-2">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Shopee Url:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <div class="input-group nomarginbottom">
+                                    <span class="input-group-addon customaddon" id="basic-addon2"><img src="@Url.Content("~/SystemImages/shopee.ico")" /></span>
+                                    <input type="text" id="txtShopeeUrl" class="form-control form-control-sm" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
+                                <label col-form-label">Lazada Url:</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-10 col-md-10">
+                                <input type="text" id="txtLazadaUrl" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
                                 <label col-form-label">Contact Us:</label>
                             </div>
                             <div class="col-sm-12 col-lg-10 col-md-10">
-                                <textarea id="txtContactUs" class="form-control height300"></textarea>
+                                <textarea id="txtContactUs" class="form-control form-control-sm height300"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-12 col-lg-2 col-md-2">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
                                 <label col-form-label">Privacy Policy:</label>
                             </div>
                             <div class="col-sm-12 col-lg-10 col-md-10">
-                                <textarea id="txtPrivacyPolicy" class="form-control height300"></textarea>
+                                <textarea id="txtPrivacyPolicy" class="form-control form-control-sm height300"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-12 col-lg-2 col-md-2">
+                            <div class="col-sm-12 col-lg-1 col-md-1">
                                 <label col-form-label">Term & Conditions:</label>
                             </div>
                             <div class="col-sm-12 col-lg-10 col-md-10">
-                                <textarea id="txtTermsNConditions" class="form-control height300"></textarea>
+                                <textarea id="txtTermsNConditions" class="form-control form-control-sm height300"></textarea>
                             </div>
                         </div>
                         <div id="divSave" class="form-group row div-centerbtn">

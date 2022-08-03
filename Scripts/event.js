@@ -14,14 +14,9 @@
         zindex: 1050
     });
 
-    //$("#btnNewEvent").on("click", function () {
-    //    $("#HMode").val('New');
-    //    ClearEventModal();
-    //    $("#EventModal").iziModal('open');
-    //});
-
     BindCountryCheckBox();
     BindEventType();
+    BindCountry();
 
     $("#chkAll").change(function () {
         $("[name='chkCountry']").prop('checked', this.checked);
@@ -31,6 +26,17 @@
         uiLibrary: 'bootstrap4',
         format: 'dd mmm yyyy'
     });
+
+    $('#SEventDateFrom').datepicker({
+        uiLibrary: 'bootstrap4',
+        format: 'dd mmm yyyy'
+    });
+
+    $('#SEventDateTo').datepicker({
+        uiLibrary: 'bootstrap4',
+        format: 'dd mmm yyyy'
+    });
+    
 
     new Cleave('.eventcost', {
         numeral: true,
@@ -68,6 +74,16 @@
         $("#FlyerName").show();
         $("#FlyerName").html($("#flyerupload")[0].files[0].name);
         $("#btnFlyerRemove").show();
+
+        var extension = $("#FlyerName").html().substr(($("#FlyerName").html().lastIndexOf('.') + 1));
+        if (extension == 'pdf') {
+            $("#flyerico").removeClass('icofont-image');
+            $("#flyerico").addClass('icofont-file-pdf');
+        } else {
+            $("#flyerico").removeClass('icofont-file-pdf');
+            $("#flyerico").addClass('icofont-image');
+        }
+
     });
 
     $("#btnFlyerRemove").on('click', function () {
@@ -104,35 +120,77 @@
     });
 
     $("#btnFlyer").on('click', function () {
-
-        if ($("#txtEventCode").val()) {
-            var url = $("#HImageLocation").val() + 'Event/' + $("#txtEventCode").val() + '.pdf';
-            window.open(
-                url,
-                '_blank' // <- This is what makes it open in a new window.
-            );
-        }  
+        if ($("#FlyerName").html() != '' && $("#HMode").val() == 'Edit') {
+            if ($("#txtEventCode").val()) {
+                var extension = $("#FlyerName").html().substr(($("#FlyerName").html().lastIndexOf('.') + 1));
+                var url = $("#HImageLocation").val() + 'Event/' + $("#txtEventCode").val() + '.' + extension;
+                window.open(
+                    url,
+                    '_blank' // <- This is what makes it open in a new window.
+                );
+            }
+        }
+        
     });
+
+    $("#btnSearchClear").on('click', function () {
+        ClearAdvancedSearch();
+    });
+
+    $("#btnSearchEvent").on('click', function () {
+        BindEvent();
+    });
+}
+
+function ClearAdvancedSearch() {
+    $("#SCountry").val('');
+    $("#SEventType").val('');
+    $("#SEventDateFrom").val('');
+    $("#SEventDateTo").val('');
+    BindEvent();
+}
+
+function BindCountry() {
+    var obj;
+    if ($("#hVIPUserRole").val() == '1') {
+        obj = {};
+    } else {
+        obj = {
+            CountryList: $("#hCountryList").val(),
+        }
+    }
+
+    CalltoApiController($("#HGetCountry").val(), obj, 'CountryResponse');
+}
+
+function CountryResponse(response) {
+    DropdownResponse(response, 'SCountry', 'CountryID', 'CountryName', '', true);
 }
 
 function AddEvent() {
     $("#HMode").val('New');
     ClearEventModal();
+    ResetEventTimeControl();
     $("#EventModal").iziModal('open');
 }
 
 function BindEvent() {
     $('#tblEvent tbody').empty();
 
-    //var v1 = '';
-    //if ($("#hVIPUserRole").val() == '2') {
-    //    v1 = $("#hCountryList").val()
-    //}
+    var v1 = '';
+    if ($("#hVIPUserRole").val() == '2') {
+        v1 = $("#hCountryList").val()
+    }
 
     var obj = {
+        PartnerCountry: $("#SCountry").children("option:selected").val(),
+        EventTypeID: $("#SEventType").children("option:selected").val(),
+        EventDateFrom: $("#SEventDateFrom").val(),
+        EventDateTo: $("#SEventDateTo").val(),
+        Title: $("#STitle").val(),
         //ProductName: $("#SProductName").val(),
         //ActiveStatus: $("#SStatus").children("option:selected").val(),
-        //CountryList: v1,
+        CountryList: v1,
     };
     CalltoApiController($("#HGetEvent").val(), obj, 'EventResponse');
 }
@@ -149,37 +207,85 @@ function EventResponse(response) {
         "bLengthChange": false,
         "pageLength": 50,
         "ordering": false,
+        "oLanguage": {
+            "sSearch": "Quick Search:"
+        },
         buttons: [
             {
-                className: 'btn btn-sm btn-grd-info',
-                text: '<i class="ion- plus - round"></i> Add Event',
+                className: 'btn btn-sm',
+                text: '<i class="ion-plus-round"></i> Add Event',
                 action: function (e, dt, node, config) {
                     AddEvent();
                 },
-                titleAttr: 'Refresh Log'
+                titleAttr: 'Add Event'
+            },
+            {
+                className: 'btn btn-sm advsearch',
+                text: '<i id="asi" class="icofont icofont-caret-down"></i> Advanced Search',
+                action: function (e, dt, node, config) {
+                    if (!$('#AdvanceSearch').is(':visible')) {
+                        $("#asi").removeClass('icofont-caret-down');
+                        $("#asi").addClass('icofont icofont-caret-up');
+                    } else {
+                        $("#asi").removeClass('icofont-caret-up');
+                        $("#asi").addClass('icofont-caret-down');
+                    }
+                    $("#AdvanceSearch").slideToggle(500);
+                },
+                init: function (dt, node, config) {
+                    
+                },
+                titleAttr: 'Advanced Search'
             }
         ],
         "columns": [
             { "data": "EventCode", width: "4%", className: "align-center" },
-            { "data": "EventCode", width: "7%", className: "align-center" },
+            { "data": "EventCode", width: "5%", className: "align-center" },
+            { "data": "Countrylist", width: "7%", className: "align-center" },
             { "data": "EventDate", width: "8%", className: "align-center" },
-            { "data": "EventTime", width: "8%" },
-            //{ "data": "EventName", width: "10%" },
-            { "data": "Countrylist", width: "20%", },
-            { "data": "EventTypeName", width: "16%"},
-            { "data": "CostUSD", width: "7%", className: "align-right" },
-            { "data": "RewardPoints", width: "10%", className: "align-right pr10" },
+            { "data": "EventTime", width: "8%", className: "align-center" },
+            { "data": "EventTypeName", width: "13%" },
+            { "data": "Title", width: "20%" },
+            { "data": "Venue", width: "11%" },
+            { "data": "EventFlyer", width: "4%", className: "align-center"},
+            { "data": "CostUSD", width: "10%", className: "align-right" },
+            { "data": "RewardPoints", width: "5%", className: "align-right pr10" },
         ],
         "columnDefs": [
             {
                 "targets": 0,
                 "data": "EventCode",
                 "render": function (data) {
-                    return '<button type="button" title="Edit Event" class="gridbtnedit" onclick="EventEdit(this);"><i class="icon-note"></i></button>';
+                    return '<button type="button" title="Edit Event" class="gridbtnedit" onclick="EventEdit(this);"><i class="icon-note"></i> Edit</button>';
+                },
+            },
+            {
+                "targets": 1,
+                "data": "EventCode",
+                "render": function (data) {
+                    return '<button type="button" title="Edit Event" class="gridbtnregister" onclick="GoRegisterLink(this);"><i class="icofont icofont-external-link"></i> Register</button>';
+                },
+            },
+            {
+                "targets": 8,
+                "data": "EventFlyer",
+                "render": function (data) {
+                    return '<button type="button" title="Flyer Photo" class="gridbtnphoto" onclick="FlyerPhoto(this);"><i class="icon-picture"></i></button>';
                 },
             },
         ],
     });
+}
+
+function GoRegisterLink(row) {
+    var currentRow = $(row).closest("tr");
+    var data = $('#tblEvent').DataTable().row(currentRow).data();
+
+    var url = $("#HTrainingRegister").val() + '?EventCode=' + data["EventCode"];
+    window.open(
+        url,
+        '_blank' // <- This is what makes it open in a new window.
+    );
 }
 
 function EventSave() {
@@ -203,13 +309,13 @@ function EventSave() {
             CostUSD: $("#txtCost").val(),
             RewardPoints: $("#txtRewardPoints").val(),
             Environment: $('input[name="rdoEnvironment"]:checked').val(),
-            Venue: $('#Venue').children("option:selected").val(),
+            Venue: $('#Venue').val(),
             EventAddress: $("#txtAddress").val(),
             EventLink: $("#txtEventLink").val(),
             OutlookCalendarICS: $("#hcalendaruploadvalue").val(),
             OutlookCalendarFileName: $("#CalendarName").html(),
             EventFlyer: $("#hflyeruploadvalue").val(),
-            EventFlyerFlyerName: $("#FlyerName").html(),
+            EventFlyerFileName: $("#FlyerName").html(),
             UpdatedBy: $("#hID").val(),
             Mode: $("#HMode").val(),
         };
@@ -251,7 +357,19 @@ function EventSave() {
     }
 }
 
+function FlyerPhoto(row) {
+    var currentRow = $(row).closest("tr");
+    var data = $('#tblEvent').DataTable().row(currentRow).data();
+
+    var url = $("#HImageLocation").val() + data["EventFlyer"];
+    window.open(
+        url,
+        '_blank' // <- This is what makes it open in a new window.
+    );
+}
+
 function EventEdit(row) {
+    ResetEventTimeControl();
     $("#HMode").val('Edit');
 
     var currentRow = $(row).closest("tr");
@@ -260,10 +378,11 @@ function EventEdit(row) {
     $('input[name="rdoStatus"][value="' + data["ActiveStatus"] + '"]').prop('checked', true);
     $("#txtEventDate").val(data["EventDate"]);
     $("#txtEventTimeFrom").val(data["EventTimeFrom"]);
-    $(".timefrom").attr("value", data["EventTimeFrom"])
-    $(".timeto").attr("value", data["EventTimeTo"])
+    //$(".timefrom").attr("value", '00:00');
+    //$(".timeto").attr("value", '00:00');
+    $(".timefrom").attr("value", data["EventTimeFrom"]);
+    $(".timeto").attr("value", data["EventTimeTo"]);
     $("#txtEventTimeTo").val(data["EventTimeTo"]);
-    $(".TimeTo").val(data["EventTimeTo"]);
     $("#txtEventName").val(data["EventName"]);
     $("#EventType").val(data["EventTypeID"]);
     $("#CourseCode").val(data["CourseCode"]);
@@ -279,6 +398,14 @@ function EventEdit(row) {
     $("#CalendarName").html(data["OutlookCalendarFileName"]);
     $("#FlyerName").html(data["EventFlyerFileName"]);
 
+    var extension = $("#FlyerName").html().substr(($("#FlyerName").html().lastIndexOf('.') + 1));
+    if (extension == 'pdf') {
+        $("#flyerico").removeClass('icofont-image');
+        $("#flyerico").addClass('icofont-file-pdf');
+    } else {
+        $("#flyerico").removeClass('icofont-file-pdf');
+        $("#flyerico").addClass('icofont-image');
+    }
 
     $("input[type=checkbox][name='chkCountry']").each(function () {
 
@@ -415,6 +542,7 @@ function BindEventType() {
 
 function GetEventTypeResponse(response) {
     DropdownResponse(response, 'EventType', 'EventTypeID', 'EventTypeName', '', false);
+    DropdownResponse(response, 'SEventType', 'EventTypeID', 'EventTypeName', '', true);
 }
 
 function ControlDisable() {
@@ -442,6 +570,8 @@ function ClearEventModal() {
     $("#txtEventDate").val('');
     $("#txtEventTime").val('');
     $("#txtEventName").val('');
+    $(".timefrom").attr("value", '00:00');
+    $(".timeto").attr("value", '00:00');
     $("#EventType").val($("#EventType option:first").val());
     $("#CourseCode").val($("#CourseCode").val());
     $("#txtTitle").val('');
@@ -469,4 +599,11 @@ function ClearEventModal() {
     $("#btnFlyerRemove").hide();
 
     ControlDisable();
+}
+
+function ResetEventTimeControl() {
+    $('.dateandtime').remove();
+    $('#txtEventTimeFrom').addClass('dateandtime timefrom form-control form-control-sm');
+    $('#txtEventTimeTo').addClass('dateandtime timeto form-control form-control-sm');
+    $('.dateandtime').dateAndTime();
 }
