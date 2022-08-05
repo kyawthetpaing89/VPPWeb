@@ -206,7 +206,7 @@ function EventResponse(response) {
         "bPaginate": true,
         "bLengthChange": false,
         "pageLength": 50,
-        "ordering": false,
+        "ordering": true,
         "oLanguage": {
             "sSearch": "Quick Search:"
         },
@@ -239,14 +239,13 @@ function EventResponse(response) {
             }
         ],
         "columns": [
-            { "data": "EventCode", width: "4%", className: "align-center" },
             { "data": "EventCode", width: "5%", className: "align-center" },
-            { "data": "Countrylist", width: "7%", className: "align-center" },
+            { "data": "Countrylist", width: "5%", className: "align-center" },
             { "data": "EventDate", width: "8%", className: "align-center" },
-            { "data": "EventTime", width: "8%", className: "align-center" },
             { "data": "EventTypeName", width: "13%" },
-            { "data": "Title", width: "20%" },
-            { "data": "Venue", width: "11%" },
+            { "data": "Title", width: "34%" },
+            { "data": "ShowVenue", width: "7%" },
+            { "data": "RegisteredPeople", width: "8%", className: "align-right" },
             { "data": "EventFlyer", width: "4%", className: "align-center"},
             { "data": "CostUSD", width: "10%", className: "align-right" },
             { "data": "RewardPoints", width: "5%", className: "align-right pr10" },
@@ -256,18 +255,19 @@ function EventResponse(response) {
                 "targets": 0,
                 "data": "EventCode",
                 "render": function (data) {
-                    return '<button type="button" title="Edit Event" class="gridbtnedit" onclick="EventEdit(this);"><i class="icon-note"></i> Edit</button>';
+                    return '<button type="button" title="Edit Event" style="width:70px" class="gridbtnedit" onclick="EventEdit(this);"><i class="icon-note"></i> Edit</button><hr style="margin:2px" />' +
+                        '<button type="button" title="Register Event" style="width:70px" class="gridbtnregister" onclick="GoRegisterLink(this);"><i class="icofont icofont-external-link"></i> Register</button>';
                 },
             },
             {
-                "targets": 1,
-                "data": "EventCode",
-                "render": function (data) {
-                    return '<button type="button" title="Edit Event" class="gridbtnregister" onclick="GoRegisterLink(this);"><i class="icofont icofont-external-link"></i> Register</button>';
+                "targets": 2,
+                "data": "EventDate",
+                "render": function (data,type,row) {
+                    return row.EventDate + '<br/>' + row.EventTime;
                 },
             },
             {
-                "targets": 8,
+                "targets": 7,
                 "data": "EventFlyer",
                 "render": function (data) {
                     return '<button type="button" title="Flyer Photo" class="gridbtnphoto" onclick="FlyerPhoto(this);"><i class="icon-picture"></i></button>';
@@ -306,6 +306,8 @@ function EventSave() {
             Title: $("#txtTitle").val(),
             Agenda: $("#txtAgenda").val(),
             Speakers: $("#txtSpeaker").val(),
+            Language: $('#ddlLanguage').children("option:selected").val(),
+            Certificate: $('input[name="rdoCertificate"]:checked').val(),
             CostUSD: $("#txtCost").val(),
             RewardPoints: $("#txtRewardPoints").val(),
             Environment: $('input[name="rdoEnvironment"]:checked').val(),
@@ -389,6 +391,8 @@ function EventEdit(row) {
     $("#txtTitle").val(data["Title"]);
     $("#txtAgenda").val(data["Agenda"]);
     $("#txtSpeaker").val(data["Speakers"]);
+    $("#ddlLanguage").val(data["Language"]);
+    $('input[name="rdoCertificate"][value="' + data["Certificate"] + '"]').prop('checked', true);
     $("#txtCost").val(data["CostUSD"]);
     $("#txtRewardPoints").val(data["RewardPoints"]);
     $('input[name="rdoEnvironment"][value="' + data["Environment"] + '"]').prop('checked', true);
@@ -577,6 +581,8 @@ function ClearEventModal() {
     $("#txtTitle").val('');
     $("#txtAgenda").val('');
     $("#txtSpeaker").val('');
+    $("#ddlLanguage").val($("#ddlLanguage option:first").val());
+    $("#rdoCNo").prop('checked', true);
     $("#txtCost").val('');
     $("#rdoPhysical").prop('checked', true);
     $("#Venue").val('');

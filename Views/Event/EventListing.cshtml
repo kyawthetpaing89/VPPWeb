@@ -51,14 +51,13 @@
                             <table id="tblEvent" class="table table-striped" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th></th>
-                                        <th></th>
+                                        <th>Action</th>
                                         <th>Country</th>
-                                        <th>Event Date</th>
-                                        <th>Event Time</th>
+                                        <th>Date Time</th>
                                         <th>Event Type</th>
                                         <th>Title</th>
                                         <th>Venue</th>
+                                        <th>Register</th>
                                         <th>Flyer</th>
                                         <th>Cost Fee (USD)</th>
                                         <th>Points</th>
@@ -169,6 +168,33 @@
             </div>
         </div>
         <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Language:</label>
+            <div class="col-sm-8">
+                <select id="sbLanguage" class="form-control form-control-sm">
+                    <option value="English">English</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Certificate:</label>
+            <div class="col-sm-8">
+                <div class="form-radio">
+                    <div class="radio radiofill radio-primary radio-inline">
+                        <label>
+                            <input id="rdoCYes" type="radio" name="rdoCertificate" value="1" checked>
+                            <i class="helper"></i>Yes
+                        </label>
+                    </div>
+                    <div class="radio radiofill radio-primary radio-inline">
+                        <label>
+                            <input id="rdoCNo" type="radio" name="rdoCertificate" value="0">
+                            <i class="helper"></i>No
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
             <label class="col-sm-3 col-form-label">Cost Fee (USD):</label>
             <div class="col-sm-3">
                 <input type="text" id="txtCost" maxlength="10" class="form-control form-control-sm eventcost align-right">
@@ -263,7 +289,7 @@
 <input type="hidden" id="HMode" />
 
 @section Scripts{
-    <script src="@Url.Content("~/Scripts/event.js?v=8")"></script>
+    <script src="@Url.Content("~/Scripts/event.js?v=9")"></script>
     <script src="@Url.Content("~/Scripts/jquery.dateandtime.js?v=1")"></script>
 
     <script type="text/javascript">

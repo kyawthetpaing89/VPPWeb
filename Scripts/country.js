@@ -336,6 +336,9 @@ function FooterCountryChangeResponse(response) {
         $("#txtTwitterUrl").val(data[0].TwitterUrl);
         $("#txtYoutubeUrl").val(data[0].YoutubeUrl);
         $("#txtInstagramUrl").val(data[0].InstagramUrl);
+        $("#txtShopeeUrl").val(data[0].ShopeeUrl);
+        $("#txtLazadaUrl").val(data[0].LazadaUrl);
+        $("#txtTikTokUrl").val(data[0].TikTokUrl);
         $("#txtContactUs").val(data[0].ContactUs);
         $("#txtPrivacyPolicy").val(data[0].PrivacyPolicy);
         $("#txtTermsNConditions").val(data[0].TermsAndConditions);
@@ -347,6 +350,9 @@ function FooterCountryChangeResponse(response) {
         $("#txtTwitterUrl").val('');
         $("#txtYoutubeUrl").val('');
         $("#txtInstagramUrl").val('');
+        $("#txtShopeeUrl").val('');
+        $("#txtLazadaUrl").val('');
+        $("#txtTikTokUrl").val('');
         $("#txtContactUs").val('');
         $("#txtPrivacyPolicy").val('');
         $("#txtTermsNConditions").val('');
@@ -364,6 +370,9 @@ function FooterPageFooterUpdate() {
         TwitterUrl: $("#txtTwitterUrl").val(),
         YoutubeUrl: $("#txtYoutubeUrl").val(),
         InstagramUrl: $("#txtInstagramUrl").val(),
+        ShopeeUrl: $("#txtShopeeUrl").val(),
+        LazadaUrl: $("#txtLazadaUrl").val(),
+        TikTokUrl: $("#txtTikTokUrl").val(),
         ContactUs: $("#txtContactUs").val(),
         PrivacyPolicy: $("#txtPrivacyPolicy").val(),
         TermsAndConditions: $("#txtTermsNConditions").val(),
