@@ -1,6 +1,6 @@
 ﻿function EventListingLoad() {
 
-    BindEvent();
+    BindEvent();// show table
 
     $("#EventModal").iziModal({
         title: 'Add Event',
@@ -12,15 +12,17 @@
         overlayClose: false,
         width: '50%',
         zindex: 1050
-    });
+    }); // popup setting
 
     BindCountryCheckBox();
+
     BindEventType();
+
     BindCountry();
 
     $("#chkAll").change(function () {
         $("[name='chkCountry']").prop('checked', this.checked);
-    });
+    }); // check, uncheck (All) for country list check box
 
     $('#txtEventDate').datepicker({
         uiLibrary: 'bootstrap4',
@@ -37,16 +39,15 @@
         format: 'dd mmm yyyy'
     });
     
-
     new Cleave('.eventcost', {
         numeral: true,
-    });
+    }); // thousand separator & number only accept
 
     new Cleave('.points', {
         numeral: true,
-    });
+    }); // thousand separator & number only accept
 
-    ControlDisable();
+    ControlDisable(); //Enable, Disable Venue and Address depend on Environment(Physical, Online)
 
     $('input[type=radio][name=rdoEnvironment]').change(function () {
         ControlDisable();
@@ -197,12 +198,14 @@ function BindEvent() {
 
 function EventResponse(response) {
     $('#tblEvent').DataTable({
+        scrollY: '500px',
+        scrollCollapse: true,
         dom: 'Bfltip',
         data: JSON.parse(response),
         datasrc: "",
         destroy: true,
         searching: true,
-        "bInfo": false,
+        "bInfo": true,
         "bPaginate": true,
         "bLengthChange": false,
         "pageLength": 50,

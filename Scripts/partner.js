@@ -60,6 +60,23 @@
 
     BindPartner();
     BindCountry();
+
+    $("#btnSearchClear").on('click', function () {
+        ClearPartnerSearch();
+    });
+
+    $("#btnSearchEvent").on('click', function () {
+        BindPartner();
+    });
+}
+
+function ClearPartnerSearch() {
+    $("#SCountry").val('');
+    $("#StxtCompanyName").val('');
+    $("#StxtName").val('');
+    $("#StxtEmail").val('');
+    $("#SPartnerStatus").val('');
+    BindPartner();
 }
 
 function BindCountry() {
@@ -164,7 +181,7 @@ function BindPartner() {
     $('#tblVIPPartner tbody').empty();
 
     var obj = {
-        Company_Name: $("#StxtCompanyName").val(),
+        CompanyName: $("#StxtCompanyName").val(),
         CountryID: $("#SCountry").children("option:selected").val(),
         Email: $("#StxtEmail").val(),
         Name: $("#StxtName").val(),
@@ -174,70 +191,107 @@ function BindPartner() {
 }
 
 function GetVIPPartnerResponse(response) {
+    var groupColumn = 2;
     $('#tblVIPPartner').DataTable({
-        //responsive: true,
-        scrollY: '1000px',
-        scrollX: true,
+        scrollY: '500px',
         scrollCollapse: true,
-        fixedColumns: {
-            left: 2,
-        },
-        fixedHeader: true,
-        autoWidth: false,
+        dom: 'Bfltip',
         data: JSON.parse(response),
         datasrc: "",
         destroy: true,
         searching: true,
-        "bInfo": false,
+        "bInfo": true,
         "bPaginate": true,
         "bLengthChange": false,
         "pageLength": 50,
-        "ordering": false,
+        "ordering": true,
+        //drawCallback: function (settings) {
+        //    var api = this.api();
+        //    var rows = api.rows({ page: 'current' }).nodes();
+        //    var last = null;
+
+        //    api
+        //        .column(groupColumn, { page: 'current' })
+        //        .data()
+        //        .each(function (group, i) {
+        //            if (last !== group) {
+        //                $(rows)
+        //                    .eq(i)
+        //                    .before('<tr class="group"><td colspan="9">' + group + '</td></tr>');
+
+        //                last = group;
+        //            }
+        //        });
+        //},
+        "oLanguage": {
+            "sSearch": "Quick Search:"
+        },
+        buttons: [
+            {
+                className: 'btn btn-sm advsearch',
+                text: '<i id="asi" class="icofont icofont-caret-down"></i> Advanced Search',
+                action: function (e, dt, node, config) {
+                    if (!$('#AdvanceSearch').is(':visible')) {
+                        $("#asi").removeClass('icofont-caret-down');
+                        $("#asi").addClass('icofont icofont-caret-up');
+                    } else {
+                        $("#asi").removeClass('icofont-caret-up');
+                        $("#asi").addClass('icofont-caret-down');
+                    }
+                    $("#AdvanceSearch").slideToggle(500);
+                },
+                init: function (dt, node, config) {
+
+                },
+                titleAttr: 'Advanced Search'
+            }
+        ],
         "columns": [
-            { "data": "PartnerStatus", width: "10%", className: "align-center" },
-            { "data": "Register_No", width: "10%", className: "align-center" },
-            { "data": "Company_Name", width: "10%"},
-            { "data": "Country", width: "10%"},
-            { "data": "Address", width: "10%" },
-            { "data": "FirstName", width: "10%" },
-            { "data": "LastName", width: "10%" },
-            { "data": "Email", width: "10%" },
-            { "data": "City", width: "10%"},
-            { "data": "ZipCode", width: "10%"},
-            { "data": "Location_No", width: "10%"},
-            { "data": "Partner_Type", width: "10%"},
-            { "data": "Business_Focus", width: "10%" },
-            { "data": "EmailNoti", width: "10%", className: "align-center" },
-            { "data": "Prefix", width: "10%", className: "align-center" },
+            { "data": "PartnerStatus", width: "5%", className: "align-center" },
+            //{ "data": "PartnerStatus", width: "5%", className: "align-center" },
+            { "data": "Country", width: "5%" },
+            { "data": "Company_Name", width: "15%"},           
+/*            { "data": "Address", width: "10%" },*/
+            { "data": "FullName", width: "10%" },
+            { "data": "Email", width: "7%" },
+            { "data": "BalanceWithTS", width: "5%", className: "align-right"},
+            { "data": "Partner_Type", width: "7%"},
+            { "data": "Business_Focus", width: "8%" },            
             { "data": "Phone", width: "10%" },
             { "data": "Job_Title", width: "10%" },
-            { "data": "Website", width: "10%" },
         ],
         "columnDefs": [
             {
                 "targets": 0,
-                "data": "PartnerStatus",
+                "data": "EventCode",
                 "render": function (data) {
-                    var t1 = 'New';
-                    var c1 = 'label-primary';
-                    if (data == '2') {
-                        t1 = 'Wel'
-                        c1 = 'label-success';
-                    } else if (data == '3') {
-                        t1 = 'Re1'
-                        c1 = 'label-inverse';
-                    } else if (data == '4') {
-                        t1 = 'Re2'
-                        c1 = 'label-warning';
-                    } else if (data == '5') {
-                        t1 = 'RPM'
-                        c1 = 'label-danger';
-                    } else if (data == '0') {
-                        return '';
-                    }
-                    return '<span class="pcoded-badge label '+ c1 +'">'+ t1 +'</span>';
+                    return '<button type="button" title="Edit Event" style="width:70px" class="gridbtnedit" onclick="EventEdit(this);"><i class="icon-note"></i> Edit</button>';
                 },
-            },           
+            },
+            //{
+            //    "targets": 1,
+            //    "data": "PartnerStatus",
+            //    "render": function (data) {
+            //        var t1 = 'New';
+            //        var c1 = 'label-primary';
+            //        if (data == '2') {
+            //            t1 = 'Wel'
+            //            c1 = 'label-success';
+            //        } else if (data == '3') {
+            //            t1 = 'Re1'
+            //            c1 = 'label-inverse';
+            //        } else if (data == '4') {
+            //            t1 = 'Re2'
+            //            c1 = 'label-warning';
+            //        } else if (data == '5') {
+            //            t1 = 'RPM'
+            //            c1 = 'label-danger';
+            //        } else if (data == '0') {
+            //            return '';
+            //        }
+            //        return '<span class="pcoded-badge label '+ c1 +'">'+ t1 +'</span>';
+            //    },
+            //},
         ],
     });
 }
@@ -479,8 +533,8 @@ function BindPartnerLoginLog() {
 }
 
 function PartnerLoginLogResponse(response) {
+    var groupColumn = 2;
     $('#tblPartnerLoginLog').DataTable({
-
         data: JSON.parse(response),
         datasrc: "",
         destroy: true,
@@ -490,21 +544,24 @@ function PartnerLoginLogResponse(response) {
         "bPaginate": true,
         "bLengthChange": false,
         "pageLength": 50,
-        "ordering": false,
+        "ordering": true,
+        "oLanguage": {
+            "sSearch": "Quick Search:"
+        },
         "columns": [
-            { "data": "Email", width: "10%" },
-            { "data": "Email", width: "20%" },
-            { "data": "CountryName", width: "20%" },
-            { "data": "FirstName", width: "20%" },
-            { "data": "LastName", width: "20%" },     
-            { "data": "LoginFrequent", width: "10%" },
+            { "data": "Email", width: "5%" },
+            { "data": "CountryName", width: "5%" },
+            { "data": "Company_Name", width: "15%" },
+            { "data": "FullName", width: "10%" },
+            { "data": "Email", width: "7%" },     
+            { "data": "LoginFrequent", width: "5%", className: "align-right" },
         ],
         "columnDefs": [
             {
                 "targets": 0,
                 "data": "Email",
                 "render": function (data) {                  
-                    return '<button type = "button" style="width:70px;" class="btn btn-grd-info gridbtn" onclick= "LoginDetail(this);" > <i class="icon-note"></i>Detail</button >';
+                    return '<button type = "button" style="width:70px;" class="gridbtndetail" onclick= "LoginDetail(this);" > <i class="icofont icofont-info-circle"></i>Detail</button >';
                 },
             },
         ],

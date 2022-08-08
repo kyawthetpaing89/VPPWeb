@@ -1,4 +1,11 @@
-﻿.customaddon {
+﻿tr.group,
+tr.group:hover {
+    background-color: #68a3a3 !important;
+    text-align: center;
+    color: white;
+}
+
+.customaddon {
     background-color: #e9ecef;
 }
 
@@ -84,6 +91,12 @@ input[type=search]::-webkit-search-cancel-button {
     font-size: 18px;
     color: midnightblue;
     font-weight: bold;
+}
+
+.gridbtndetail {
+    background-color: #edd8cc;
+    border: 1px dashed black;
+    cursor: pointer;
 }
 
 .gridbtnedit{

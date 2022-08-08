@@ -44,7 +44,7 @@
     <link href="@Url.Content("~/Content/iziModal.min.css")" rel="stylesheet" />
 
     <!--TBS Style-->
-    <link href="@Url.Content("~/Content/common.css?v=14")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/common.css?v=15")" rel="stylesheet" type="text/css" />
 
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
@@ -359,14 +359,20 @@
                                         </ul>
                                     </li>
                                 </ul>*@
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class=" ">
-                                    <a href="@Url.Action("PartnerList","Partner")">
-                                        <span class="pcoded-micon"><i class="icon-people"></i></span>
-                                        <span class="pcoded-mtext">VIP Partner Listing</span>
-                                    </a>
-                                </li>
-                            </ul>
+                        <ul class="pcoded-item pcoded-left-item">
+                            <li class=" ">
+                                <a href="@Url.Action("PartnerList","Partner")">
+                                    <span class="pcoded-micon"><i class="icon-people"></i></span>
+                                    <span class="pcoded-mtext">VIP Partner Listing</span>
+                                </a>
+                            </li>
+                            <li class=" ">
+                                <a href="@Url.Action("PartnerLoginLog","Log")">
+                                    <span class="pcoded-micon"><i class="icon-cloud-download"></i></span>
+                                    <span class="pcoded-mtext">Login Frequency</span>
+                                </a>
+                            </li>
+                        </ul>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
@@ -452,12 +458,6 @@
                                     <a href="@Url.Action("importLog","Import")">
                                         <span class="pcoded-micon"><i class="icon-cloud-download"></i></span>
                                         <span class="pcoded-mtext">Import Log</span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="@Url.Action("PartnerLoginLog","Log")">
-                                        <span class="pcoded-micon"><i class="icon-cloud-download"></i></span>
-                                        <span class="pcoded-mtext">Partner Login Frequency</span>
                                     </a>
                                 </li>
                             </ul>
