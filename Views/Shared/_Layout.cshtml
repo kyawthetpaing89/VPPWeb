@@ -359,20 +359,20 @@
                                         </ul>
                                     </li>
                                 </ul>*@
-                        <ul class="pcoded-item pcoded-left-item">
-                            <li class=" ">
-                                <a href="@Url.Action("PartnerList","Partner")">
-                                    <span class="pcoded-micon"><i class="icon-people"></i></span>
-                                    <span class="pcoded-mtext">VIP Partner Listing</span>
-                                </a>
-                            </li>
-                            <li class=" ">
-                                <a href="@Url.Action("PartnerLoginLog","Log")">
-                                    <span class="pcoded-micon"><i class="icon-cloud-download"></i></span>
-                                    <span class="pcoded-mtext">Login Frequency</span>
-                                </a>
-                            </li>
-                        </ul>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class=" ">
+                                    <a href="@Url.Action("PartnerList","Partner")">
+                                        <span class="pcoded-micon"><i class="icon-people"></i></span>
+                                        <span class="pcoded-mtext">VIP Partner Listing</span>
+                                    </a>
+                                </li>
+                                <li class=" ">
+                                    <a href="@Url.Action("PartnerLoginLog","Log")">
+                                        <span class="pcoded-micon"><i class="icon-cloud-download"></i></span>
+                                        <span class="pcoded-mtext">Login Frequency</span>
+                                    </a>
+                                </li>
+                            </ul>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
@@ -452,6 +452,15 @@
                                         </a>
                                     </li>*@
                             </ul>
+                            <div class="pcoded-navigatio-lavel">Marketing Assets</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class=" ">
+                                    <a href="@Url.Action("Videos","MarketingAssets")">
+                                        <span class="pcoded-micon"><i class="icon-cloud-download"></i></span>
+                                        <span class="pcoded-mtext">Videos</span>
+                                    </a>
+                                </li>
+                            </ul>
                             <div class="pcoded-navigatio-lavel">Log</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class=" ">
@@ -485,7 +494,7 @@
     <input id="HGetMessage" type="hidden" value="@Url.Action("GetMessage", "api/MessageApi")" />
     <input id="HImageLocation" type="hidden" value="@Url.Content("~/SystemImages/")" />
     <input id="HTrainingRegister" type="hidden" value="https://viplogin.dlink.com.sg/TrainingEvents/Training/TrainingRegister" />
-    
+
     <div id="divloader" class="waitingloader" style="background: url('@Url.Content("~/SystemImages/loading.gif")') 50% 50% no-repeat rgb(249,249,249)"></div>
 
     <!-- Required Jquery -->

@@ -183,6 +183,7 @@
     <Compile Include="Controllers\ImportApiController.cs" />
     <Compile Include="Controllers\ImportController.cs" />
     <Compile Include="Controllers\LogController.cs" />
+    <Compile Include="Controllers\MarketingAssetsController.cs" />
     <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\MultipurposeApiController.cs" />
     <Compile Include="Controllers\MultipurposeController.cs" />
@@ -1828,6 +1829,7 @@
     <Content Include="Views\Log\PartnerLoginLog.cshtml" />
     <Content Include="Views\Event\EventListing.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\MarketingAssets\Videos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Country_BL\Country_BL.csproj">
