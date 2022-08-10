@@ -1,0 +1,144 @@
+﻿
+@{
+    ViewBag.Title = "Videos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-wrapper">
+    <!-- Page body start -->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Basic Form Inputs card start -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Videos List</h5>
+                    </div>
+                    <div class="card-block">
+                        <div class="card searchcard" id="AdvanceSearch">
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <label class=" col-form-label">Title:</label>
+                                        <input id="STitle" type="search" maxlength="200" class="form-control form-control-sm">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer searchfooter div-centerbtn">
+                                <btn id="btnSearchVideosClear" class="btn btn-sm searchclearbtn"><i class="icofont icofont-delete"></i> Clear</btn>
+                                <btn id="btnSearchVideos" class="btn btn-sm searchbtn"><i class="ion-ios-search-strong"></i> Search</btn>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table id="tblVideos" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Title</th>
+                                        <th>Video Link</th>
+                                        <th>Thumbnail</th>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Page body end -->
+</div>
+
+<div id="VideoModal">
+    <div class="md-content">
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Status:</label>
+            <div class="col-sm-8">
+                <div class="form-radio">
+                    <div class="radio radiofill radio-primary radio-inline">
+                        <label>
+                            <input id="rdoInactive" type="radio" name="rdoStatus" value="0" checked>
+                            <i class="helper"></i>In-active
+                        </label>
+                    </div>
+                    <div class="radio radiofill radio-primary radio-inline">
+                        <label>
+                            <input id="rdoActive" type="radio" name="rdoStatus" value="1">
+                            <i class="helper"></i>Active
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Video Code:</label>
+            <div class="col-sm-3">
+                <input id="txtVideoCode" readonly type="text" maxlength="10" class="form-control form-control-sm">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Date:</label>
+            <div class="col-sm-3">
+                <input id="txtUploadDate" type="search" maxlength="11" class="form-control form-control-sm ">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Thumbnail Image:</label>
+            <div class="col-sm-3">
+                <button type="button" id="btnUploadThumbnail" style="padding: .5rem .75rem;" class="btn btn-block btn-sm btn-grd-warning">upload</button>
+            </div>
+            <div class="col-sm-6">
+                <span id="btnThumbnail"> <i id="thumbnailImage" class="icofont icofont-image" style="font-size:2em;color:cornflowerblue;cursor:pointer"></i></span>
+                <span id="thumbnailImageName"></span>
+                <span id="btnThumbnailRemove"><i class="icofont icofont-ui-delete" style="font-size: 2em; color: indianred;cursor:pointer"></i></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Title:</label>
+            <div class="col-sm-9">
+                <input id="txtTitle" type="text" maxlength="200" class="form-control form-control-sm ">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Video Link:</label>
+            <div class="col-sm-9">
+                <input id="txtVideoLink" type="text" maxlength="200" class="form-control form-control-sm">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Description:</label>
+            <div class="col-sm-9">
+                <input id="txtDescription" type="text" maxlength="200" class="form-control form-control-sm" />
+            </div>
+        </div>
+        <div id="divSave" class="form-group row div-centerbtn">
+            <div class="col-sm-3">
+                <button type="button" id="btnVideoClose" class="btn btn-block btn-grd-inverse">Close</button>
+            </div>
+            <div class="col-sm-3">
+                <button type="button" id="btnVideoSave" class="btn btn-block btn-grd-info"><span id="btnSaveText">Save</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="hthumbnailuploadvalue" />
+<input type="hidden" id="hthumbnailremovevalue" />
+<input id="HGetVideos" type="hidden" value="@Url.Action("GetVideos", "api/MarketingAssetsApi")" />
+<input id="thumbnailImageupload" accept="image/*" class="hidden" type="file">
+<input type="hidden" id="HMode" />
+<input id="HVideoCUD" type="hidden" value="@Url.Action("Video_CUD", "MarketingAssets")" />
+
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/videos.js?v=4")"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            VideosLoad();
+        });
+    </script>
+}

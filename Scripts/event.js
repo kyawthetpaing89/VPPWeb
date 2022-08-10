@@ -477,7 +477,7 @@ function EventErrorcheck() {
         return false;
     } else if (!$("#txtTitle").val()) {
         ShowMessage("E001", "Title");
-        $("#Title").focus();
+        $("#txtTitle").focus();
         return false;
     } else if (!$("#txtAgenda").val()) {
         ShowMessage("E001", "Agenda");

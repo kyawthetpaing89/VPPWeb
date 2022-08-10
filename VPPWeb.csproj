@@ -183,6 +183,7 @@
     <Compile Include="Controllers\ImportApiController.cs" />
     <Compile Include="Controllers\ImportController.cs" />
     <Compile Include="Controllers\LogController.cs" />
+    <Compile Include="Controllers\MarketingAssetsApiController.cs" />
     <Compile Include="Controllers\MarketingAssetsController.cs" />
     <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\MultipurposeApiController.cs" />
@@ -1761,6 +1762,7 @@
     <Content Include="Scripts\sweetalert2.js" />
     <Content Include="Scripts\sweetalert2.min.js" />
     <Content Include="Scripts\training.js" />
+    <Content Include="Scripts\videos.js" />
     <Content Include="SystemImages\fav.ico" />
     <Content Include="SystemImages\favicon.ico" />
     <Content Include="SystemImages\loading.gif" />
@@ -1829,7 +1831,7 @@
     <Content Include="Views\Log\PartnerLoginLog.cshtml" />
     <Content Include="Views\Event\EventListing.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
-    <Content Include="Views\MarketingAssets\Videos.cshtml" />
+    <Content Include="Views\MarketingAssets\VideosListing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Country_BL\Country_BL.csproj">
@@ -1851,6 +1853,10 @@
     <ProjectReference Include="..\Import_BL\Import_BL.csproj">
       <Project>{1144ac90-ef2f-4005-802a-024928e2dac3}</Project>
       <Name>Import_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MarketingAssets_BL\MarketingAssets_BL.csproj">
+      <Project>{41fba326-16c3-43ae-80a0-31197814c9ff}</Project>
+      <Name>MarketingAssets_BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Message_BL\Message_BL.csproj">
       <Project>{aa85adb9-9b13-42d6-a659-99d851e2fef0}</Project>
@@ -1887,6 +1893,10 @@
     <ProjectReference Include="..\User_BL\User_BL.csproj">
       <Project>{a0cf2a27-cb2f-43a6-b806-d60f41a34294}</Project>
       <Name>User_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Videos_BL\Videos_BL.csproj">
+      <Project>{cf741783-bffb-4e3f-ad1a-3e5cafceee7a}</Project>
+      <Name>Videos_BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\VPPModel\VPPModel.csproj">
       <Project>{3893c27b-5f6d-479d-b482-409a1d483157}</Project>
