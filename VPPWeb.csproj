@@ -1741,8 +1741,10 @@
     <Content Include="Scripts\cleave.min.js" />
     <Content Include="Scripts\common.js" />
     <Content Include="Scripts\country.js" />
+    <Content Include="Scripts\digitallibrary.js" />
     <Content Include="Scripts\enquiry.js" />
     <Content Include="Scripts\event.js" />
+    <Content Include="Scripts\fileupload.js" />
     <Content Include="Scripts\fixCol.js" />
     <Content Include="Scripts\import.js" />
     <Content Include="Scripts\iziModal.js" />
@@ -1751,6 +1753,7 @@
     <Content Include="Scripts\login.js" />
     <Content Include="Scripts\message.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\MonthPicker.js" />
     <Content Include="Scripts\multipurpose.js" />
     <Content Include="Scripts\partner.js" />
     <Content Include="Scripts\point.js" />
@@ -1832,11 +1835,17 @@
     <Content Include="Views\Event\EventListing.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\MarketingAssets\VideosListing.cshtml" />
+    <Content Include="Views\MarketingAssets\DigitalLibrary.cshtml" />
+    <Content Include="Views\MarketingAssets\CaseStudies.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Country_BL\Country_BL.csproj">
       <Project>{61a880b5-adf0-458d-a56c-02f36eafa054}</Project>
       <Name>Country_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalLibrary_BL\DigitalLibrary_BL.csproj">
+      <Project>{4934b875-efcf-4bba-aadc-8394fe6583ac}</Project>
+      <Name>DigitalLibrary_BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Enquiry_BL\Enquiry_BL.csproj">
       <Project>{270b1346-d468-4148-9c79-ae0211d58743}</Project>
@@ -1857,6 +1866,14 @@
     <ProjectReference Include="..\MarketingAssets_BL\MarketingAssets_BL.csproj">
       <Project>{41fba326-16c3-43ae-80a0-31197814c9ff}</Project>
       <Name>MarketingAssets_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MarketingDocumentType_BL\MarketingDocumentType_BL.csproj">
+      <Project>{a573db50-48fb-44bb-ba28-7b14afd229eb}</Project>
+      <Name>MarketingDocumentType_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MarketingProductCategory_BL\MarketingProductCategory_BL.csproj">
+      <Project>{2e8d85b8-f1c6-4d13-be67-f78706756b4c}</Project>
+      <Name>MarketingProductCategory_BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Message_BL\Message_BL.csproj">
       <Project>{aa85adb9-9b13-42d6-a659-99d851e2fef0}</Project>

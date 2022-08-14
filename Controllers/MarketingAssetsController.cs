@@ -10,6 +10,7 @@ using System.IO;
 using ErrorLog_BL;
 using Message_BL;
 using Videos_BL;
+using DigitalLibrary_BL;
 
 namespace VPPWeb.Controllers
 {
@@ -17,6 +18,15 @@ namespace VPPWeb.Controllers
     {
         // GET: MarketingAssets
         public ActionResult VideosListing()
+        {
+            return View();
+        }
+
+        public ActionResult DigitalLibrary()
+        {
+            return View();
+        }
+        public ActionResult CaseStudies()
         {
             return View();
         }
@@ -61,6 +71,74 @@ namespace VPPWeb.Controllers
                 {
                     ErrorMessage = exception.Message,
                     UpdatedBy = videoModel.UpdatedBy
+                };
+
+                ErrorLogBL errorLogBL = new ErrorLogBL();
+                errorLogBL.ErrorLog_Insert(errorLogModel);
+
+                MessageBL messageBL = new MessageBL();
+                MessageModel messageModel = new MessageModel
+                {
+                    MessageID = "E007"
+                };
+                return messageBL.Message_Select(messageModel);
+            }
+        }
+
+        [HttpPost]
+        public string DigitalLibrary_CUD()
+        {
+            string j1 = HttpContext.Request.Params.Get("DigitalLibraryModel");
+            DigitalLibraryModel digitalLibraryModel = JsonConvert.DeserializeObject<DigitalLibraryModel>(j1);
+            try
+            {
+                DigitalLibraryBL digitalLibraryBL = new DigitalLibraryBL();
+
+                if (digitalLibraryModel.Mode.Equals("New"))
+                {
+                    digitalLibraryModel.DigitalLibraryCode = digitalLibraryBL.GenerateDigitalLibraryCode(digitalLibraryModel);
+                }
+
+                if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + digitalLibraryModel.ThumbnailRemove)))
+                    System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + digitalLibraryModel.ThumbnailRemove));
+
+                if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + digitalLibraryModel.ResourceRemove)))
+                    System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + digitalLibraryModel.ResourceRemove));
+
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    string key = Request.Files.GetKey(i);
+                    if (key == "resource")
+                    {
+                        if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + digitalLibraryModel.ThumbnailImage)))
+                            System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + digitalLibraryModel.ThumbnailImage));
+
+                        digitalLibraryModel.ResourceFile = "MarketingAssets/DigitalLibrary/Resource/" + digitalLibraryModel.DigitalLibraryCode + '_' + DateTime.Now.ToString("yyyymmdd") + Path.GetExtension(Request.Files[i].FileName);
+                        digitalLibraryModel.ResourceFileName = Request.Files[i].FileName;
+
+                        Request.Files[i].SaveAs(Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/"), digitalLibraryModel.ResourceFile));
+                    }
+
+                    if (key == "thumbnail")
+                    {
+                        if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + digitalLibraryModel.ThumbnailImage)))
+                            System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + digitalLibraryModel.ThumbnailImage));
+
+                        digitalLibraryModel.ThumbnailImage = "MarketingAssets/DigitalLibrary/Thumbnail/" + digitalLibraryModel.DigitalLibraryCode + '_' + DateTime.Now.ToString("yyyymmdd") + Path.GetExtension(Request.Files[i].FileName);
+                        digitalLibraryModel.ThumbnailImageName = Request.Files[i].FileName;
+
+                        Request.Files[i].SaveAs(Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/"), digitalLibraryModel.ThumbnailImage));
+                    }
+                }
+
+                return digitalLibraryBL.DigitalLibrary_CUD(digitalLibraryModel);
+            }
+            catch (Exception exception)
+            {
+                ErrorLogModel errorLogModel = new ErrorLogModel
+                {
+                    ErrorMessage = exception.Message,
+                    UpdatedBy = digitalLibraryModel.UpdatedBy
                 };
 
                 ErrorLogBL errorLogBL = new ErrorLogBL();
