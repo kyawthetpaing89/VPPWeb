@@ -44,7 +44,7 @@
     <link href="@Url.Content("~/Content/iziModal.min.css")" rel="stylesheet" />
 
     <!--TBS Style-->
-    <link href="@Url.Content("~/Content/common.css?v=18")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/common.css?v=23")" rel="stylesheet" type="text/css" />
 
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
@@ -96,9 +96,9 @@
                 <div class="navbar-wrapper">
 
                     <div class="navbar-logo">
-                        <a class="mobile-menu" id="mobile-collapse" href="#!">
+                        @*<a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="feather icon-menu"></i>
-                        </a>
+                        </a>*@
                         <a href="index-1.htm">
                             <img class="img-fluid" src="@Url.Content("~/SystemImages/logo-business.png")" alt="Theme-Logo">
                         </a>
@@ -330,49 +330,71 @@
                 <div class="pcoded-wrapper">
                     <nav class="pcoded-navbar" navbar-theme="themelight1">
                         <div class="pcoded-inner-navbar main-menu">
-                            <div class="pcoded-navigatio-lavel">VIP Partner</div>
-                            @*<ul class="pcoded-item pcoded-left-item">
-                                    <li class="pcoded-hasmenu">
-                                        <a href="javascript:void(0)">
-                                            <span class="pcoded-micon"><i class="ti-layout-media-overlay-alt"></i></span>
-                                            <span class="pcoded-mtext">Footer Components</span>
-                                        </a>
-                                        <ul class="pcoded-submenu">
-                                            <li class=" ">
-                                                <a href="@Url.Action("TermsAndConditions","Multipurpose")">
-                                                    <span class="pcoded-micon"><i class="icon-book-open"></i></span>
-                                                    <span class="pcoded-mtext">Terms & Conditions</span>
-                                                </a>
-                                            </li>
-                                            <li class=" ">
-                                                <a href="@Url.Action("PrivacyAndPolicy","Multipurpose")">
-                                                    <span class="pcoded-micon"><i class="icon-book-open"></i></span>
-                                                    <span class="pcoded-mtext">Privacy & Policy</span>
-                                                </a>
-                                            </li>
-                                            <li class=" ">
-                                                <a href="@Url.Action("ContactUs","Multipurpose")">
-                                                    <span class="pcoded-micon"><i class="icon-book-open"></i></span>
-                                                    <span class="pcoded-mtext">Contact Us</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>*@
+                            @*<div class="pcoded-navigatio-lavel">VIP Partner</div>*@
+
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class=" ">
-                                    <a href="@Url.Action("PartnerList","Partner")">
-                                        <span class="pcoded-micon"><i class="icon-people"></i></span>
-                                        <span class="pcoded-mtext">VIP Partner Listing</span>
+                                <li class="pcoded-hasmenu" style="padding-top:10px">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="icon-people vippartner"></i></span>
+                                        <span class="pcoded-mtext vippartner">VIP Partner</span>
                                     </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="@Url.Action("PartnerLoginLog","Log")">
-                                        <span class="pcoded-micon"><i class="icon-cloud-download"></i></span>
-                                        <span class="pcoded-mtext">Login Frequency</span>
-                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="@Url.Action("PartnerList","Partner")">
+                                                <i class="icofont icofont-file-text vippartner"></i>
+                                                <span class="vippartner"> VIP Partner Listing</span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="@Url.Action("PartnerLoginFrequent","Partner")">
+                                                <i class="icofont icofont-sound-wave vippartner"></i>
+                                                <span class="vippartner">Login Frequency</span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
+
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="icofont icofont-chart-histogram marketingicon"></i></span>
+                                        <span class="pcoded-mtext marketingicon">Marketing Assets</span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="@Url.Action("DigitalLibrary","MarketingAssets")">
+                                                <span><i class="icofont icofont-library marketingicon"></i></span>
+                                                <span class="marketingicon">Digital Library</span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="@Url.Action("VideosListing","MarketingAssets")">
+                                                <span><i class="icofont icofont-video-alt marketingicon"></i></span>
+                                                <span class="marketingicon">Videos</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="icofont icofont-book-alt casestudiesicon"></i></span>
+                                        <span class="pcoded-mtext casestudiesicon">Case Studies</span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="@Url.Action("CaseStudiesListing","CaseStudies")">
+                                                <span><i class="icofont icofont-file-text casestudiesicon"></i></span>
+                                                <span class="casestudiesicon">CaseStudies Listing</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
@@ -382,20 +404,14 @@
                                     <ul class="pcoded-submenu">
                                         <li class=" ">
                                             <a href="@Url.Action("RewardPrizeListing","Reward")">
-                                                <span class="pcoded-micon"><i class="icon-present"></i></span>
-                                                <span class="pcoded-mtext">Reward Prize Listing</span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="@Url.Action("MinimumRedemptionPoints","Point")">
-                                                <span class="pcoded-micon"><i class="icon-magic-wand"></i></span>
-                                                <span class="pcoded-mtext">Min Redemption Points</span>
+                                                <span><i class="icon-present marketingicon"></i></span>
+                                                <span>Reward Prize Listing</span>
                                             </a>
                                         </li>
                                         <li class=" ">
                                             <a href="@Url.Action("ProductCategoryList","ProductCategory")">
-                                                <span class="pcoded-micon"><i class="icon-notebook"></i></span>
-                                                <span class="pcoded-mtext">Product Category</span>
+                                                <span><i class="icon-notebook marketingicon"></i></span>
+                                                <span>Product Category</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -429,41 +445,18 @@
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class=" ">
                                     <a href="@Url.Action("EventListing","Event")">
-                                        <span class="pcoded-micon"><i class="ti-view-list-alt"></i></span>
+                                        <span class="pcoded-micon"><i class="ti-view-list-alt eventicon"></i></span>
                                         <span class="pcoded-mtext">Event Listing</span>
                                     </a>
                                 </li>
-                                @*<li class=" ">
-                                        <a href="@Url.Action("TrainingListing","Training")">
-                                            <span class="pcoded-micon"><i class="ti-view-list-alt"></i></span>
-                                            <span class="pcoded-mtext">Training Listing</span>
-                                        </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="@Url.Action("TrainingTypeListing","Training")">
-                                            <span class="pcoded-micon"><i class="ti-view-list-alt"></i></span>
-                                            <span class="pcoded-mtext">TrainingType Listing</span>
-                                        </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="@Url.Action("EnquiryListing","Training")">
-                                            <span class="pcoded-micon"><i class="ti-view-list-alt"></i></span>
-                                            <span class="pcoded-mtext">Enquiry Listing</span>
-                                        </a>
-                                    </li>*@
                             </ul>
-                            <div class="pcoded-navigatio-lavel">Marketing Assets</div>
+
+                            <div class="pcoded-navigatio-lavel">Promotion</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class=" ">
-                                    <a href="@Url.Action("VideosListing","MarketingAssets")">
-                                        <span class="pcoded-micon"><i class="icofont icofont-video-alt"></i></span>
-                                        <span class="pcoded-mtext">Videos Listing</span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="@Url.Action("DigitalLibrary","MarketingAssets")">
-                                        <span class="pcoded-micon"><i class="icofont icofont-library"></i></span>
-                                        <span class="pcoded-mtext">Digital Library</span>
+                                    <a href="@Url.Action("PromotionListing","Promotion")">
+                                        <span class="pcoded-micon"><i class="icofont icofont-sale-discount promotionicon"></i></span>
+                                        <span class="pcoded-mtext">Promotion Listing</span>
                                     </a>
                                 </li>
                             </ul>

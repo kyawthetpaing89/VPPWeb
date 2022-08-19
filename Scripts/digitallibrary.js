@@ -84,6 +84,7 @@ function MarketingDocumentTypeResponse(response) {
 
 function SearchDigitalLibraryClear() {
     $("#STitle").val('');
+    $("#SStatus").val('');
     BindDigitalLibrary();
 }
 
@@ -95,7 +96,8 @@ function BindDigitalLibrary() {
     $('#tblDigitalLibrary tbody').empty();
 
     var obj = {
-        Title: $("#STitle").val()
+        Title: $("#STitle").val(),
+        ActiveStatus: $('#SStatus').children("option:selected").val()
     };
     CalltoApiController($("#HGetDigitalLibrary").val(), obj, 'DigitalLibraryResponse');
 }
@@ -120,7 +122,8 @@ function EditDigitalLibrary(row) {
     $("#Importance").val(data["Importance"]);
     $("#txtTitle").val(data["Title"]);
     $("#txtDescription").val(data["Description"]);
-    $("#txtUploadDate").val(data["UploadDate"]);
+    $("#uploadmonth").val(data["UploadMonth"]);
+    $("#uploadyear").val(data["UploadYear"]);
     $("#txtDownloadCount").val(data["DownloadCount"]);
 
     $("input[type=checkbox][name='chkProductCategory']").each(function () {
@@ -150,16 +153,15 @@ function EditDigitalLibrary(row) {
     $("#DigitalLibraryModal").iziModal('open');
 }
 
-
 function ClearDigitalLibrary() {
 
     let date = new Date();
-    const day = date.toLocaleString('default', { day: '2-digit' });
-    const month = date.toLocaleString('default', { month: 'short' });
-    const year = date.toLocaleString('default', { year: 'numeric' });
-
+    //const day = date.toLocaleString('default', { day: '2-digit' });
+    const month = date.toLocaleString('default', { month: '2-digit' });
+    //const year = date.toLocaleString('default', { year: 'numeric' });
     $("#txtUploadBy").val($("#layoutloginName").html());
-    $("#txtUploadDate").val(month + ' ' + year);
+    $("#uploadmonth").val(month);
+    $("#uploadyear").val(date.getFullYear());
     $("[name='chkProductCategory']").prop('checked', false);
     $("#DocumentType").val($("#DocumentType option:first").val());
     $("#Importance").val($("#Importance option:first").val());
@@ -222,8 +224,8 @@ function DigitalLibraryResponse(response) {
             { "data": "DigitalLibraryCode", width: "5%", className: "align-center" },
             { "data": "ActiveStatus", width: "5%", className: "align-center" },
             { "data": "Title", width: "22%" },
-            { "data": "Description", width: "36%" },
-            { "data": "UploadDate", width: "8%", className: "align-center" },
+            { "data": "Description", width: "31%" },
+            { "data": "UploadMMMYYYY", width: "13%", className: "align-center" },
             { "data": "DownloadCount", width: "8%", className: "align-right" },
             { "data": "ResourceFile", width: "8%", className: "align-center"  },
             { "data": "ThumbnailImage", width: "8%", className: "align-center" },
@@ -313,7 +315,7 @@ function DigitalLibrarySave() {
             ThumbnailImageName: getuploadFileName('divThumbnail'),
             Title: $("#txtTitle").val(),
             Description: $("#txtDescription").val(),
-            UploadDate: $("#txtUploadDate").val(),
+            UploadDate: $('#uploadmonth').children("option:selected").val() + '-01-'+ $('#uploadyear').children("option:selected").val(),
             UpdatedBy: $("#hID").val(),
             Mode: $("#HMode").val(),
         };

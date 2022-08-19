@@ -1,69 +1,49 @@
-﻿function VideosLoad() {
-    BindVideos();// show table
-    BindProductCategoryCheckBox();
+﻿function CaseStudiesLoad() {
 
+    uploadfileConfig('divResource', 1);
     uploadfileConfig('divThumbnail', 2);
 
-    $("#VideoModal").iziModal({
-        title: 'Add Video',
+    BindIndustryCategory();
+    BindCaseStudies();// show table
+    BindProductCategoryCheckBox();
+
+    $("#CaseStudiesModal").iziModal({
+        title: 'Add CaseStudies',
         TransitionIn: 'FadeInRight',
         theme: 'light',
         headerColor: '#008fa2',
         padding: 10,
-        //top: 30,
         overlayClose: false,
         width: '50%',
         zindex: 1050
     }); // popup setting
 
-    $('#btnUploadThumbnail').on('click', function () {
-        $('#thumbnailImageupload').val('');
-        $('#thumbnailImageupload').click();
-    });
-
-
-    $('#thumbnailImageupload').on('change', function () {
-        $("#btnThumbnail").show();
-        $("#thumbnailImageName").show();
-        $("#thumbnailImageName").html($("#thumbnailImageupload")[0].files[0].name);
-        $("#btnThumbnailRemove").show();
-    });
-
-
-    $('#txtUploadDate').datepicker({
-        uiLibrary: 'bootstrap4',
-        format: 'dd mmm yyyy'
-    });
-
-    $("#btnVideoClose").on('click', function () {
-        VideoClose();
+    $("#btnCaseStudiesClose").on('click', function () {
+        CaseStudiesClose();
     })
 
-    $("#btnVideoSave").on('click', function () {
-        VideoSave();
+    $("#btnCaseStudiesSave").on('click', function () {
+        CaseStudiesSave();
     })
 
-    $("#btnThumbnailRemove").on('click', function () {
-        $("#hthumbnailremovevalue").val($("#hthumbnailuploadvalue").val());
-        $("#hthumbnailuploadvalue").val('');
-        $("#thumbnailImageupload").val('');
-        $("#thumbnailImageName").hide();
-        $("#thumbnailImageName").html('');
-        $("#btnThumbnail").hide();
-        $("#btnThumbnailRemove").hide(); 
+    $("#btnSearchCaseStudies").on('click', function () {
+        BindCaseStudies();
     });
 
-    $("#btnSearchVideos").on('click', function () {
-        BindVideos();
-    });
-
-    $("#btnSearchVideosClear").on('click', function () {
-        SearchVideosClear();
+    $("#btnSearchCaseStudiesClear").on('click', function () {
+        SearchCaseStudiesClear();
     });
 
     $("#chkAll").change(function () {
         $("[name='chkProductCategory']").prop('checked', this.checked);
     });
+}
+
+function BindIndustryCategory() {
+    var obj = {
+        ActiveStatus: '1'
+    };
+    CalltoApiController($("#HGetIndustryCategory").val(), obj, 'IndustryCategoryResponse');
 }
 
 function BindProductCategoryCheckBox() {
@@ -91,48 +71,56 @@ function ProductCategoryCheckBoxResponse(response) {
     });
 }
 
-function SearchVideosClear() {
+
+function IndustryCategoryResponse(response) {
+    DropdownResponse(response, 'IndustryCategory', 'CategoryCode', 'CategoryName','', false);
+    DropdownResponse(response, 'SIndustryCategory', 'CategoryCode', 'CategoryName','', true);
+}
+
+function SearchCaseStudiesClear() {
     $("#STitle").val('');
-    BindVideos();
+    $("#SStatus").val('');
+    $("#SIndustryCategory").val('');
+    BindCaseStudies();
 }
 
-function VideoClose() {
-    $("#VideoModal").iziModal('close');
+function CaseStudiesClose() {
+    $("#CaseStudiesModal").iziModal('close');
 }
 
-function BindVideos() {
-    $('#tblVideos tbody').empty();
+function BindCaseStudies() {
+    $('#tblCaseStudies tbody').empty();
 
     var obj = {
-        Title: $("#STitle").val()
+        Title: $("#STitle").val(),
+        ActiveStatus: $('#SStatus').children("option:selected").val(),
+        CategoryCode: $('#SCategory').children("option:selected").val()
     };
-    CalltoApiController($("#HGetVideos").val(), obj, 'VideosResponse');
+    CalltoApiController($("#HGetCaseStudies").val(), obj, 'CaseStudiesResponse');
 }
 
-function AddVideo() {
+function AddCaseStudies() {
     $("#HMode").val('New');
     $("#btnSaveText").html("Save");
-    ClearVideo();
-    $(".iziModal-header-title").html('Add Video');
-    $("#VideoModal").iziModal('open');
+    ClearCaseStudies();
+    $(".iziModal-header-title").html('Add CaseStudies');
+    $("#CaseStudiesModal").iziModal('open');
 }
 
-
-function EditVideo(row) {
-    ClearVideo();
+function EditCaseStudies(row) {
+    ClearCaseStudies();
     $("#HMode").val('Edit');
 
     var currentRow = $(row).closest("tr");
-    var data = $('#tblVideos').DataTable().row(currentRow).data();
-    $("#txtVideoCode").val(data["VideoCode"]);
-    $("#Importance").val(data["Importance"]);
+    var data = $('#tblCaseStudies').DataTable().row(currentRow).data();
+    $("#txtCaseStudiesCode").val(data["CaseStudiesCode"]);
     $('input[name="rdoStatus"][value="' + data["ActiveStatus"] + '"]').prop('checked', true);
-    $("#txtUploadDate").val(data["UploadDate"]);
+    $("#Cateogry").val(data["CategoryCode"]);
+    $("#Importance").val(data["Importance"]);
+    $("#txtTitle").val(data["Title"]);
+    $("#txtDescription").val(data["FullDescription"]);
     $("#uploadmonth").val(data["UploadMonth"]);
     $("#uploadyear").val(data["UploadYear"]);
-    $("#txtTitle").val(data["Title"]);
-    $("#txtVideoLink").val(data["VideoUrl"]);
-    $("#txtDescription").val(data["Description"]);   
     $("#txtDownloadCount").val(data["DownloadCount"]);
 
     $("input[type=checkbox][name='chkProductCategory']").each(function () {
@@ -145,42 +133,43 @@ function EditVideo(row) {
         }
     });
 
+    if (data["ResourceFile"]) {
+        setuploadvalue('divResource', data["ResourceFile"]);
+        setuploadFileName('divResource', data["ResourceFileName"])
+    }
+
     if (data["ThumbnailImage"]) {
         setuploadvalue('divThumbnail', data["ThumbnailImage"]);
         setuploadFileName('divThumbnail', data["ThumbnailImageName"])
     }
 
     $("#btnSaveText").html("Update");
-    $(".iziModal-header-title").html('Edit Video');
-    $("#VideoModal").iziModal('open');
+    $(".iziModal-header-title").html('Edit CaseStudies');
+    $("#CaseStudiesModal").iziModal('open');
 }
 
-
-function ClearVideo(){
-    $("#btnThumbnail").hide();
-    $("#thumbnailImageName").hide();
-    $("#btnThumbnailRemove").hide();
+function ClearCaseStudies() {
 
     let date = new Date();
     const month = date.toLocaleString('default', { month: '2-digit' });
-
     $("#txtUploadBy").val($("#layoutloginName").html());
     $("#uploadmonth").val(month);
     $("#uploadyear").val(date.getFullYear());
     $("[name='chkProductCategory']").prop('checked', false);
     $("#Importance").val($("#Importance option:first").val());
+    $("#IndustryCategory").val($("#IndustryCategory option:first").val());
     $("#rdoInactive").prop('checked', true);
-    $("#txtVideoCode").val('');
+    $("#txtCaseStudiesCode").val('');
     $("#txtTitle").val('');
-    $("#txtVideoLink").val('');
     $("#txtDescription").val('');
     $("#txtDownloadCount").val('');
 
+    uploadfileClear('divResource');
     uploadfileClear('divThumbnail');
 }
 
-function VideosResponse(response) {
-    $('#tblVideos').DataTable({
+function CaseStudiesResponse(response) {
+    $('#tblCaseStudies').DataTable({
         scrollY: '500px',
         scrollCollapse: true,
         dom: 'Bfltip',
@@ -199,11 +188,11 @@ function VideosResponse(response) {
         buttons: [
             {
                 className: 'btn btn-sm',
-                text: '<i class="ion-plus-round"></i> Add Video',
+                text: '<i class="ion-plus-round"></i> Add CaseStudies',
                 action: function (e, dt, node, config) {
-                    AddVideo();
+                    AddCaseStudies();
                 },
-                titleAttr: 'Add Video'
+                titleAttr: 'Add CaseStudies'
             },
             {
                 className: 'btn btn-sm advsearch',
@@ -225,20 +214,22 @@ function VideosResponse(response) {
             }
         ],
         "columns": [
-            { "data": "VideoCode", width: "5%", className: "align-center" },
+            { "data": "CaseStudiesCode", width: "5%", className: "align-center" },
             { "data": "ActiveStatus", width: "5%", className: "align-center" },
-            { "data": "Title", width: "23%"},
-            { "data": "VideoUrl", width: "25%"},
+            { "data": "Title", width: "22%" },
+            { "data": "FullDescription", width: "31%" },
+            { "data": "CategoryName", width: "8%" },
+            { "data": "UploadMMMYYYY", width: "13%", className: "align-center" },
+            { "data": "DownloadCount", width: "8%", className: "align-right" },
+            { "data": "ResourceFile", width: "8%", className: "align-center" },
             { "data": "ThumbnailImage", width: "8%", className: "align-center" },
-            { "data": "UploadDate", width: "9%", className: "align-center"  },
-            { "data": "Description", width: "25%"},
         ],
         "columnDefs": [
             {
                 "targets": 0,
                 "data": "EventCode",
                 "render": function (data) {
-                    return '<button type="button" title="Edit Video" style="width:70px" class="gridbtnedit" onclick="EditVideo(this);"><i class="icon-note"></i> Edit</button>';
+                    return '<button type="button" title="Edit CaseStudies" style="width:70px" class="gridbtnedit" onclick="EditCaseStudies(this);"><i class="icon-note"></i> Edit</button>';
                 },
             },
             {
@@ -253,28 +244,34 @@ function VideosResponse(response) {
                 },
             },
             {
-                "targets": 3,
-                "data": "VideoUrl",
+                "targets": 7,
+                "data": "ResourceFile",
                 "render": function (data) {
                     if (data != null) {
-                        return '<a style="font-size:12px" href="' + data + '" target="_blank">' + data + '</a>';
+                        var extension = data.substr((data.lastIndexOf('.') + 1));
+                        if (extension == 'pdf') {
+                            return '<button type="button" title="Links" class="gridbtnpdf" onclick="showPreview(\'' + data + '\');"><i class="icofont icofont-file-pdf"></i></button>';
+                        } else {
+                            return '<button type="button" title="Links" class="gridbtnphoto" onclick="showPreview(\'' + data + '\');"><i class="icon-picture"></i></button>';
+                        }
                     }
                     else {
                         return '';
                     }
+
                 },
             },
             {
-                "targets": 4,
+                "targets": 8,
                 "data": "ThumbnailImage",
                 "render": function (data) {
                     if (data != null) {
-                        return '<button type="button" title="Thumbnail" class="gridbtnphoto" onclick="showPreview(\'' + data +'\');""><i class="icon-picture"></i></button>';
+                        return '<button type="button" title="Thumbnail" class="gridbtnphoto" onclick="showPreview(\'' + data + '\');"><i class="icon-picture"></i></button>';
                     }
                     else {
                         return '';
                     }
-                    
+
                 },
             },
         ],
@@ -295,35 +292,36 @@ function getProductCategoryList() {
     return JSON.stringify(productCategoryList);
 }
 
-function VideoSave() {
-    if (VideoErrorcheck()) {
+function CaseStudiesSave() {
+    if (CaseStudiesErrorcheck()) {
         $('#divloader').show();
-
         var obj = {
             ActiveStatus: $('input[name="rdoStatus"]:checked').val(),
+            CaseStudiesCode: $("#txtCaseStudiesCode").val(),
+            IndustryCategoryCode: $('#IndustryCategory').children("option:selected").val(),
             ProductCategoryJson: getProductCategoryList(),
-            VideoCode: $("#txtVideoCode").val(),
             Importance: $('#Importance').children("option:selected").val(),
-            UploadDate: $('#uploadmonth').children("option:selected").val() + '-01-' + $('#uploadyear').children("option:selected").val(),
-            Title: $("#txtTitle").val(),
+            ResourceRemove: getUploadRemovedValue('divResource'),
+            ResourceFile: getUploadValue('divResource'),
+            ResourceFileName: getuploadFileName('divResource'),
             ThumbnailRemove: getUploadRemovedValue('divThumbnail'),
             ThumbnailImage: getUploadValue('divThumbnail'),
             ThumbnailImageName: getuploadFileName('divThumbnail'),
-            VidoeUrl: $("#txtVideoLink").val(),
+            Title: $("#txtTitle").val(),
             Description: $("#txtDescription").val(),
+            UploadDate: $('#uploadmonth').children("option:selected").val() + '-01-' + $('#uploadyear').children("option:selected").val(),
             UpdatedBy: $("#hID").val(),
             Mode: $("#HMode").val(),
         };
 
         var formdata = new FormData();
-        var thumbnailimage = $('#thumbnailImageupload')[0];
-
+        formdata.append('resource', getuploadFile('divResource'));
         formdata.append('thumbnail', getuploadFile('divThumbnail'));
 
-        formdata.append('VideoModel', JSON.stringify(obj));
+        formdata.append('CaseStudiesModel', JSON.stringify(obj));
 
         $.ajax({
-            url: $("#HVideoCUD").val(),
+            url: $("#HCaseStudiesCUD").val(),
             type: "POST",
             cache: false,
             contentType: false,
@@ -334,10 +332,10 @@ function VideoSave() {
                 MessageResponse(response, data[0].MessageID)
 
                 if (data[0].MessageID.charAt(0) != 'E') {
-                    $("#VideoModal").iziModal('close');
+                    $("#CaseStudiesModal").iziModal('close');
                 }
 
-                BindVideos();
+                BindCaseStudies();
             },
             fail: function (response) {
                 data = JSON.parse(response);
@@ -350,7 +348,7 @@ function VideoSave() {
     }
 }
 
-function VideoErrorcheck() {
+function CaseStudiesErrorcheck() {
     if (!$("#txtTitle").val()) {
         ShowMessage("E001", "Title");
         $("#txtTitle").focus();

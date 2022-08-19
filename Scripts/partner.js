@@ -535,6 +535,8 @@ function BindPartnerLoginLog() {
 function PartnerLoginLogResponse(response) {
     var groupColumn = 2;
     $('#tblPartnerLoginLog').DataTable({
+        scrollY: '500px',
+        scrollCollapse: true,
         data: JSON.parse(response),
         datasrc: "",
         destroy: true,
@@ -551,9 +553,9 @@ function PartnerLoginLogResponse(response) {
         "columns": [
             { "data": "Email", width: "5%" },
             { "data": "CountryName", width: "5%" },
-            { "data": "Company_Name", width: "15%" },
-            { "data": "FullName", width: "10%" },
-            { "data": "Email", width: "7%" },     
+            { "data": "Company_Name", width: "50%" },
+            { "data": "FullName", width: "20%" },
+            { "data": "Email", width: "15%" },     
             { "data": "LoginFrequent", width: "5%", className: "align-right" },
         ],
         "columnDefs": [
@@ -561,7 +563,7 @@ function PartnerLoginLogResponse(response) {
                 "targets": 0,
                 "data": "Email",
                 "render": function (data) {                  
-                    return '<button type = "button" style="width:70px;" class="gridbtndetail" onclick= "LoginDetail(this);" > <i class="icofont icofont-info-circle"></i>Detail</button >';
+                    return '<button type = "button" style="width:70px;" class="gridbtndetail" onclick= "LoginDetail(this);" ><i class="ti-info-alt"></i>&nbsp;Detail</button >';
                 },
             },
         ],

@@ -24,6 +24,11 @@ namespace VPPWeb.Controllers
             return View();
         }
 
+        public ActionResult PartnerLoginFrequent()
+        {
+            return View();
+        }
+
         [HttpPost]
         public string CheckRevisePartnerImport()
         {

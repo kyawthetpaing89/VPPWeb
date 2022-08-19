@@ -99,7 +99,7 @@ function getuploadFile(div) {
 
 function getuploadFileName(div) {
 	if ($('#' + div + ' #fu1').val()) {
-		$('#' + div + ' #fu1')[0].files[0].name;
+		return $('#' + div + ' #fu1')[0].files[0].name;
 	} else if ($('#' + div + ' #fuvalue1').val()) {
 		return $('#' + div + ' #txtfuName1').val();
     }

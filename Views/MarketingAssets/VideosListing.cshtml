@@ -35,6 +35,7 @@
                                 <thead>
                                     <tr>
                                         <th>Action</th>
+                                        <th>Status</th>
                                         <th>Title</th>
                                         <th>Video Link</th>
                                         <th>Thumbnail</th>
@@ -81,20 +82,84 @@
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Date:</label>
-            <div class="col-sm-3">
-                <input id="txtUploadDate" type="search" maxlength="11" class="form-control form-control-sm ">
+            <label class="col-sm-3 col-form-label">Upload By:</label>
+            <div class="col-sm-4">
+                <input id="txtUploadBy" readonly type="text" maxlength="10" class="form-control form-control-sm">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Upload Date:</label>
+            <div class="col-sm-2">
+                <select class="form-control form-control-sm" id="uploadmonth">
+                    <option value="01">Jan</option>
+                    <option value="02">Feb</option>
+                    <option value="03">Mar</option>
+                    <option value="04">Apr</option>
+                    <option value="05">May</option>
+                    <option value="06">Jun</option>
+                    <option value="07">Jul</option>
+                    <option value="08">Aug</option>
+                    <option value="09">Sep</option>
+                    <option value="10">Oct</option>
+                    <option value="11">Nov</option>
+                    <option value="12">Dec</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control form-control-sm" id="uploadyear">
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                    <option value="2028">2028</option>
+                    <option value="2029">2029</option>
+                    <option value="2030">2030</option>
+                    <option value="2031">2031</option>
+                    <option value="2032">2032</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Product Category:</label>
+            <div id="divProductCategoryList" class="col-sm-9">
+                <div class="col-sm-12 checkbox-fade fade-in-primary" style="padding:0">
+                    <label>
+                        <input type="checkbox" id="chkAll" name="Language" value="HTML" class="input-danger">
+                        <span class="cr">
+                            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                        </span>
+                        <span>All</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Importance:</label>
+            <div class="col-sm-9">
+                <select class="form-control form-control-sm" id="Importance">
+                    <option value="05">Highest</option>
+                    <option value="04">High</option>
+                    <option value="03">Medium</option>
+                    <option value="02">Low</option>
+                    <option value="01">Least</option>
+                </select>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Thumbnail Image:</label>
-            <div class="col-sm-3">
-                <button type="button" id="btnUploadThumbnail" style="padding: .5rem .75rem;" class="btn btn-block btn-sm btn-grd-warning">upload</button>
-            </div>
-            <div class="col-sm-6">
-                <span id="btnThumbnail"> <i id="thumbnailImage" class="icofont icofont-image" style="font-size:2em;color:cornflowerblue;cursor:pointer"></i></span>
-                <span id="thumbnailImageName"></span>
-                <span id="btnThumbnailRemove"><i class="icofont icofont-ui-delete" style="font-size: 2em; color: indianred;cursor:pointer"></i></span>
+            <div id="divThumbnail" class="col-sm-9">
             </div>
         </div>
         <div class="form-group row">
@@ -115,6 +180,12 @@
                 <input id="txtDescription" type="text" maxlength="200" class="form-control form-control-sm" />
             </div>
         </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Download:</label>
+            <div class="col-sm-9">
+                <input id="txtDownloadCount" readonly type="text" class="form-control form-control-sm align-right">
+            </div>
+        </div>
         <div id="divSave" class="form-group row div-centerbtn">
             <div class="col-sm-3">
                 <button type="button" id="btnVideoClose" class="btn btn-block btn-grd-inverse">Close</button>
@@ -126,15 +197,14 @@
     </div>
 </div>
 
-<input type="hidden" id="hthumbnailuploadvalue" />
-<input type="hidden" id="hthumbnailremovevalue" />
+<input id="HGetMarketingProductCategory" type="hidden" value="@Url.Action("GetMarketingProductCategory", "api/MarketingAssetsApi")" />
 <input id="HGetVideos" type="hidden" value="@Url.Action("GetVideos", "api/MarketingAssetsApi")" />
-<input id="thumbnailImageupload" accept="image/*" class="hidden" type="file">
 <input type="hidden" id="HMode" />
 <input id="HVideoCUD" type="hidden" value="@Url.Action("Video_CUD", "MarketingAssets")" />
 
 @section Scripts{
     <script src="@Url.Content("~/Scripts/videos.js?v=4")"></script>
+    <script src="@Url.Content("~/Scripts/fileupload.js?v=3")"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {

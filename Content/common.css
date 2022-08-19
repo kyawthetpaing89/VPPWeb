@@ -1,14 +1,46 @@
-﻿.input-group {
+﻿.pcoded .pcoded-navbar .pcoded-item > li > a > .pcoded-micon {
+    font-size: 20px;
+}
+
+.pcoded[theme-layout="vertical"] .pcoded-navbar .pcoded-item > li > a .pcoded-mtext {
+    line-height: 2.5;
+}
+
+.pcoded[theme-layout="vertical"] .pcoded-navbar .pcoded-item li.pcoded-hasmenu[dropdown-icon="style1"] > a:after{
+    line-height:2.5;
+}
+
+.promotionicon {
+    color: lightpink !important;
+}
+
+.vippartner {
+    color: #dbd048!important;
+}
+
+.casestudiesicon {
+    color: #b986a7 !important;
+}
+
+.marketingicon {
+    color: #a6c5c5 !important;
+}
+
+.eventicon {
+    color: darksalmon !important;
+}
+
+.input-group {
     margin-bottom: 0;
 }
 
 .activeicon{
-    font-size: 20px;
+    font-size: 23px;
     color:#68a3a3;
 }
 
 .inactiveicon {
-    font-size: 20px;
+    font-size: 23px;
     color: indianred;
 }
 
@@ -132,7 +164,7 @@ input[type=search]::-webkit-search-cancel-button {
 }
 
 .gridbtndetail {
-    background-color: #edd8cc;
+    background-color: powderblue;
     border: 1px dashed black;
     cursor: pointer;
 }
@@ -171,13 +203,14 @@ input[type=search]::-webkit-search-cancel-button {
     font-size:12px;
 }
 
-.pcoded .pcoded-navbar .pcoded-item > li > a > .pcoded-micon{
-    font-size:12px;
-}
-
 .pcoded[theme-layout="vertical"][vertical-nav-type="expanded"] .pcoded-header .pcoded-left-header, .pcoded[theme-layout="vertical"][vertical-nav-type="expanded"] .pcoded-navbar{
     width:180px;
 }
+
+.header-navbar .navbar-wrapper .navbar-logo {
+    width: 180px;
+}
+
 
 .main-menu {
     width: 180px;

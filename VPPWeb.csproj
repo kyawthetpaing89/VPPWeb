@@ -174,6 +174,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CaseStudiesApiController.cs" />
+    <Compile Include="Controllers\CaseStudiesController.cs" />
     <Compile Include="Controllers\CountryApiController.cs" />
     <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\EnquiryApiController.cs" />
@@ -182,12 +184,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImportApiController.cs" />
     <Compile Include="Controllers\ImportController.cs" />
+    <Compile Include="Controllers\IndustryCategoryApiController.cs" />
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\MarketingAssetsApiController.cs" />
     <Compile Include="Controllers\MarketingAssetsController.cs" />
     <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\MultipurposeApiController.cs" />
     <Compile Include="Controllers\MultipurposeController.cs" />
+    <Compile Include="Controllers\PartialController.cs" />
     <Compile Include="Controllers\PartnerApiController.cs" />
     <Compile Include="Controllers\PartnerController.cs" />
     <Compile Include="Controllers\PointApiController.cs" />
@@ -196,6 +200,8 @@
     <Compile Include="Controllers\ProductCategoryApiController.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\PromotionApiController.cs" />
+    <Compile Include="Controllers\PromotionController.cs" />
     <Compile Include="Controllers\RewardController.cs" />
     <Compile Include="Controllers\RewardApiController.cs" />
     <Compile Include="Controllers\TrainingApiController.cs" />
@@ -1737,6 +1743,7 @@
     <Content Include="Adminity\bower_components\lightgallery\fonts\lg.ttf" />
     <Content Include="Adminity\bower_components\lightgallery\fonts\lg.woff" />
     <Content Include="Scripts\api.js" />
+    <Content Include="Scripts\casestudies.js" />
     <Content Include="Scripts\cleave.js" />
     <Content Include="Scripts\cleave.min.js" />
     <Content Include="Scripts\common.js" />
@@ -1759,6 +1766,7 @@
     <Content Include="Scripts\point.js" />
     <Content Include="Scripts\product.js" />
     <Content Include="Scripts\productcategory.js" />
+    <Content Include="Scripts\promotion.js" />
     <Content Include="Scripts\reward.js" />
     <Content Include="Scripts\sweetalert2.all.js" />
     <Content Include="Scripts\sweetalert2.all.min.js" />
@@ -1797,6 +1805,7 @@
     <Folder Include="SystemImages\Event\" />
     <Folder Include="SystemImages\Product\" />
     <Folder Include="SystemImages\Quotation\" />
+    <Folder Include="Views\PromotionApi\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1837,8 +1846,16 @@
     <Content Include="Views\MarketingAssets\VideosListing.cshtml" />
     <Content Include="Views\MarketingAssets\DigitalLibrary.cshtml" />
     <Content Include="Views\MarketingAssets\CaseStudies.cshtml" />
+    <Content Include="Views\Partial\LoadDigitalLibrary.cshtml" />
+    <Content Include="Views\Promotion\PromotionListing.cshtml" />
+    <Content Include="Views\Partner\PartnerLoginFrequent.cshtml" />
+    <Content Include="Views\CaseStudies\CaseStudiesListing.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CaseStudies_BL\CaseStudies_BL.csproj">
+      <Project>{632b1b09-4f66-42c1-a5f2-4c6c8ebb0390}</Project>
+      <Name>CaseStudies_BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Country_BL\Country_BL.csproj">
       <Project>{61a880b5-adf0-458d-a56c-02f36eafa054}</Project>
       <Name>Country_BL</Name>
@@ -1862,6 +1879,10 @@
     <ProjectReference Include="..\Import_BL\Import_BL.csproj">
       <Project>{1144ac90-ef2f-4005-802a-024928e2dac3}</Project>
       <Name>Import_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IndustryCategory_BL\IndustryCategory_BL.csproj">
+      <Project>{3e552d04-8980-46bb-858b-754a00b9c744}</Project>
+      <Name>IndustryCategory_BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\MarketingAssets_BL\MarketingAssets_BL.csproj">
       <Project>{41fba326-16c3-43ae-80a0-31197814c9ff}</Project>
@@ -1898,6 +1919,10 @@
     <ProjectReference Include="..\Product_BL\Product_BL.csproj">
       <Project>{9d3102dd-096c-4f65-a379-4a03742884d1}</Project>
       <Name>Product_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Promotion_BL\Promotion_BL.csproj">
+      <Project>{aa860d1f-1471-4637-8759-512e04d86560}</Project>
+      <Name>Promotion_BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Reward_BL\Reward_BL.csproj">
       <Project>{ba6ed8e6-3788-4a4b-a2dc-99d099ef9f79}</Project>

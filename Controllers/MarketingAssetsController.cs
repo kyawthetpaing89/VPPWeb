@@ -56,7 +56,7 @@ namespace VPPWeb.Controllers
                         if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + videoModel.ThumbnailImage)))
                             System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + videoModel.ThumbnailImage));
 
-                        videoModel.ThumbnailImage = "MarketingAssets/Thumbnail/" + videoModel.VideoCode + '_' + DateTime.Now.ToString("yyyymmdd") + Path.GetExtension(Request.Files[i].FileName);
+                        videoModel.ThumbnailImage = "MarketingAssets/Thumbnail/" + videoModel.VideoCode + '_' + DateTime.Now.ToString("yyyymmddhhmmss") + Path.GetExtension(Request.Files[i].FileName);
                         videoModel.ThumbnailImageName = Request.Files[0].FileName;
 
                         Request.Files[i].SaveAs(Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/"), videoModel.ThumbnailImage));
@@ -113,7 +113,7 @@ namespace VPPWeb.Controllers
                         if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + digitalLibraryModel.ThumbnailImage)))
                             System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + digitalLibraryModel.ThumbnailImage));
 
-                        digitalLibraryModel.ResourceFile = "MarketingAssets/DigitalLibrary/Resource/" + digitalLibraryModel.DigitalLibraryCode + '_' + DateTime.Now.ToString("yyyymmdd") + Path.GetExtension(Request.Files[i].FileName);
+                        digitalLibraryModel.ResourceFile = "MarketingAssets/DigitalLibrary/Resource/" + digitalLibraryModel.DigitalLibraryCode + '_' + DateTime.Now.ToString("yyyymmddhhmmss") + Path.GetExtension(Request.Files[i].FileName);
                         digitalLibraryModel.ResourceFileName = Request.Files[i].FileName;
 
                         Request.Files[i].SaveAs(Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/"), digitalLibraryModel.ResourceFile));
@@ -124,7 +124,7 @@ namespace VPPWeb.Controllers
                         if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + digitalLibraryModel.ThumbnailImage)))
                             System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/" + digitalLibraryModel.ThumbnailImage));
 
-                        digitalLibraryModel.ThumbnailImage = "MarketingAssets/DigitalLibrary/Thumbnail/" + digitalLibraryModel.DigitalLibraryCode + '_' + DateTime.Now.ToString("yyyymmdd") + Path.GetExtension(Request.Files[i].FileName);
+                        digitalLibraryModel.ThumbnailImage = "MarketingAssets/DigitalLibrary/Thumbnail/" + digitalLibraryModel.DigitalLibraryCode + '_' + DateTime.Now.ToString("yyyymmddhhmmss") + Path.GetExtension(Request.Files[i].FileName);
                         digitalLibraryModel.ThumbnailImageName = Request.Files[i].FileName;
 
                         Request.Files[i].SaveAs(Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/SystemImages/"), digitalLibraryModel.ThumbnailImage));
